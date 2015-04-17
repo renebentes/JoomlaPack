@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[DROP TABLE IF EXISTS `#__${1:project}`;]]></content>
+	<tabTrigger>jmysqldrop</tabTrigger>
+  <description>Comando MySQL para exclusão de tabela</description>
+</snippet>

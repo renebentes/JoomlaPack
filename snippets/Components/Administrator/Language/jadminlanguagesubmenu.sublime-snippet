@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[; Top Submenus
+COM_${1:PROJECT}_CPANEL="Painel de Controle"
+COM_${1/(.+)/\U\1/g}_${2:HELLOS}="${3:Hellos}"
+COM_${1/(.+)/\U\1/g}_CATEGORIES="Categorias"
+
+; Submenus
+COM_${1/(.+)/\U\1/g}_SUBMENU_CPANEL="Painel de Controle"
+COM_${1/(.+)/\U\1/g}_SUBMENU_${2:HELLOS}="${3:Hellos}"
+COM_${1/(.+)/\U\1/g}_SUBMENU_CATEGORIES="Categorias"
+]]></content>
+	<tabTrigger>jadminlanguagesubmenu</tabTrigger>
+  <description>Texto para menus de componentes Joomla</description>
+</snippet>

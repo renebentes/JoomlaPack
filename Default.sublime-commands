@@ -1,0 +1,4 @@
+[
+  { "caption": "Joomla Pack: New Project", "command": "new_project" },
+  { "caption": "Joomla Pack: New Component", "command": "new_component" }
+]

@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Project} template helper.
+ *
+ * @package     ${1/(.+)/\u\1/g}
+ * @subpackage  tpl_${1/(.+)/\L\1/g}
+ * @since       ${4:2.5}
+ */
+abstract class tpl${1/(.+)/\u\1/g}Helper
+{
+
+}
+]]></content>
+  <tabTrigger>jtemplatehelper</tabTrigger>
+</snippet>

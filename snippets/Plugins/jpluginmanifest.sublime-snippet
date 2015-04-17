@@ -1,0 +1,32 @@
+<snippet>
+  <content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<extension version="${1:2.5.0}" type="plugin" group="${2:user}" method="upgrade">
+  <name>plg_${2/(.+)/\L\1/g}_${3:hello}</name>
+  <author>${4:Rene Bentes Pinto}</author>
+  <creationDate>$5</creationDate>
+  <copyright>(C) ${6:2014} ${7:Rene Bentes Pinto, Inc}. All rights reserved.</copyright>
+  <license>GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html</license>
+  <authorEmail>${8:renebentes@yahoo.com.br}</authorEmail>
+  <authorUrl>$9</authorUrl>
+  <version>${10:0.1.0}</version>
+  <description>PLG_${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_XML_DESCRIPTION</description>
+  <files>
+    <folder>tmpl></folder>
+    <filename plugin="${3/(.+)/\L\1/g}">${3/(.+)/\L\1/g}.php</filename>
+    <filename>index.html</filename>
+  </files>
+  <languages folder="language">
+    <language tag="en-GB">en-GB/en-GB.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.ini</language>
+    <language tag="en-GB">en-GB/en-GB.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.sys.ini</language>
+    <language tag="pt-BR">pt-BR/pt-BR.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.ini</language>
+    <language tag="pt-BR">pt-BR/pt-BR.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.sys.ini</language>
+  </languages>
+  <config>
+    <fields name="params">
+    </fields>
+  </config>
+</extension>
+]]></content>
+  <tabTrigger>jpluginmanifest</tabTrigger>
+  <description>Arquivo de manifesto para plugins Joomla</description>
+</snippet>

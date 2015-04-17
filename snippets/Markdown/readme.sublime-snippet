@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[${1:Project} - ${2:com_project}
+=============
+
+${3:Description}
+
+Requirements
+------------
+
+* ${4:[Joomla! 2.5+](http://www.joomla.org)}
+
+Author
+------
+
+[${5:Rene Bentes Pinto}](http://github.com/${6:renebentes})
+
+License
+--------
+
+* This ${7:Template} licensed under the terms of the [${8:GNU/GPLv2}](http://github.com/${6/(.+)/\L\1/g}/${2/(.+)/\L\1/g}/blob/master/LICENSE) license.
+
+Bugs/Requests
+-------------
+
+You can [report a bug or request a feature here](http://github.com/${6/(.+)/\L\1/g}/${2/(.+)/\L\1/g}/issues)
+
+TODO
+----
+
+${10}
+
+Release Notes
+-------------
+
+You can [see the release notes here](http://github.com/${6/(.+)/\L\1/g}/${2/(.+)/\L\1/g}/blob/master/CHANGELOG.md)
+]]></content>
+  <tabTrigger>readme</tabTrigger>
+  <description>Gerar conteúdo em arquivos README</description>
+</snippet>

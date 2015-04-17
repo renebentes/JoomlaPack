@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[CHANGELOG
+=============
+
+Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
+
+* 0.1.0 - ${1:26/08/2014}
+  * Message - Estágio inicial de desenvolvimento
+]]></content>
+  <tabTrigger>changelog</tabTrigger>
+  <description>Gerar conteúdo em arquivos CHANGELOG</description>
+</snippet>

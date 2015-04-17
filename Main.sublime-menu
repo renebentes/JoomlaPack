@@ -1,0 +1,90 @@
+[
+  {
+    "caption": "Preferences",
+    "mnemonic": "n",
+    "id": "preferences",
+    "children":
+    [
+      {
+        "caption": "Package Settings",
+        "mnemonic": "P",
+        "id": "package-settings",
+        "children":
+        [
+          {
+            "caption": "Joomla Pack",
+            "mnemonic": "J",
+            "id": "joomla",
+            "children":
+            [
+              {
+                "caption": "New Project",
+                "mnemonic": "N",
+                "command": "new_project",
+                "args": {}
+              },
+              { "caption": "-" },
+              {
+                "caption": "Components",
+                "mnemonic": "C",
+                "children":
+                [
+                  {
+                    "caption": "New",
+                    "mnemonic": "N",
+                    "command": "new_component",
+                    "args": {}
+                  }
+                ]
+              },
+              { "caption": "-" },
+              {
+                "caption": "Documentation",
+                "mnemonic": "D",
+                "children":
+                [
+                  {
+                    "caption": "How To",
+                    "mnemonic": "H",
+                    "command": "open_file",
+                    "args":
+                    {
+                      "file": "${packages}/JoomlaPack/docs/How-To.md"
+                    }
+                  },
+                  {
+                    "caption": "README",
+                    "mnemonic": "R",
+                    "command": "open_file",
+                    "args":
+                    {
+                      "file": "${packages}/JoomlaPack/README.md"
+                    }
+                  },
+                  {
+                    "caption": "CHANGELOG",
+                    "mnemonic": "C",
+                    "command": "open_file",
+                    "args":
+                    {
+                      "file": "${packages}/JoomlaPack/CHANGELOG.md"
+                    }
+                  },
+                  {
+                    "caption": "LICENSE",
+                    "mnemonic": "L",
+                    "command": "open_file",
+                    "args":
+                    {
+                      "file": "${packages}/JoomlaPack/LICENSE"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

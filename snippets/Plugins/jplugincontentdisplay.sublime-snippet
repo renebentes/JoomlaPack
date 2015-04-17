@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Method is called by the view and the results are imploded and displayed in a placeholder}
+ *
+ * @param string  \$context    The context of the content passed to the plugin.
+ * @param object  &\$item      The content object.  Note \$item->text is also available
+ * @param object  &\$params    The content params
+ * @param integer \$page       The 'page' number
+ *
+ * @return string
+ *
+ * @since ${2:2.5}
+ */
+public function onContent${3:Before}Display(\$context, &\$item, &\$params, \$page = 0)
+{
+  \$app = JFactory::getApplication();$4
+
+  return '';
+}
+]]></content>
+  <tabTrigger>jplugincontentdisplay</tabTrigger>
+  <description>Método onContent[Before|After]Display em Plugins</description>
+</snippet>

@@ -1,0 +1,68 @@
+<snippet>
+	<content><![CDATA[jimport('joomla.application.component.view');
+
+/**
+ * View class for ${1:Hellos}.
+ *
+ * @package     ${2:Project}
+ * @subpackage  com_${2/(.+)/\L\1/g}
+ * @since       2.5
+ */
+class ${2/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
+{
+	/**
+	 * Method to display the view.
+	 *
+	 * @param   string  \$tpl  A template file to load. [optional]
+	 *
+	 * @return  mixed  A string if successful, otherwise a JError object.
+	 *
+	 * @since   2.5
+	 */
+	public function display(\$tpl = null)
+	{
+		// Check for errors.
+		if (count(\$errors = \$this->get('Errors')))
+		{
+			JError::raiseError(500, implode("\n", \$errors));
+			return false;
+		}
+
+		\$this->addToolbar();
+
+		parent::display(\$tpl);
+	}
+
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return  void
+	 *
+	 * @since   2.5
+	 */
+	protected function addToolbar()
+	{
+		\$version = new JVersion;
+
+		require_once JPATH_COMPONENT . '/helpers/${2/(.+)/\L\1/g}.php';
+
+		\$canDo = ${2/(.+)/\u\1/g}Helper::getActions();
+		\$user = JFactory::getUser();
+
+		if (\$version->isCompatible('2.5'))
+			JToolBarHelper::title(JText::_('COM_${2/(.+)/\U\1/g}_MANAGER_${1/(.+)/\U\1/g}'), '${1/(.+)/\L\1/g}.png');
+		else
+			JToolBarHelper::title(JText::_('COM_${2/(.+)/\U\1/g}_MANAGER_${1/(.+)/\U\1/g}'), 'home-2 ${1/(.+)/\L\1/g}');
+
+		if (\$canDo->get('core.admin'))
+		{
+			JToolBarHelper::preferences('com_${2/(.+)/\L\1/g}');
+			JToolBarHelper::divider();
+		}
+
+		JToolBarHelper::help('${1/(.+)/\L\1/g}', \$com = true);
+	}
+}]]></content>
+	<tabTrigger>jadminview</tabTrigger>
+	<description>Arquivo para criação de View Geral</description>
+</snippet>

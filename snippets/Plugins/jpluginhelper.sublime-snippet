@@ -1,0 +1,59 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Project} ${2:Folder} plugin
+ *
+ * @package     ${1/(.+)/\u\1/g}
+ * @subpackage  plg_${2/(.+)/\L\1/g}_${1/(.+)/\L\1/g}
+ * @since       ${4:2.5}
+ */
+abstract class plg${1/(.+)/\u\1/g}Helper
+{
+  /**
+   * Get the path to a layout from Gallery
+   *
+   * @param   string  \$type    Plugin type
+   * @param   string  \$name    Plugin name
+   * @param   string  \$layout  Layout name
+   *
+   * @return  string  Layout path
+   *
+   * @since   $4
+   */
+  public static function getLayoutPath(\$type, \$name, \$layout = 'default')
+  {
+    \$template      = JFactory::getApplication()->getTemplate();
+    \$defaultLayout = \$layout;
+
+    if (strpos(\$layout, ':') !== false)
+    {
+      // Get the template and file name from the string
+      \$temp          = explode(':', \$layout);
+      \$template      = (\$temp[0] == '_') ? \$template : \$temp[0];
+      \$layout        = \$temp[1];
+      \$defaultLayout = (\$temp[1]) ? \$temp[1] : 'default';
+    }
+
+    // Build the template and base path for the layout
+    \$tPath = JPATH_THEMES . '/' . \$template . '/html/plg_' . \$type . '_' . \$name . '/' . \$layout . '.php';
+    \$bPath = JPATH_BASE . '/plugins/' . \$type . '/' . \$name . '/tmpl/' . \$defaultLayout . '.php';
+    \$dPath = JPATH_BASE . '/plugins/' . \$type . '/' . \$name . '/tmpl/default.php';
+
+    // If the template has a layout override use it
+    if (file_exists(\$tPath))
+    {
+      return \$tPath;
+    }
+    elseif (file_exists(\$bPath))
+    {
+      return \$bPath;
+    }
+    else
+    {
+      return \$dPath;
+    }
+  }
+}
+]]></content>
+  <tabTrigger>jpluginhelper</tabTrigger>
+  <description>Classe helper para Plugin Joomla</description>
+</snippet>
