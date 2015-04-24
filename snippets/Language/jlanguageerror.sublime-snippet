@@ -1,4 +1,0 @@
-<snippet>
-  <content><![CDATA[${1:COM}_${2:PROJECT}_ERROR_${3:ERROR}="${4:Mensagem}."]]></content>
-  <tabTrigger>jlanguageerror</tabTrigger>
-</snippet>

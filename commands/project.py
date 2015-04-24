@@ -5,9 +5,9 @@ import os
 import json
 from shutil import rmtree
 
-VERSION = int(sublime.version())
+st_version = int(sublime.version())
 
-if VERSION > 3000:
+if st_version > 3000:
     from JoomlaPack.commands import *
     from JoomlaPack.lib.helpers import *
     from JoomlaPack.lib.project import Project

@@ -1,2 +1,2 @@
-jheader
-jsiteviewfeatured_feed
+joomla-header
+joomla-site-view-featured-feed

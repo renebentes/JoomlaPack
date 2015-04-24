@@ -1,2 +1,2 @@
-jheader
-jadmintable-featured
+joomla-header
+joomla-admin-table-featured

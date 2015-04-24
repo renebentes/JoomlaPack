@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[<!DOCTYPE html>
+<html>
+<head>
+  <title>&nbsp;</title>
+</head>
+  <body></body>
+</html>
+]]></content>
+  <tabTrigger>blank</tabTrigger>
+</snippet>

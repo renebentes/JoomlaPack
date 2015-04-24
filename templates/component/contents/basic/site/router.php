@@ -1,2 +1,2 @@
-jheader
-jsiterouter
+joomla-header
+joomla-site-router

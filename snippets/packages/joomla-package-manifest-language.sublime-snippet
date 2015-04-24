@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[<file type="language" id="${1:pt-BR}" client="${2:site}">${2/(.+)/\L\1/g}_${1/(.+)/\L\1/g}.zip</file>]]>
+	</content>
+	<tabTrigger>joomla-package-manifest-language</tabTrigger>
+  <scope>text.xml</scope>
+</snippet>

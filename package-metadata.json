@@ -1,7 +1,0 @@
-{
-  "version": "1.0.0",
-  "url": "https://renebentes.github.io/sublime-joomla",
-  "description": "Set snippets and plugins for creating Joomla projects with Sublime Text 3.",
-  "sublime_text": "*",
-  "platforms": ["*"]
-}

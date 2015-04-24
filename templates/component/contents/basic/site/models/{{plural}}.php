@@ -1,2 +1,2 @@
-jheader
-jsitemodellist
+joomla-header
+joomla-site-model-list

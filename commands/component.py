@@ -4,9 +4,9 @@ import sublime_plugin
 import os
 from shutil import copytree
 
-VERSION = int(sublime.version())
+st_version = int(sublime.version())
 
-if VERSION > 3000:
+if st_version > 3000:
     from JoomlaPack.lib.helpers import *
 else:
     from lib.helpers import *

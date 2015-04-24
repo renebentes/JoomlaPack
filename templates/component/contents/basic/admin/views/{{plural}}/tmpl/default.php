@@ -1,2 +1,2 @@
-jheader
-jadminlayoutlist
+joomla-header
+joomla-admin-layout-list

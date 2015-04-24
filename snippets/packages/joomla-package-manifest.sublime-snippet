@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" version="${1:3.2.0}" method="upgrade">
+	<name>${2:Package Name}</name>
+	<creationDate>$3</creationDate>
+	<author>${4:Rene Bentes Pinto}</author>
+	<authorEmail>${5:renebentes@yahoo.com.br}</authorEmail>
+	<authorUrl>$6</authorUrl>
+	<copyright>Copyright (C) ${7:2014} ${8:Rene Bentes Pinto, Inc}. All rights reserved.</copyright>
+	<license>${9:GNU General Public License version 2 or later}; see LICENSE</license>
+	<version>${10:0.1.0}</version>
+	<packagename>${11:name}</packagename>
+	<url>$12</url>
+	<packager>$13</packager>
+	<packagerurl>$14</packagerurl>
+	<description>${15:<![CDATA[<h3>Description Package</h3></]]${-1}>}</description>
+	<update>$16</update>
+	<files folder="packages">
+		joomla-package-manifest-${17:component|language|library|module|plugin|template}
+	</files>
+</extension>]]>
+	</content>
+	<tabTrigger>joomla-package-manifest</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>

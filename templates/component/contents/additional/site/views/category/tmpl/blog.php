@@ -1,2 +1,2 @@
-jheader
-jsitelayoutcategory_blog
+joomla-header
+joomla-site-layout-category-blog

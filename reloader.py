@@ -2,10 +2,10 @@
 import sys
 import sublime
 
-VERSION = 2
+st_version = 3
 
 if sublime.version() == '' or int(sublime.version()) > 3000:
-    VERSION = 3
+    st_version = 3
     from imp import reload
 
 reload_mods = []
@@ -14,12 +14,12 @@ for mod in sys.modules:
         reload_mods.append(mod)
 
 mod_prefix = ""
-if VERSION == 3:
-    mod_prefix = "JoomlaPack." + mod_prefix
+if st_version == 3:
+    mod_prefix = "JoomlaPack" + mod_prefix
 
 mods_load_order = [
     '',
-    '.lib'
+    '.lib',
     '.lib.helpers',
     '.lib.project',
 

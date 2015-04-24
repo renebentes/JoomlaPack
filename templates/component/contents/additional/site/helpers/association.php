@@ -1,2 +1,2 @@
-jheader
-jsitehelperassociation
+joomla-header
+joomla-site-helper-association

@@ -1,2 +1,2 @@
-jheader
-jinstallerscript
+joomla-header
+joomla-installer-script

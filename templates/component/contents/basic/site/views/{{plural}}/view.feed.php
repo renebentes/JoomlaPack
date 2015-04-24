@@ -1,2 +1,2 @@
-jheader
-jsiteviewlist_feed
+joomla-header
+joomla-site-view-list-feed

@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[; Installation Messages
+${1:COM}_${2:PROJECT}_VERSION_UNSUPPORTED="Joomla não suportado. A extensão %1\$s v.%2\$s, está disponível apenas para Joomla %3\$s e superiores."
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_INSTALL_TEXT="Extensão %1\$s v.%2\$s instalada com sucesso."
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_UPDATE_TEXT="Extensão %1\$s atualizada com sucesso para v.%2\$s."
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_UPDATE_UNSUPPORTED="Sequência de versões incorreta. Não é possível atualizar %1\$s v.%2\$s para v.%3\$s."
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_UNINSTALL_TEXT="Extensão %1\$s v.%2\$s desinstalada com sucesso."
+]]>
+  </content>
+	<tabTrigger>joomla-language-install</tabTrigger>
+</snippet>

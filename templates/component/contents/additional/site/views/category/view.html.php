@@ -1,2 +1,2 @@
-jheader
-jsiteviewcategory
+joomla-header
+joomla-site-view-category

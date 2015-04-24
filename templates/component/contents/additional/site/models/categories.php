@@ -1,2 +1,2 @@
-jheader
-jsitemodelcategories
+joomla-header
+joomla-site-model-categories

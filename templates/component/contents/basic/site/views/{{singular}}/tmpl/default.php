@@ -1,2 +1,2 @@
-jheader
-jsitelayoutitem
+joomla-header
+joomla-site-layout-item

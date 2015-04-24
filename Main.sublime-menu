@@ -25,20 +25,6 @@
               },
               { "caption": "-" },
               {
-                "caption": "Components",
-                "mnemonic": "C",
-                "children":
-                [
-                  {
-                    "caption": "New",
-                    "mnemonic": "N",
-                    "command": "new_component",
-                    "args": {}
-                  }
-                ]
-              },
-              { "caption": "-" },
-              {
                 "caption": "Documentation",
                 "mnemonic": "D",
                 "children":

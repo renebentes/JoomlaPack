@@ -1,2 +1,2 @@
-jheader
-jadminlayoutfeatured
+joomla-header
+joomla-admin-layout-featured

@@ -1,2 +1,2 @@
-jheader
-jsitehelpercategory
+joomla-header
+joomla-site-helper-category

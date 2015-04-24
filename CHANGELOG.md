@@ -3,6 +3,12 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.3 - 20/04/2015
+  * Messages - Snippets renomeados
+  * Updated - Snippets atualizados para versão Joomla 3
+  * Added - Snippets jheaderjs, mit
+  * Added - Side Bar.sublime-menu
+  * Added - função para obter plural de palavras em inglês
 * 0.2.2 - 23/02/2015
   * Updated - Alterado url da licença no snippet readme
 * 0.2.1 - 22/01/2015

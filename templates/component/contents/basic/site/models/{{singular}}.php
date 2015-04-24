@@ -1,2 +1,2 @@
-jheader
-jsitemodelitem
+joomla-header
+joomla-site-model-item

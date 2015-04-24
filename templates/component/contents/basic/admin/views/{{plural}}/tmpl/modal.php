@@ -1,2 +1,2 @@
-jheader
-jadminlayoutlist-modal
+joomla-header
+joomla-admin-layout-list-modal

@@ -1,2 +1,2 @@
-jheader
-jsitelayoutcategories
+joomla-header
+joomla-site-layout-categories

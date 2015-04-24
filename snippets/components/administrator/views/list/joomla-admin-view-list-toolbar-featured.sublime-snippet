@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[JToolbarHelper::custom('${2:hellos}.featured', 'featured.png', 'featured_f2.png', 'JFEATURED', true);
+  JToolbarHelper::custom('${2/(.+)/\L\1/g}.unfeatured', 'unfeatured.png', 'unfeatured_f2.png', 'JUNFEATURED', true);
+]]></content>
+	<tabTrigger>joomla-admin-view-list-toolbar-featured</tabTrigger>
+	<scope>text.plain, text.php, source.php</scope>
+</snippet>

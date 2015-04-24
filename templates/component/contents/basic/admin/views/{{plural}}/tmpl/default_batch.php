@@ -1,2 +1,2 @@
-jheader
-jadminlayoutlist_batch
+joomla-header
+joomla-admin-layout-list-batch

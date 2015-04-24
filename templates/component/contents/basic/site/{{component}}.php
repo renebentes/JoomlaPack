@@ -1,2 +1,2 @@
-jheader
-jsitecomponent
+joomla-header
+joomla-site-component

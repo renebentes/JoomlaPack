@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[; Basic
+${1:COM}_${2:PROJECT}="$3"
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_XML_DESCRIPTION="$4"
+]]></content>
+	<tabTrigger>joomla-language-basic</tabTrigger>
+</snippet>

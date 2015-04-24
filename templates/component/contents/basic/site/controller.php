@@ -1,2 +1,2 @@
-jheader
-jsitecontroller
+joomla-header
+joomla-site-controller

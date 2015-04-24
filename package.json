@@ -1,0 +1,15 @@
+{
+  "schema_version": "3.0.0",
+  "packages": [
+    {
+      "name": "JoomlaPack",
+      "details": "https://github.com/renebentes/JoomlaPack",
+      "releases": [
+        {
+          "sublime_text": "*",
+          "tags": true
+        }
+      ]
+    }
+  ]
+}

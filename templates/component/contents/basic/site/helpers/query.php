@@ -1,2 +1,2 @@
-jheader
-jsitehelperquery
+joomla-header
+joomla-site-helper-query

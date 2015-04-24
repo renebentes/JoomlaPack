@@ -1,2 +1,2 @@
-jheader
-jadmincontrollerlist
+joomla-header
+joomla-admin-controller-list

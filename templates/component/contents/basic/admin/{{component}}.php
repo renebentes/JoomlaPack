@@ -1,2 +1,2 @@
-jheader
-jadmincomponent
+joomla-header
+joomla-admin-component

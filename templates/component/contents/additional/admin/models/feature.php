@@ -1,2 +1,2 @@
-jheader
-jadminmodelfeature
+joomla-header
+joomla-admin-model-feature

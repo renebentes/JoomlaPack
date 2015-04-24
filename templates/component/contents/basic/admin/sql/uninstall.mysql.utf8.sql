@@ -1,1 +1,1 @@
-jdb_drop
+joomla-mysql-drop

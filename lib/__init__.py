@@ -1,8 +1,8 @@
 # coding: utf-8
 import sublime
 
-VERSION = int(sublime.version())
-if VERSION > 3000:
+st_version = int(sublime.version())
+if st_version > 3000:
     from JoomlaPack.lib.helpers import show_message
     from JoomlaPack.lib.helpers import get_settings
     from JoomlaPack.lib.helpers import get_project_root

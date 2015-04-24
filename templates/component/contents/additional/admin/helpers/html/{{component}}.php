@@ -1,2 +1,2 @@
-jheader
-jadminhtml
+joomla-header
+joomla-admin-html

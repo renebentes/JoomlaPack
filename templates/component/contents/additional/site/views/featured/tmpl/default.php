@@ -1,2 +1,2 @@
-jheader
-jsitelayoutfeatured
+joomla-header
+joomla-site-layout-featured

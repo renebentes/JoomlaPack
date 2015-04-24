@@ -1,8 +1,8 @@
 # coding: utf-8
 import sublime
 
-VERSION = int(sublime.version())
-if VERSION > 3000:
+st_version = int(sublime.version())
+if st_version > 3000:
     from JoomlaPack.commands.project import NewProjectCommand
     from JoomlaPack.commands.component import NewComponentCommand
 else:

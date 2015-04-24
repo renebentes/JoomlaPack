@@ -1,2 +1,2 @@
-jheader
-jsiteviewcategory_feed
+joomla-header
+joomla-site-view-category-feed

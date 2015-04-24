@@ -25,7 +25,7 @@ if installed_dir != 'JoomlaPack':
     if os.path.exists(os.path.join(sublime.packages_path(), installed_dir)):
         message += (u"Please use the Preferences > Browse Packages... menu " +
                     u"entry to open the \"Packages/\" folder and rename" +
-                    u"\"%s/\" to \"Joomla Pack/\" " % installed_dir)
+                    u"\"%s/\" to \"JoomlaPack/\" " % installed_dir)
     # If installed as a .sublime-package file
     else:
         message += (u"Please use the Preferences > Browse Packages... menu " +
@@ -50,8 +50,8 @@ else:
 
     try:
         # Python 3
-        from JoomlaPack.commands import *
-        from JoomlaPack.lib.helpers import *
+        from .commands import *
+        from .lib.helpers import *
     except (ValueError):
         # Python 2
         from commands import *

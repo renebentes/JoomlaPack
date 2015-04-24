@@ -1,2 +1,2 @@
-jheaderfield
-jfield-modal
+joomla-header
+joomla-field-modal

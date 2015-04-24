@@ -1,2 +1,2 @@
-jheader
-jadmintable
+joomla-header
+joomla-admin-table

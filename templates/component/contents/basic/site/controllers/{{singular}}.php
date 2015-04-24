@@ -1,2 +1,2 @@
-jheader
-jsitecontrollerform
+joomla-header
+joomla-site-controller-form

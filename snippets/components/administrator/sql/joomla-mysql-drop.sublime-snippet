@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[DROP TABLE IF EXISTS `#__${1:project}`;]]></content>
+	<tabTrigger>joomla-mysql-drop</tabTrigger>
+  <scope>source.sql</scope>
+</snippet>

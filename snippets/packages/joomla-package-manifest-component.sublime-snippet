@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[<file type="component" id="com_${1:helloworld}">com_${1/(.+)/\L\1/g}.zip</file>]]>
+	</content>
+	<tabTrigger>joomla-package-manifest-component</tabTrigger>
+  <scope>text.xml</scope>
+</snippet>

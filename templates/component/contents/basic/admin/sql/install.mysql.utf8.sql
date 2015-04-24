@@ -1,3 +1,1 @@
-jdb
-
-jdb-frontend
+joomla-mysql-create

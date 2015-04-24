@@ -1,2 +1,2 @@
-jheader
-jadminlayoutedit
+joomla-header
+joomla-admin-layout-edit

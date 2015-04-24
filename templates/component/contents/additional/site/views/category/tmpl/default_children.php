@@ -1,2 +1,2 @@
-jheader
-jsitelayoutcategory_children
+joomla-header
+joomla-site-layout-category-children
