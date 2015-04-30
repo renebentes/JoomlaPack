@@ -1,0 +1,78 @@
+<snippet>
+	<content><![CDATA[use Joomla\Registry\Registry;
+
+JLoader::register('${1:Project}Helper', JPATH_ADMINISTRATOR . '/components/com_${1/(.+)/\L\1/g}/helpers/${1/(.+)/\L\1/g}.php');
+
+/**
+ * Item Model for an ${2:${TM_FILENAME/(.*?)(\..+)/\u$1/}}.
+ *
+ * @package     Joomla.${3:Administrator}
+ * @subpackage  com_${1/(.+)/\L\1/g}
+ * @since       ${4:0.0.1}
+ */
+class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
+{
+	/**
+	 * Returns a Table object, always creating it.
+	 *
+	 * @param  type   \$type   The table type to instantiate.
+	 * @param  string \$prefix A prefix for the table class name. Optional.
+	 * @param  array  \$config Configuration array for model. Optional.
+	 *
+	 * @return JTable A database object.
+	 *
+	 * @since  $4
+	 */
+	public function getTable(\$type = '${2/(.+)/\u\1/g}', \$prefix = '${1/(.+)/\u\1/g}Table', \$config = array())
+	{
+		return JTable::getInstance(\$type, \$prefix, \$config);
+	}
+
+	/**
+	 * Method to get the record form.
+	 *
+	 * @param  array   \$data     Data for the form.
+	 * @param  boolean \$loadData True if the form is to load its own data (default case), false if not.
+	 *
+	 * @return mixed   A JForm object on success, false on failure.
+	 *
+	 * @since  $4
+	 */
+	public function getForm(\$data = array(), \$loadData = true)
+	{
+		// Get the form.
+		\$form = \$this->loadForm('com_${1/(.+)/\L\1/g}.${2/(.+)/\L\1/g}', '${2/(.+)/\L\1/g}', array('control' => 'jform', 'load_data' => \$loadData));
+
+		if (empty(\$form))
+		{
+			return false;
+		}
+
+		return \$form;
+	}
+
+	/**
+	 * Method to get the data that should be injected in the form.
+	 *
+	 * @return mixed The data for the form.
+	 *
+	 * @since  $4
+	 */
+	protected function loadFormData()
+	{
+		// Check the session for previously entered form data.
+		\$app  = JFactory::getApplication();
+		\$data = \$app->getUserState('com_${1/(.+)/\L\1/g}.edit.${2/(.+)/\L\1/g}.data', array());
+
+		if (empty(\$data))
+		{
+			\$data = \$this->getItem();
+		}
+
+		return \$data;
+	}
+}]]>
+	</content>
+	<tabTrigger>joomla-admin-model-edit</tabTrigger>
+	<scope>text.plain, text.php, source.php</scope>
+</snippet>

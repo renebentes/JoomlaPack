@@ -11,11 +11,11 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	/**
 	 * Constructor.
 	 *
-	 * @param array \$config An optional associative array of configuration settings.
+	 * @param   array  \$config  An optional associative array of configuration settings.
 	 *
-	 * @see   JController
+	 * @see     JController
 	 *
-	 * @since $4
+	 * @since   $4
 	 */
 	public function __construct(\$config = array())
 	{
@@ -27,17 +27,21 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 				'alias', 'a.alias',
 				'checked_out', 'a.checked_out',
 				'checked_out_time', 'a.checked_out_time',
+				'catid', 'a.catid', 'category_title',
 				'state', 'a.state',
 				'access', 'a.access', 'access_level',
 				'created', 'a.created',
 				'created_by', 'a.created_by',
 				'created_by_alias', 'a.created_by_alias',
 				'ordering', 'a.ordering',
+				'featured', 'a.featured',
 				'language', 'a.language',
 				'hits', 'a.hits',
 				'publish_up', 'a.publish_up',
 				'publish_down', 'a.publish_down',
 				'author_id',
+				'category_id',
+				'level',
 				'tag'
 			);
 
@@ -55,12 +59,12 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param  string  \$ordering   An optional ordering field.
-	 * @param  string  \$direction  An optional direction (asc|desc).
+	 * @param   string  \$ordering   An optional ordering field.
+	 * @param   string  \$direction  An optional direction (asc|desc).
 	 *
-	 * @return void
+	 * @return	void
 	 *
-	 * @since	 $4
+	 * @since	$4
 	 */
 	protected function populateState(\$ordering = null, \$direction = null)
 	{
@@ -85,6 +89,12 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 
 		\$published = \$this->getUserStateFromRequest(\$this->context . '.filter.state', 'filter_state', '');
 		\$this->setState('filter.state', \$published);
+
+		\$categoryId = \$this->getUserStateFromRequest(\$this->context . '.filter.category_id', 'filter_category_id');
+		\$this->setState('filter.category_id', \$categoryId);
+
+		\$level = \$this->getUserStateFromRequest(\$this->context . '.filter.level', 'filter_level', 0, 'int');
+		\$this->setState('filter.level', \$level);
 
 		\$language = \$this->getUserStateFromRequest(\$this->context . '.filter.language', 'filter_language', '');
 		\$this->setState('filter.language', \$language);
@@ -111,11 +121,11 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	 * different modules that might need different sets of data or different
 	 * ordering requirements.
 	 *
-	 * @param  string  \$id  A prefix for the store id.
+	 * @param   string  \$id  A prefix for the store id.
 	 *
-	 * @return string  A store id.
+	 * @return  string  A store id.
 	 *
-	 * @since  $4
+	 * @since   $4
 	 */
 	protected function getStoreId(\$id = '')
 	{
@@ -124,6 +134,8 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		\$id .= ':' . \$this->getState('filter.access');
 		\$id .= ':' . \$this->getState('filter.author_id');
 		\$id .= ':' . \$this->getState('filter.state');
+		\$id .= ':' . \$this->getState('filter.category_id');
+		\$id .= ':' . \$this->getState('filter.level');
 		\$id .= ':' . \$this->getState('filter.language');
 		\$id .= ':' . \$this->getState('filter.tag');
 
@@ -133,9 +145,9 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	/**
 	 * Build an SQL query to load the list data.
 	 *
-	 * @return JDatabaseQuery
+	 * @return	JDatabaseQuery
 	 *
-	 * @since	 $4
+	 * @since	$4
 	 */
 	protected function getListQuery()
 	{
@@ -204,6 +216,32 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 			\$query->where('(a.state = 0 OR a.state = 1)');
 		}
 
+		// Filter by a single or group of categories.
+		\$baselevel  = 1;
+		\$categoryId = \$this->getState('filter.category_id');
+		if (is_numeric(\$categoryId))
+		{
+			\$cat_tbl   = JTable::getInstance('Category', 'JTable');
+			\$cat_tbl->load(\$categoryId);
+			\$rgt       = \$cat_tbl->rgt;
+			\$lft       = \$cat_tbl->lft;
+			\$baselevel = (int) \$cat_tbl->level;
+			\$query->where('c.lft >= ' . (int) \$lft)
+				->where('c.rgt <= ' . (int) \$rgt);
+		}
+		elseif (is_array(\$categoryId))
+		{
+			JArrayHelper::toInteger(\$categoryId);
+			\$categoryId = implode(',', \$categoryId);
+			\$query->where('a.catid IN (' . \$categoryId . ')');
+		}
+
+		// Filter on the level.
+		if (\$level = \$this->getState('filter.level'))
+		{
+			\$query->where('c.level <= ' . ((int) \$level + (int) \$baselevel - 1));
+		}
+
 		// Filter by author.
 		\$authorId = \$this->getState('filter.author_id');
 		if (is_numeric(\$authorId))
@@ -261,33 +299,29 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 			\$orderCol = 'ag.title';
 		}
 		\$query->order(\$db->escape(\$orderCol . ' ' . \$orderDirn));
-
 		return \$query;
 	}
 
 	/**
 	 * Build a list of authors.
 	 *
-	 * @return JDatabaseQuery
+	 * @return  JDatabaseQuery
 	 *
-	 * @since  $4
+	 * @since   $4
 	 */
 	public function getAuthors()
 	{
 		// Create a new query object.
 		\$db = \$this->getDbo();
 		\$query = \$db->getQuery(true);
-
 		// Construct the query.
 		\$query->select('u.id AS value, u.name AS text')
 			->from(\$db->quoteName('#__users') . ' AS u')
 			->join('INNER', \$db->quoteName('#__${7/(.+)/\L\1/g}') . ' AS c ON c.created_by = u.id')
 			->group(\$db->quoteName(array('u.id', 'u.name')))
 			->order(\$db->quoteName('u.name'));
-
 		// Setup the query.
 		\$db->setQuery(\$query);
-
 		// Return the result.
 		return \$db->loadObjectList();
 	}
@@ -296,15 +330,14 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	 * Method to get a list of ${5/(.+)/\L\1/g}.
 	 * Overridden to add a check for access levels.
 	 *
-	 * @return mixed An array of data items on success, false on failure.
+	 * @return  mixed  An array of data items on success, false on failure.
 	 *
-	 * @since  $4
+	 * @since   $4
 	 */
 	public function getItems()
 	{
 		// Initialiase variables.
 		\$items = parent::getItems();
-
 		if (JFactory::getApplication()->isSite())
 		{
 			\$user   = JFactory::getUser();
@@ -322,6 +355,6 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	}
 }]]>
 	</content>
-	<tabTrigger>joomla-admin-model-list</tabTrigger>
+	<tabTrigger>joomla-admin-model-list-full</tabTrigger>
 	<scope>text.plain, text.php, source.php</scope>
 </snippet>

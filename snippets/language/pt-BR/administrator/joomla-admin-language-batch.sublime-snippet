@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[; Batch
+COM_${1:PROJECT}_BATCH_OPTIONS="Processar em lote os ${2:plural} selecionados"
+COM_${1/(.+)/\U\1/g}_BATCH_TIP="Se escolher copiar um ${3:singular}, qualquer outra ação selecionada será aplicada para o ${3/(.+)/\L\1/g} copiado. Caso contrário, todas as ações são aplicadas ao ${3/(.+)/\L\1/g} selecionado."]]></content>
+  <tabTrigger>joomla-admin-language-batch</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

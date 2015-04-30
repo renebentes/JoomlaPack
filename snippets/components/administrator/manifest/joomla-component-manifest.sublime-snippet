@@ -50,7 +50,7 @@
 	<administration>
 		<menu img="class:${2/(.+)/\L\1/g}">com_${2/(.+)/\L\1/g}</menu>
 		<submenu>
-			<menu link="option=com_${2/(.+)/\L\1/g}" view="${11:plural}" img="class:${2/(.+)/\L\1/g}" alt="${2/(.+)/\u\1/g}/${11/(.+)/\u\1/g}">COM_${2/(.+)/\U\1/g}_${11/(.+)/\U\1/g}</menu>
+			<menu link="option=com_${2/(.+)/\L\1/g}" view="${11:plural}" img="class:${2/(.+)/\L\1/g}" alt="${2/(.+)/\u\1/g}/${11/(.+)/\u\1/g}">com_${2/(.+)/\L\1/g}_${11/(.+)/\L\1/g}</menu>
 		</submenu>
 		<files folder="admin">
 			<folder>controllers</folder>
@@ -60,11 +60,13 @@
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
+			<filename>CHANGELOG.md</filename>
+			<filename>LICENSE</filename>
+			<filename>README.md</filename>
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
-			<filename>LICENSE</filename>
 			<filename>${2/(.+)/\L\1/g}.php</filename>
 		</files>
 		<languages folder="admin/language">

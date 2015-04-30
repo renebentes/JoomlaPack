@@ -50,9 +50,9 @@
 	<administration>
 		<menu img="class:${2/(.+)/\L\1/g}">com_${2/(.+)/\L\1/g}</menu>
 		<submenu>
-			<menu link="option=com_${2/(.+)/\L\1/g}" view="cpanel" img="class:${2/(.+)/\L\1/g}-cpanel" alt="${2/(.+)/\u\1/g}/Cpanel">COM_${2/(.+)/\U\1/g}_CPANEL</menu>
-			<menu link="option=com_${2/(.+)/\L\1/g}" view="${11:plural}" img="class:${2/(.+)/\L\1/g}" alt="${2/(.+)/\u\1/g}/${11/(.+)/\u\1/g}">COM_${2/(.+)/\U\1/g}_${11/(.+)/\U\1/g}</menu>
-			<menu link="option=com_categories&amp;extension=com_${2/(.+)/\L\1/g}" view="categories" img="class:${2/(.+)/\L\1/g}-category" alt="${2/(.+)/\u\1/g}/Categories">COM_${2/(.+)/\U\1/g}_CATEGORIES</menu>
+			<menu link="option=com_${2/(.+)/\L\1/g}" view="cpanel" img="class:${2/(.+)/\L\1/g}-cpanel" alt="${2/(.+)/\u\1/g}/Cpanel">com_${2/(.+)/\L\1/g}_cpanel</menu>
+			<menu link="option=com_${2/(.+)/\L\1/g}" view="${11:plural}" img="class:${2/(.+)/\L\1/g}" alt="${2/(.+)/\u\1/g}/${11/(.+)/\u\1/g}">com_${2/(.+)/\L\1/g}_${11/(.+)/\L\1/g}</menu>
+			<menu link="option=com_categories&amp;extension=com_${2/(.+)/\L\1/g}" view="categories" img="class:${2/(.+)/\L\1/g}-category" alt="${2/(.+)/\u\1/g}/Categories">com_${2/(.+)/\L\1/g}_categories</menu>
 		</submenu>
 		<files folder="admin">
 			<folder>controllers</folder>
@@ -62,11 +62,13 @@
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
+			<filename>CHANGELOG.md</filename>
+			<filename>LICENSE</filename>
+			<filename>README.md</filename>
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
-			<filename>LICENSE</filename>
 			<filename>${2/(.+)/\L\1/g}.php</filename>
 		</files>
 		<languages folder="admin/language">

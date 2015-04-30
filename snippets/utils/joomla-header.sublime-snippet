@@ -6,7 +6,7 @@
  * @since       ${4:0.0.1}
  *
  * @author      ${5:Rene Bentes Pinto} <${6:renebentes@yahoo.com.br}>
- * @link        ${7:https://renebentes.github.io}
+ * @link        ${7:http://renebentes.github.io}
  * @copyright   Copyright (C) ${8:2014} ${9:Rene Bentes Pinto, Inc}. All rights reserved.
  * @license     ${10:GNU General Public License version 2 or later}; see LICENSE
  */
@@ -16,5 +16,5 @@ defined('_JEXEC') or die('Restricted access!');
 
 ]]></content>
 	<tabTrigger>joomla-header</tabTrigger>
-  <scope>source.php, text.plain, text.php</scope>
+  <scope>text.plain, text.php, source.php</scope>
 </snippet>

@@ -54,5 +54,6 @@
 	</config>
 </extension>
 ]]></content>
-	<tabTrigger>jtemplatemanifest</tabTrigger>
+	<tabTrigger>joomla-template-manifest</tabTrigger>
+  <scope>text.plain, text.xml</scope>
 </snippet>

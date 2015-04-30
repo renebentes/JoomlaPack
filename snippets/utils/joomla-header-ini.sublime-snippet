@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[; ${1:Project Name}
 ; Author ${2:Rene Bentes Pinto} <${3:renebentes@yahoo.com.br}>
-; Link ${4:https://renebentes.github.io}
+; Link ${4:http://renebentes.github.io}
 ; Copyright (C) ${5:2014} ${6:Rene Bentes Pinto, Inc}. All rights reserved.
 ; License under the terms of the ${7:GNU General Public License version 2 or later}; see LICENSE
 ; Note : All ini files need to be saved as UTF-8 - No BOM

@@ -148,7 +148,7 @@ if (\$saveOrder)
 							\$language = \$item->language_title ? \$this->escape(\$item->language_title) : JText::_('JUNDEFINED');
 						endif;
 						if (\$canEdit || \$canEditOwn) : ?>
-							<a href="<?php echo JRoute::_('index.php?option=com_${1/(.+)/\L\1/g}&task=${3/(.+)/\L\1/g}}.edit&id=' . (int) \$item->id); ?>" title="<?php echo JText::_('JACTION_EDIT'); ?>">
+							<a href="<?php echo JRoute::_('index.php?option=com_${1/(.+)/\L\1/g}&task=${3/(.+)/\L\1/g}.edit&id=' . (int) \$item->id); ?>" title="<?php echo JText::_('JACTION_EDIT'); ?>">
 								<?php echo \$this->escape(\$item->${4/(.+)/\L\1/g}); ?>
 							</a>
 						<?php else : ?>
@@ -156,6 +156,7 @@ if (\$saveOrder)
 								<?php echo \$this->escape(\$item->${4/(.+)/\L\1/g}); ?>
 							</span>
 						<?php endif; ?>
+							<span class="small break-word"><?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', \$this->escape(\$item->alias)); ?></span>
 						</div>
 					</td>
 					<td class="small hidden-phone">
@@ -170,16 +171,12 @@ if (\$saveOrder)
 				<?php endif; ?>
 					<td class="small hidden-phone">
 					<?php if (\$item->created_by_alias) : ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id=' . (int) \$item->created_by); ?>" title="<?php echo JText::_('JAUTHOR'); ?>">
-							<?php echo \$this->escape(\$item->author_name); ?>
-						</a>
-						<p class="smallsub">
-							<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', \$this->escape(\$item->created_by_alias)); ?>
-						</p>
+						<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id=' . (int) \$item->created_by); ?>" title="<?php echo JText::_('JAUTHOR'); ?>">
+						<?php echo \$this->escape(\$item->author_name); ?></a>
+						<p class="smallsub"><?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', \$this->escape(\$item->created_by_alias)); ?></p>
 					<?php else : ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id=' . (int) \$item->created_by); ?>" title="<?php echo JText::_('JAUTHOR'); ?>">
-							<?php echo \$this->escape(\$item->author_name); ?>
-						</a>
+						<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id=' . (int) \$item->created_by); ?>" title="<?php echo JText::_('JAUTHOR'); ?>">
+						<?php echo \$this->escape(\$item->author_name); ?></a>
 					<?php endif; ?>
 					</td>
 					<td class="small hidden-phone">

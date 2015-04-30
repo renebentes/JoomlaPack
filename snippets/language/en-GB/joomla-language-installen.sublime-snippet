@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[; Installation Messages
-${1:COM}_${2:PROJECT}_VERSION_UNSUPPORTED="Unsupported Joomla. The extension %1\$s v.%2\$s, is only available for Joomla %3\$s and above."
+${1:COM}_${2:PROJECT}_VERSION_UNSUPPORTED="Unsupported Joomla. The extension %1\$s v.%2\$s, is only available for Joomla CMS %3\$s and above."
 ${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_INSTALL_TEXT="Extension %1\$s v.%2\$s installed successfully."
 ${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_UPDATE_TEXT="Extension %1\$s successfully updated to v.%2$s."
 ${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_UPDATE_UNSUPPORTED="Incorrect version sequence. Cannot update %1\$s v.%2\$s to v.%3\$s."
