@@ -2,20 +2,20 @@
 	<content><![CDATA[/**
  * View class for a list of ${1:Hellos}.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${3:project}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${3:project}
+ * @since      ${4:0.0.1}
  */
 class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 {
 	/**
 	 * Method to display the view.
 	 *
-	 * @param   string  \$tpl  A template file to load. [optional]
+	 * @param  string \$tpl A template file to load. [optional]
 	 *
-	 * @return  mixed  A string if successful, otherwise a JError object.
+	 * @return mixed  A string if successful, otherwise a JError object.
 	 *
-	 * @since   $4
+	 * @since  $4
 	 */
 	public function display(\$tpl = null)
 	{
@@ -48,15 +48,14 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @return  void
+	 * @return void
 	 *
-	 * @since   $4
+	 * @since  $4
 	 */
 	protected function addToolbar()
 	{
 		// Initialise Variables
-		\$state = \$this->get('State');
-		\$canDo = JHelperContent::getActions('com_${3/(.+)/\u\1/g}');
+		\$canDo = JHelperContent::getActions('com_${3/(.+)/\u\1/g}', 'category', \$this->state->get('filter.category_id'));
 		\$user  = JFactory::getUser();
 
 		// Get the toolbar object instance.
@@ -64,9 +63,9 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('COM_${3/(.+)/\U\1/g}_MANAGER_${1/(.+)/\U\1/g}_TITLE'), '${5:stack} ${1/(.+)/\L\1/g}');
 
-		if (\$canDo->get('core.create'))
+		if (\$canDo->get('core.create') && count(\$user->getAuthorisedCategories('com_${3/(.+)/\L\1/g}', 'core.create')) > 0)
 		{
-			JToolbarHelper::addNew('${6:hello}.add');
+			JToolbarHelper::addNew('${6:singular}.add');
 		}
 
 		if ((\$canDo->get('core.edit')) || (\$canDo->get('core.edit.own')))
@@ -82,6 +81,19 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 			JToolbarHelper::checkin('${1/(.+)/\L\1/g}.checkin');
 		}
 
+		// Add a batch button.
+		if (\$user->authorise('core.create', 'com_${3/(.+)/\L\1/g}') && \$user->authorise('core.edit', 'com_${3/(.+)/\L\1/g}') && \$user->authorise('core.edit.state', 'com_${3/(.+)/\L\1/g}'))
+		{
+			// Load the modal bootstrap script.
+			JHtml::_('bootstrap.modal', 'collapseModal');
+
+			// Instantiate a new JLayoutFile instance and render the batch button.
+			\$layout = new JLayoutFile('joomla.toolbar.batch');
+			\$title  = JText::_('JTOOLBAR_BATCH');
+			\$dhtml  = \$layout->render(array('title' => \$title));
+			\$bar->appendButton('Custom', \$dhtml, 'batch');
+		}
+
 		if (\$state->get('filter.state') == -2 && \$canDo->get('core.delete'))
 		{
 			JToolbarHelper::deleteList('', '${1/(.+)/\L\1/g}.delete', 'JTOOLBAR_EMPTY_TRASH');
@@ -91,19 +103,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 			JToolbarHelper::trash('${1/(.+)/\L\1/g}.trash');
 		}
 
-		// Add a batch button.
-		if (\$user->authorise('core.create', 'com_${3/(.+)/\L\1/g}') && \$user->authorise('core.edit', 'com_${3/(.+)/\L\1/g}') && \$user->authorise('core.edit.state', 'com_${3/(.+)/\L\1/g}'))
-		{
-			// Load the modal bootstrap script.
-			JHtml::_('bootstrap.modal', 'collapseModal');
-			// Instantiate a new JLayoutFile instance and render the batch button.
-			\$layout = new JLayoutFile('joomla.toolbar.batch');
-			\$title  = JText::_('JTOOLBAR_BATCH');
-			\$dhtml  = \$layout->render(array('title' => \$title));
-			\$bar->appendButton('Custom', \$dhtml, 'batch');
-		}
-
-		if (\$canDo->get('core.admin'))
+		if (\$canDo->get('core.admin') || $user->authorise('core.options', 'com_content'))
 		{
 			JToolBarHelper::preferences('com_${3/(.+)/\L\1/g}');
 		}
@@ -112,5 +112,5 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 	}
 }]]></content>
 	<tabTrigger>joomla-admin-view-list</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<scope>source.php</scope>
 </snippet>

@@ -35,5 +35,5 @@ Release Notes
 You can [see the release notes here](http://github.com/${6/(.+)/\L\1/g}/${2/(.+)/\L\1/g}/blob/master/CHANGELOG.md)
 ]]></content>
   <tabTrigger>readme</tabTrigger>
-  <description>Gerar conteúdo em arquivos README</description>
+  <scope>text.html.markdown</scope>
 </snippet>

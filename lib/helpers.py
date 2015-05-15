@@ -71,7 +71,7 @@ def pluralize(word):
             ['(?i)(m)an$', '\\1en'],
             ['(?i)(quiz)$', '\\1zes'],
             ['(?i)(?:([^f])fe|([lar])f)', '\\1\\2ves'],
-            ['(?i)(([p|m]atriar|matriar|monar|stoma|con|epo)ch)$', '\\1s'],
+            ['(?i)(([p|m]atriar|monar|stoma|con|epo)ch)$', '\\1s'],
             ['(?i)(x|ch|s|ss|sh|z)$', '\\1es'],
             ['(?i)([^aeiouy]o)$', '\\1es'],
             ['(?i)([^aeiouy]|qu)y$', '\\1ies'],

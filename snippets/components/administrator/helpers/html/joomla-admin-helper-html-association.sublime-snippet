@@ -65,5 +65,5 @@
     return \$html;
   }]]></content>
 	<tabTrigger>joomla-admin-helper-html-association</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<scope>source.php</scope>
 </snippet>

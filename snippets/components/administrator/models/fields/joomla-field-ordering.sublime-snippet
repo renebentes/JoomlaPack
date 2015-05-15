@@ -1,0 +1,45 @@
+<snippet>
+	<content><![CDATA[JFormHelper::loadFieldClass('ordering');
+
+/**
+ * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/g}} Field class for the ${2:Project}.
+ *
+ * @package     Joomla.${3:Administrator}
+ * @subpackage  com_${2/(.+)/\L\1/g}
+ * @since       ${4:0.0.1}
+ */
+class JFormField${1/(.+)/\u\1/g} extends JFormFieldOrdering
+{
+	/**
+   * The form field type.
+   *
+   * @var    string
+   * @since  $4
+   */
+  public \$type = '${1/(.+)/\u\1/g}';
+
+	/**
+   * Builds the query for the ordering list.
+   *
+   * @return JDatabaseQuery The query for the ordering form field.
+   *
+   * @since  $4
+   */
+  protected function getQuery()
+  {
+    // Initialiase variables.
+    \$db    = JFactory::getDbo();
+    \$query = \$db->getQuery(true);
+
+    // Create the base select statement.
+    \$query->select(array(\$db->quoteName('ordering', 'value'), \$db->quoteName('${5:title}', 'text')))
+      ->from(\$db->quoteName('#__${2/(.+)/\L\1/g}$6'))
+      ->where(\$db->quoteName('state') . ' >= 0')
+      ->order(\$db->quoteName('ordering'));
+    return \$query;
+  }
+}]]>
+	</content>
+	<tabTrigger>joomla-field-ordering</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

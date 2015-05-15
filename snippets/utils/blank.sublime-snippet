@@ -8,4 +8,5 @@
 </html>
 ]]></content>
   <tabTrigger>blank</tabTrigger>
+  <scope>text.html</scope>
 </snippet>

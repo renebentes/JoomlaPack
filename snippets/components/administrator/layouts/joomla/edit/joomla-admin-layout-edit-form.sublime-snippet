@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[// JLayout for exclusive fields on com_${1:project}
+\$form   = \$displayData->getForm();
+\$fields = \$displayData->get('fields') ?: array(
+	$2
+);
+
+\$hiddenFields = \$displayData->get('hidden_fields') ?: array();
+
+\$html   = array();
+\$html[] = '<fieldset class="form-vertical">';
+
+foreach (\$fields as \$field)
+{
+	\$field = is_array(\$field) ? \$field : array(\$field);
+
+	foreach (\$field as \$f)
+	{
+		if (\$form->getField(\$f))
+		{
+			if (in_array(\$f, \$hiddenFields))
+			{
+				\$form->setFieldAttribute(\$f, 'type', 'hidden');
+			}
+
+			\$html[] = \$form->renderField(\$f);
+			break;
+		}
+	}
+}
+
+\$html[] = '</fieldset>';
+
+echo implode('', \$html);]]></content>
+	<tabTrigger>joomla-admin-layout-edit-form</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

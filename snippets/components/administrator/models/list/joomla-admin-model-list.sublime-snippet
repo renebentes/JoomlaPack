@@ -323,5 +323,5 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 }]]>
 	</content>
 	<tabTrigger>joomla-admin-model-list</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<scope>source.php</scope>
 </snippet>

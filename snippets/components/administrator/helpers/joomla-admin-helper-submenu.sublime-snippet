@@ -5,5 +5,5 @@
 	\$vName == '${2/(.+)/\L\1/g}'
 );]]></content>
 	<tabTrigger>joomla-admin-helper-submenu</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<scope>source.php</scope>
 </snippet>

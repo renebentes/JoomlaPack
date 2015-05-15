@@ -23,7 +23,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 		\$this->form  = \$this->get('Form');
 		\$this->item  = \$this->get('Item');
 		\$this->state = \$this->get('State');
-		\$this->canDo = ${3/(.+)/\u\1/g}Helper::getActions('com_${3/(.+)/\L\1/g}', '${1/(.+)/\L\1/g}', \$this->item->id);
+		\$this->canDo = ${3/(.+)/\u\1/g}Helper::getActions('com_${3/(.+)/\L\1/g}');
 
 		// Check for errors.
 		if (count(\$errors = \$this->get('Errors')))
@@ -36,7 +36,6 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 		if (\$this->getLayout() !== 'modal')
 		{
 			\$this->form->setFieldAttribute('language', 'readonly', 'true');
-			\$this->form->setFieldAttribute('catid', 'readonly', 'true');
 		}
 
 		\$this->addToolbar();
@@ -68,7 +67,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 
 		// Built the actions for new and existing records.
 		// For new records, check the create permission.
-		if (\$isNew && (count(\$user->getAuthorisedCategories('com_${3/(.+)/\L\1/g}', 'core.create')) > 0))
+		if (\$isNew)
 		{
 			JToolbarHelper::apply('${1/(.+)/\L\1/g}.apply');
 			JToolbarHelper::save('${1/(.+)/\L\1/g}.save');
@@ -100,7 +99,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 				JToolbarHelper::save2copy('${1/(.+)/\L\1/g}.save2copy');
 			}
 
-			if (\$this->state->params->get('save_history', 1) && \$canDo->get('core.edit'))
+			if (\$this->state->params->get('save_history', 1) && \$user->authorise('core.edit'))
 			{
 				JToolbarHelper::versions('com_${3/(.+)/\L\1/g}.${1/(.+)/\L\1/g}', \$this->item->id);
 			}
@@ -110,6 +109,6 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 		JToolBarHelper::help('${1/(.+)/\L\1/g}', \$com = true);
 	}
 }]]></content>
-	<tabTrigger>joomla-admin-view-edit</tabTrigger>
+	<tabTrigger>joomla-admin-view-edit-simple</tabTrigger>
 	<scope>source.php</scope>
 </snippet>

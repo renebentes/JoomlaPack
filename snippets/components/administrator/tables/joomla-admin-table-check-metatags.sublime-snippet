@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[/*
+ * Clean up keywords -- eliminate extra spaces between phrases
+ * and cr (\r) and lf (\n) characters from string.
+ * Only process if not empty.
+ */
+if (!empty(\$this->metakey))
+{
+	// Array of characters to remove.
+	\$bad_characters = array("\n", "\r", "\"", "<", ">");
+
+	// Remove bad characters.
+	\$after_clean = JString::str_ireplace(\$bad_characters, "", \$this->metakey);
+
+	// Create array using commas as delimiter.
+	\$keys = explode(',', \$after_clean);
+	\$clean_keys = array();
+
+	foreach (\$keys as \$key)
+	{
+		// Ignore blank keywords.
+		if (trim(\$key))
+		{
+			\$clean_keys[] = trim(\$key);
+		}
+	}
+
+	// Put array back together delimited by ", ".
+	\$this->metakey = implode(", ", \$clean_keys);
+}
+
+// Clean up description -- eliminate quotes and <> brackets
+if (!empty($this->metadesc))
+{
+	// Only process if not empty
+	\$bad_characters = array("\"", "<", ">");
+	\$this->metadesc = JString::str_ireplace(\$bad_characters, "", \$this->metadesc);
+}
+]]></content>
+	<tabTrigger>joomla-admin-table-check-metatags</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

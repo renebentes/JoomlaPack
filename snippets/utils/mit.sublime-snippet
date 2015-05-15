@@ -22,5 +22,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ]]></content>
   <tabTrigger>mit</tabTrigger>
-  <description>Licença MIT.</description>
+  <scope>text.plain</scope>
 </snippet>

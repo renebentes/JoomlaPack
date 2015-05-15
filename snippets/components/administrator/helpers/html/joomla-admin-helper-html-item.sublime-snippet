@@ -2,11 +2,11 @@
 	<content><![CDATA[/**
  * Displays a batch widget for moving or copying items.
  *
- * @param   string  \$extension  The extension.
+ * @param  string \$extension  The extension.
  *
- * @return  string  The necessary HTML for the widget.
+ * @return string The necessary HTML for the widget.
  *
- * @since   ${1:0.0.1}
+ * @since  ${1:0.0.1}
  */
 public static function item(\$extension)
 {
@@ -15,11 +15,16 @@ public static function item(\$extension)
     JHtml::_('select.option', 'c', JText::_('JLIB_HTML_BATCH_COPY')),
     JHtml::_('select.option', 'm', JText::_('JLIB_HTML_BATCH_MOVE'))
   );
+
   // Create the batch selector to move or copy.
-  \$lines = array('<div id="batch-move-copy" class="control-group radio">',
-    JHtml::_('select.radiolist', \$options, 'batch[move_copy]', '', 'value', 'text', 'm'), '</div><hr />');
+  \$lines = array(
+    '<div id="batch-move-copy" class="control-group radio">',
+    JHtml::_('select.radiolist', \$options, 'batch[move_copy]', '', 'value', 'text', 'm'),
+    '</div><hr />'
+  );
+
   return implode("\n", \$lines);
 }]]></content>
 	<tabTrigger>joomla-admin-helper-html-item</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<scope>source.php</scope>
 </snippet>

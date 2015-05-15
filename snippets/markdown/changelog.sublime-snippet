@@ -8,5 +8,5 @@ Este arquivo refere-se às mudanças realizadas desde a versão inicial de desen
   * Message - Estágio inicial de desenvolvimento
 ]]></content>
   <tabTrigger>changelog</tabTrigger>
-  <description>Gerar conteúdo em arquivos CHANGELOG</description>
+  <scope>text.html.markdown</scope>
 </snippet>

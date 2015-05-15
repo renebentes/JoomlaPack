@@ -26,14 +26,8 @@ class ${1/(.+)/\u\1/g}Helper extends JHelperContent
 			'index.php?option=com_${1/(.+)/\L\1/g}&view=${4/(.+)/\L\1/g}',
 			\$vName == '${4/(.+)/\L\1/g}'
 		);
-
-		JHtmlSidebar::addEntry(
-			JText::_('COM_${1/(.+)/\U\1/g}_SUBMENU_CATEGORIES'),
-			'index.php?option=com_categories&extension=com_${1/(.+)/\L\1/g}',
-			\$vName == 'categories'
-		);
 	}
 }]]></content>
-	<tabTrigger>joomla-admin-helper-full</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<tabTrigger>joomla-admin-helper-simple</tabTrigger>
+	<scope>source.php</scope>
 </snippet>

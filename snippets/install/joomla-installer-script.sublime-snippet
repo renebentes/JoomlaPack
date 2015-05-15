@@ -155,7 +155,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 
       if (version_compare(\$this->_release, \$oldRelease, 'le'))
       {
-        echo JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_UNSUPPORTED', \$this->oldRelease, \$this->_release);
+        echo JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_UNSUPPORTED', \$oldRelease, \$this->_release);
         return false;
       }
     }
@@ -216,5 +216,5 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
   }
 }]]></content>
   <tabTrigger>joomla-installer-script</tabTrigger>
-  <scope>text.plain, text.php, source.php</scope>
+  <scope>source.php</scope>
 </snippet>

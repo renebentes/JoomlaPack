@@ -112,6 +112,6 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	}
 }]]>
 	</content>
-	<tabTrigger>joomla-admin-model-edit</tabTrigger>
+	<tabTrigger>joomla-admin-model-edit-simple</tabTrigger>
 	<scope>source.php</scope>
 </snippet>

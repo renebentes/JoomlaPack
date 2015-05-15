@@ -340,5 +340,5 @@ library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
 ]]></content>
   <tabTrigger>gpl2</tabTrigger>
-  <description>Licença GNU/GPL v2.</description>
+  <scope>text.plain</scope>
 </snippet>

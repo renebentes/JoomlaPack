@@ -30,5 +30,5 @@ class JFormField${1/(.+)/\u\1/g} extends JFormFieldPredefinedList
 }]]>
 	</content>
 	<tabTrigger>joomla-field-predefined-list</tabTrigger>
-	<scope>text.plain, text.php, source.php</scope>
+	<scope>source.php</scope>
 </snippet>
