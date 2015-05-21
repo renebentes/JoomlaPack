@@ -14,6 +14,34 @@
       },
       { "caption": "-" },
       {
+        "caption": "Components",
+        "mnemonic": "C",
+        "children":
+        [
+          {
+            "caption": "New Component",
+            "mnemonic": "N",
+            "command": "new_project",
+            "args": { "template": "component" }
+          }
+        ]
+      },
+      { "caption": "-" },
+      {
+        "caption": "Package",
+        "mnemonic": "P",
+        "children":
+        [
+          {
+            "caption": "New Package",
+            "mnemonic": "N",
+            "command": "new_project",
+            "args": { "template": "package" }
+          }
+        ]
+      },
+      { "caption": "-" },
+      {
         "caption": "Documentation",
         "mnemonic": "D",
         "children":

@@ -50,7 +50,9 @@
 	<administration>
 		<menu img="class:${2/(.+)/\L\1/g}">com_${2/(.+)/\L\1/g}</menu>
 		<submenu>
+			<menu link="option=com_${2/(.+)/\L\1/g}" view="cpanel" img="class:${2/(.+)/\L\1/g}-cpanel" alt="${2/(.+)/\u\1/g}/Cpanel">com_${2/(.+)/\L\1/g}_cpanel</menu>
 			<menu link="option=com_${2/(.+)/\L\1/g}" view="${11:plural}" img="class:${2/(.+)/\L\1/g}" alt="${2/(.+)/\u\1/g}/${11/(.+)/\u\1/g}">com_${2/(.+)/\L\1/g}_${11/(.+)/\L\1/g}</menu>
+			<menu link="option=com_categories&amp;extension=com_${2/(.+)/\L\1/g}" view="categories" img="class:${2/(.+)/\L\1/g}-category" alt="${2/(.+)/\u\1/g}/Categories">com_${2/(.+)/\L\1/g}_categories</menu>
 		</submenu>
 		<files folder="admin">
 			<folder>controllers</folder>
@@ -78,6 +80,6 @@
 	</administration>
 </extension>]]>
 	</content>
-	<tabTrigger>joomla-component-manifest-minimal</tabTrigger>
+	<tabTrigger>joomla-component-manifest</tabTrigger>
 	<scope>text.xml</scope>
 </snippet>

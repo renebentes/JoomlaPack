@@ -46,5 +46,5 @@ class ${1/(.+)/\u\1/g}Controller extends JControllerLegacy
 	}
 }]]></content>
 	<tabTrigger>joomla-admin-controller</tabTrigger>
-	<scope>text.plain, source.php, text.php</scope>
+	<scope>source.php</scope>
 </snippet>

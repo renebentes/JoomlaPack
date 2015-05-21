@@ -7,6 +7,6 @@
 ; Note : All ini files need to be saved as UTF-8 - No BOM
 
 ]]></content>
-	<tabTrigger>joomla-header</tabTrigger>
+	<tabTrigger>joomla-header-ini</tabTrigger>
   <scope>source.ini, text.plain</scope>
 </snippet>

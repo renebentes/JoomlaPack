@@ -23,6 +23,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 		\$this->items         = \$this->get('Items');
 		\$this->pagination    = \$this->get('Pagination');
 		\$this->state         = \$this->get('State');
+		\$this->authors       = \$this->get('Authors');
 		\$this->filterForm    = \$this->get('FilterForm');
 		\$this->activeFilters = \$this->get('ActiveFilters');
 
@@ -38,6 +39,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 		{
 			// Load the submenu.
 			${3/(.+)/\u\1/g}Helper::addSubmenu('${1/(.+)/\L\1/g}');
+
 			\$this->addToolbar();
 			\$this->sidebar = JHtmlSidebar::render();
 		}
@@ -55,7 +57,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 	protected function addToolbar()
 	{
 		// Initialise Variables
-		\$canDo = JHelperContent::getActions('com_${3/(.+)/\u\1/g}', 'category', \$this->state->get('filter.category_id'));
+		\$canDo = ${3/(.+)/\u\1/g}Helper::getActions('com_${3/(.+)/\u\1/g}', 'category', \$this->state->get('filter.category_id'));
 		\$user  = JFactory::getUser();
 
 		// Get the toolbar object instance.
@@ -103,7 +105,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 			JToolbarHelper::trash('${1/(.+)/\L\1/g}.trash');
 		}
 
-		if (\$canDo->get('core.admin') || $user->authorise('core.options', 'com_content'))
+		if (\$canDo->get('core.admin') || $user->authorise('core.options', 'com_${3/(.+)/\L\1/g}'))
 		{
 			JToolBarHelper::preferences('com_${3/(.+)/\L\1/g}');
 		}

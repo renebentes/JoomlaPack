@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
  * Methods supporting a list of ${1:singular} records.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${3:project}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${3:project}
+ * @since      ${4:0.0.1}
  */
 class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 {
@@ -27,6 +27,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 				'alias', 'a.alias',
 				'checked_out', 'a.checked_out',
 				'checked_out_time', 'a.checked_out_time',
+				'catid', 'a.catid', 'category_title',
 				'state', 'a.state',
 				'access', 'a.access', 'access_level',
 				'created', 'a.created',
@@ -38,6 +39,8 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 				'publish_up', 'a.publish_up',
 				'publish_down', 'a.publish_down',
 				'author_id',
+				'category_id',
+				'level',
 				'tag'
 			);
 
@@ -55,8 +58,8 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param  string  \$ordering   An optional ordering field.
-	 * @param  string  \$direction  An optional direction (asc|desc).
+	 * @param  string \$ordering  An optional ordering field.
+	 * @param  string \$direction An optional direction (asc|desc).
 	 *
 	 * @return void
 	 *
@@ -65,10 +68,10 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	protected function populateState(\$ordering = null, \$direction = null)
 	{
 		// Get the input.
-		\$input = JFactory::getApplication()->input;
+		\$app = JFactory::getApplication();
 
 		// Adjust the context to support modal layouts.
-		if (\$layout = \$input->get('layout'))
+		if (\$layout = \$app->input->get('layout'))
 		{
 			\$this->context .= '.' . \$layout;
 		}
@@ -77,7 +80,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		\$search = \$this->getUserStateFromRequest(\$this->context . '.filter.search', 'filter_search');
 		\$this->setState('filter.search', \$search);
 
-		\$access = \$this->getUserStateFromRequest(\$this->context . '.filter.access', 'filter_access', 0, 'int');
+		\$access = \$this->getUserStateFromRequest(\$this->context . '.filter.access', 'filter_access');
 		\$this->setState('filter.access', \$access);
 
 		\$authorId = \$this->getUserStateFromRequest(\$this->context . '.filter.author_id', 'filter_author_id');
@@ -86,6 +89,9 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		\$published = \$this->getUserStateFromRequest(\$this->context . '.filter.state', 'filter_state', '');
 		\$this->setState('filter.state', \$published);
 
+		\$categoryId = \$this->getUserStateFromRequest(\$this->context . '.filter.category_id', 'filter_category_id');
+		\$this->setState('filter.category_id', \$categoryId);
+
 		\$language = \$this->getUserStateFromRequest(\$this->context . '.filter.language', 'filter_language', '');
 		\$this->setState('filter.language', \$language);
 
@@ -93,10 +99,11 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		\$this->setState('filter.tag', \$tag);
 
 		// List state information.
-		parent::populateState('a.${6/(.+)/\L\1/g}', 'asc');
+		parent::populateState('a.${6/(.+)/\L\1/g}', '${7:asc}');
 
 		// Force a language.
-		\$forcedLanguage = \$input->get('forcedLanguage');
+		\$forcedLanguage = \$app->input->get('forcedLanguage');
+
 		if (!empty(\$forcedLanguage))
 		{
 			\$this->setState('filter.language', \$forcedLanguage);
@@ -111,9 +118,9 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	 * different modules that might need different sets of data or different
 	 * ordering requirements.
 	 *
-	 * @param  string  \$id  A prefix for the store id.
+	 * @param  string \$id A prefix for the store id.
 	 *
-	 * @return string  A store id.
+	 * @return string A store id.
 	 *
 	 * @since  $4
 	 */
@@ -124,6 +131,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		\$id .= ':' . \$this->getState('filter.access');
 		\$id .= ':' . \$this->getState('filter.author_id');
 		\$id .= ':' . \$this->getState('filter.state');
+		\$id .= ':' . \$this->getState('filter.category_id');
 		\$id .= ':' . \$this->getState('filter.language');
 		\$id .= ':' . \$this->getState('filter.tag');
 
@@ -149,11 +157,12 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 			\$this->getState(
 				'list.select',
 				'a.id, a.${6/(.+)/\L\1/g}, a.alias, a.checked_out, a.checked_out_time, ' .
-				'a.state, a.ordering, a.access, a.language, a.created, a.created_by, ' .
-				'a.created_by_alias, a.hits, a.publish_up, a.publish_down'
+				'a.state, a.access, a.created, a.created_by, a.created_by_alias, ' .
+				'a.ordering, a.language, a.hits, a.publish_up, a.publish_down'
 			)
 		);
-		\$query->from(\$db->quoteName('#__${7:${3/(.+)/\L\1/g}}') . ' AS a');
+
+		\$query->from(\$db->quoteName('#__${3/(.+)/\L\1/g}$8') . ' AS a');
 
 		// Join over the language
 		\$query->select('l.title AS language_title');
@@ -161,23 +170,27 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 
 		// Join over the users for the checked out user.
 		\$query->select('uc.name AS editor');
-		\$query->join('LEFT', '#__users AS uc ON uc.id = a.checked_out');
+		\$query->join('LEFT', \$db->quoteName('#__users') . ' AS uc ON uc.id = a.checked_out');
 
 		// Join over the asset groups.
 		\$query->select('ag.title AS access_level');
-		\$query->join('LEFT', '#__viewlevels AS ag ON ag.id = a.access');
+		\$query->join('LEFT', \$db->quoteName('#__viewlevels') . ' AS ag ON ag.id = a.access');
+
+		// Join over the categories.
+		\$query->select('c.title AS category_title');
+		\$query->join('LEFT', \$db->quoteName('#__categories') . ' AS c ON c.id = a.catid');
 
 		// Join over the users for the author.
 		\$query->select('ua.name AS author_name')
-			->join('LEFT', '#__users AS ua ON ua.id = a.created_by');
+			->join('LEFT', \$db->quoteName('#__users') . ' AS ua ON ua.id = a.created_by');
 
 		// Join over the associations.
 		if (JLanguageAssociations::isEnabled())
 		{
-			\$query->select('COUNT(asso2.id)>1 as association')
+			\$query->select('COUNT(asso2.id) > 1 AS association')
 				->join('LEFT', '#__associations AS asso ON asso.id = a.id AND asso.context=' . \$db->quote('com_${3/(.+)/\L\1/g}.item'))
 				->join('LEFT', '#__associations AS asso2 ON asso2.key = asso.key')
-				->group('a.id');
+				->group('a.id, l.title, uc.name, ag.title, c.title, ua.name');
 		}
 
 		// Filter by access level.
@@ -195,6 +208,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 
 		// Filter by published state.
 		\$published = \$this->getState('filter.state');
+
 		if (is_numeric(\$published))
 		{
 			\$query->where('a.state = ' . (int) \$published);
@@ -202,6 +216,20 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		elseif (\$published === '')
 		{
 			\$query->where('(a.state = 0 OR a.state = 1)');
+		}
+
+		// Filter by a single or group of categories.
+		\$categoryId = \$this->getState('filter.category_id');
+
+		if (is_numeric(\$categoryId))
+		{
+			\$query->where('a.catid = ' . (int) \$categoryId);
+		}
+		elseif (is_array(\$categoryId))
+		{
+			JArrayHelper::toInteger(\$categoryId);
+			\$categoryId = implode(',', \$categoryId);
+			\$query->where('a.catid IN (' . \$categoryId . ')');
 		}
 
 		// Filter by author.
@@ -240,6 +268,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 
 		// Filter by a single tag.
 		\$tagId = \$this->getState('filter.tag');
+
 		if (is_numeric(\$tagId))
 		{
 			\$query->where(\$db->quoteName('tagmap.tag_id') . ' = ' . (int) \$tagId)
@@ -251,7 +280,8 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 
 		// Add the list ordering clause.
 		\$orderCol  = \$this->state->get('list.ordering', 'a.${6/(.+)/\L\1/g}');
-		\$orderDirn = \$this->state->get('list.direction', 'asc');
+		\$orderDirn = \$this->state->get('list.direction', '${7/(.+)/\L\1/g}');
+
 		if (\$orderCol == 'language')
 		{
 			\$orderCol = 'l.title';
@@ -275,13 +305,13 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	public function getAuthors()
 	{
 		// Create a new query object.
-		\$db = \$this->getDbo();
+		\$db    = \$this->getDbo();
 		\$query = \$db->getQuery(true);
 
 		// Construct the query.
 		\$query->select('u.id AS value, u.name AS text')
 			->from(\$db->quoteName('#__users') . ' AS u')
-			->join('INNER', \$db->quoteName('#__${7/(.+)/\L\1/g}') . ' AS c ON c.created_by = u.id')
+			->join('INNER', \$db->quoteName('#__${3/(.+)/\L\1/g}${8/(.+)/\L\1/g}') . ' AS c ON c.created_by = u.id')
 			->group(\$db->quoteName(array('u.id', 'u.name')))
 			->order(\$db->quoteName('u.name'));
 
@@ -309,6 +339,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 		{
 			\$user   = JFactory::getUser();
 			\$groups = \$user->getAuthorisedViewLevels();
+
 			for (\$x = 0, \$count = count(\$items); \$x < \$count; \$x++)
 			{
 				// Check the access level. Remove ${5/(.+)/\L\1/g} the user should not see.
@@ -318,6 +349,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 				}
 			}
 		}
+
 		return \$items;
 	}
 }]]>

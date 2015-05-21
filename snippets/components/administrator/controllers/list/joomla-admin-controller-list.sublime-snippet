@@ -11,13 +11,13 @@ class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 	/**
 	 * Method to get a model object, loading it if required.
    *
-	 * @param   string  \$name    The model name. Optional.
-	 * @param   string  \$prefix  The class prefix. Optional.
-	 * @param   array   \$config  Configuration array for model. Optional.
+	 * @param  string \$name   The model name. Optional.
+	 * @param  string \$prefix The class prefix. Optional.
+	 * @param  array  \$config Configuration array for model. Optional.
    *
-	 * @return  object  The model.
+	 * @return object The model.
    *
-	 * @since	  $4
+	 * @since	 $4
 	 */
 	public function getModel(\$name = '${5:Hello}', \$prefix = '${3/(.+)/\u\1/g}Model', \$config = array('ignore_request' => true))
 	{
@@ -25,5 +25,5 @@ class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 	}
 }]]></content>
 	<tabTrigger>joomla-admin-controller-list</tabTrigger>
-	<scope>text.plain, source.php, text.php</scope>
+	<scope>source.php</scope>
 </snippet>

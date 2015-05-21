@@ -35,6 +35,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	protected function _getAssetName()
 	{
 		\$k = \$this->_tbl_key;
+
 		return 'com_${3/(.+)/\L\1/g}.${1/(.+)/\L\1/g}.' . (int) \$this->\$k;
 	}
 
@@ -64,22 +65,18 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	{
 		\$assetId = null;
 
-		// This is a ${1/(.+)/\L\1/g} under a category.
-		if (\$this->catid)
+		// Build the query to get the asset id for the parent ${1/(.+)/\L\1/g}.
+		\$query = \$this->_db->getQuery(true)
+			->select(\$this->_db->quoteName('id'))
+			->from(\$this->_db->quoteName('#__assets'))
+			->where(\$this->_db->quoteName('name') . ' = ' . \$this->_db->quote('com_${3/(.+)/\L\1/g}'));
+
+		// Get the asset id from the database.
+		\$this->_db->setQuery(\$query);
+
+		if (\$result = \$this->_db->loadResult())
 		{
-			// Build the query to get the asset id for the parent category.
-			\$query = \$this->_db->getQuery(true)
-				->select(\$this->_db->quoteName('asset_id'))
-				->from(\$this->_db->quoteName('#__categories'))
-				->where(\$this->_db->quoteName('id') . ' = ' . (int) \$this->catid);
-
-			// Get the asset id from the database.
-			\$this->_db->setQuery(\$query);
-
-			if (\$result = \$this->_db->loadResult())
-			{
-				\$assetId = (int) \$result;
-			}
+			\$assetId = (int) \$result;
 		}
 
 		// Return the asset id.
@@ -148,7 +145,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	 */
 	public function check()
 	{
-		// Check for valid ${6/(.+)/\L\1/g}.
+		// Check for valid ${6:title}.
 		if (trim(\$this->${6/(.+)/\L\1/g}) == '')
 		{
 			\$this->setError(JText::_('COM_${3/(.+)/\U\1/g}_ERROR_TABLE_${6/(.+)/\U\1/g}'));
@@ -166,6 +163,26 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 		if (trim(str_replace('-', '', \$this->alias)) == '')
 		{
 			\$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
+		}
+
+		/**
+		 * Ensure any new items have compulsory fields set. This is needed for things like
+		 * frontend editing where we don't show all the fields or using some kind of API
+		 */
+		if (!\$this->id)
+		{
+			// Images can be an empty json string
+			if (!isset(\$this->params))
+			{
+				\$this->params = '{}';
+			}
+
+			// If we don't have any access rules set at this point just use an empty JAccessRules class
+			if (!isset(\$this->rules))
+			{
+				\$rules = \$this->getDefaultAssetValues('com_${3/(.+)/\L\1/g}');
+				\$this->setRules(\$rules);
+			}
 		}
 
 		// Check the publish down date is not earlier than publish up.
@@ -230,7 +247,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 		// Verify that the alias is unique.
 		\$table = JTable::getInstance('${1/(.+)/\u\1/g}', '${3/(.+)/\u\1/g}Table');
 
-		if (\$table->load(array('alias' => \$this->alias, 'catid' => \$this->catid)) && (\$table->id != \$this->id || \$this->id == 0))
+		if (\$table->load(array('alias' => \$this->alias)) && (\$table->id != \$this->id || \$this->id == 0))
 		{
 			\$this->setError(JText::_('COM_${3/(.+)/\U\1/g}_ERROR_TABLE_UNIQUE_ALIAS'));
 			return false;
@@ -330,6 +347,6 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 		return true;
 	}
 }]]></content>
-	<tabTrigger>joomla-admin-table</tabTrigger>
+	<tabTrigger>joomla-admin-table-simple</tabTrigger>
 	<scope>source.php</scope>
 </snippet>

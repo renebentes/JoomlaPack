@@ -19,7 +19,7 @@ else:
 
 class NewProjectCommand(sublime_plugin.WindowCommand):
 
-    def run(self):
+    def run(self, template=None):
         templates = get_templates()
         self.projects = []
         self.quickpanel = []
@@ -34,17 +34,29 @@ class NewProjectCommand(sublime_plugin.WindowCommand):
         for project in self.projects:
             self.quickpanel.append(project.to_quickpanel())
 
-        sublime.active_window().show_quick_panel(
-            self.quickpanel, self.on_pincked_template)
+        if template is None:
+            sublime.active_window().show_quick_panel(
+                self.quickpanel, self.on_pincked_template)
+        else:
+            index = -1
+            for x in range(0, len(self.quickpanel)):
+                if template in self.quickpanel[x][0].lower():
+                    print(x)
+                    index = x
+                    break
+            self.on_pincked_template(index)
 
     def on_pincked_template(self, index):
         if index < 0:
+            self.on_cancel()
             return
         self.pincked_project = self.projects[index]
-        sublime.active_window().show_input_panel(
-            "Type Project Name: ",
-            self.pincked_project.default_project_name,
-            self.on_done, None, None)
+        show_input_panel("Type %s name: " % self.pincked_project.project_type,
+                         self.pincked_project.default_project_name,
+                         self.on_done, None, self.on_cancel)
+
+    def on_cancel(self):
+        show_message("", "Operation Canceled!")
 
     def on_done(self, project_name):
         if self.pincked_project.prefix_project_name not in project_name:
@@ -53,23 +65,29 @@ class NewProjectCommand(sublime_plugin.WindowCommand):
         destination = os.path.join(get_project_root(), project_name)
 
         if os.path.exists(destination):
-            show_message(
-                "error", "[Error] Project %s already exists!" % project_name)
-        else:
-            try:
-                args = {"args": {"name": project_name,
-                                 "source": self.pincked_project.path,
-                                 "destination": destination}
-                        }
-                sublime.active_window().run_command(
-                    "new_%s" % self.pincked_project.project_type, args)
-            except Exception as e:
-                rmtree(destination)
-                show_message("error",
-                             "[Error] Project %s could not be created! %s" % (
-                                 project_name, e))
+            if not show_message("confirm",
+                                "[Confirm] Project %s already exists!"
+                                % project_name):
+                return
             else:
-                self.save_project_file(project_name, destination)
+                rmtree(destination)
+        try:
+            args = {
+                "args": {
+                    "name": project_name,
+                    "source": self.pincked_project.path,
+                    "destination": destination
+                }
+            }
+            sublime.active_window().run_command(
+                "new_%s" % self.pincked_project.project_type, args)
+        except Exception as e:
+            rmtree(destination)
+            show_message("error",
+                         "[Error] Project %s could not be created! %s"
+                         % (project_name, e))
+        else:
+            self.save_project_file(project_name, destination)
 
     def save_project_file(self, project_name, destination):
         content = {}
@@ -86,7 +104,7 @@ class NewProjectCommand(sublime_plugin.WindowCommand):
             f.close()
         except (Exception, IOError) as e:
             show_message("error",
-                         "[Error] %s'.sublime-project could not be created! %s"
+                         "[Error] %s.sublime-project could not be created! %s"
                          % (project_name, e))
         else:
             sublime.active_window().set_project_data(content)

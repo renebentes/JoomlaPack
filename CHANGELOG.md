@@ -3,6 +3,8 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.5 - 20/05/2015
+  * Added - script para criação de pacotes Joomla
 * 0.2.4 - 27/04/2015
   * Added - Novos Scripts
 * 0.2.3 - 20/04/2015

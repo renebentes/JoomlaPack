@@ -4,9 +4,16 @@ import os
 import re
 
 
+def show_input_panel(caption, text, on_done, on_change, on_cancel):
+    sublime.active_window().show_input_panel(
+        caption, text, on_done, on_change, on_cancel)
+
+
 def show_message(dialog, msg):
     msg = u"Joomla Pack\n\n%s" % msg
-    if dialog == "info":
+    if dialog == "confirm":
+        return sublime.ok_cancel_dialog(msg)
+    elif dialog == "info":
         sublime.message_dialog(msg)
     elif dialog == "error":
         sublime.error_message(msg)

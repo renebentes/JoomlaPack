@@ -95,6 +95,6 @@ class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 		return parent::getModel(\$name, \$prefix, \$config);
 	}
 }]]></content>
-	<tabTrigger>joomla-admin-controller-list-full</tabTrigger>
-	<scope>text.plain, source.php, text.php</scope>
+	<tabTrigger>joomla-admin-controller-list-featured</tabTrigger>
+	<scope>source.php</scope>
 </snippet>

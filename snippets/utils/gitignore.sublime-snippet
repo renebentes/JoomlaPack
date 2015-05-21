@@ -15,15 +15,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-# =========================
-# Operating System Files
-# =========================
-
 # Linux
 *~
 
 # OSX
-# =========================
 
 .DS_Store
 .AppleDouble
@@ -31,7 +26,6 @@ $RECYCLE.BIN/
 
 # Icon must ends with two \r.
 Icon
-
 
 # Thumbnails
 ._*
@@ -76,6 +70,28 @@ sftp-config.json
 *.msi
 *.msm
 *.msp
+
+# Package Control Files
+*.last-run
+*.ca-list
+*.ca-bundle
+*.system-ca-bundle
+*.merged-ca-bundle
+*.user-ca-bundle
+*.cache/
+*.ca-certs/
+
+# cache files
+*.cache
+
+# log files
+*.log
+
+# breakpoint files
+*.breakpoints
+
+# SublimeREPL
+.SublimeREPLHistory/
 ]]></content>
   <tabTrigger>gitignore</tabTrigger>
 </snippet>
