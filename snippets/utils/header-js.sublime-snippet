@@ -11,4 +11,5 @@
 ]]></content>
 	<tabTrigger>header-js</tabTrigger>
   <scope>source.js</scope>
+  <description>Add header to files JS</description>
 </snippet>

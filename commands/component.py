@@ -29,6 +29,8 @@ class NewComponentCommand(sublime_plugin.WindowCommand):
                     newname = filename.replace('{{singular}}', name)
                 elif filename.find('{{plural}}') != -1:
                     newname = filename.replace('{{plural}}', pluralize(name))
+                elif filename.find('{{locale}}') != -1:
+                    newname = filename.replace('{{locale}}', get_language())
                 else:
                     newname = ''
 
@@ -40,6 +42,8 @@ class NewComponentCommand(sublime_plugin.WindowCommand):
                     newname = folder.replace('{{singular}}', name)
                 elif folder.find('{{plural}}') != -1:
                     newname = folder.replace('{{plural}}', pluralize(name))
+                elif folder.find('{{locale}}') != -1:
+                    newname = filename.replace('{{locale}}', get_language())
                 else:
                     newname = ''
 

@@ -2,14 +2,22 @@
 import sublime
 import os
 import re
+import locale
+
+
+def get_language():
+    language, enconding = locale.getlocale()
+    return language.replace("_", "-")
 
 
 def show_input_panel(caption, text, on_done, on_change, on_cancel):
+    ''' Alias for sublime.active_window().show_input_panel(). '''
     sublime.active_window().show_input_panel(
         caption, text, on_done, on_change, on_cancel)
 
 
 def show_message(dialog, msg):
+    ''' Show message dialog based on dialog param. '''
     msg = u"Joomla Pack\n\n%s" % msg
     if dialog == "confirm":
         return sublime.ok_cancel_dialog(msg)
@@ -22,11 +30,13 @@ def show_message(dialog, msg):
 
 
 def get_settings(name, default=None):
+    ''' Get settings contents '''
     settings = sublime.load_settings('JoomlaPack.sublime-settings')
     return settings.get(name, default)
 
 
 def get_project_root():
+    ''' Get the project root define by user or standard. '''
     project_root = get_settings('project_root')
     if project_root is None:
         message = '''[Error] Project root is invalid! Please, check the
@@ -38,6 +48,7 @@ def get_project_root():
 
 
 def get_templates():
+    ''' Gets the templates for Joomla's extensions types. '''
     packages_path = sublime.packages_path()
     installed_packages_path = sublime.installed_packages_path()
     templates_path = 'JoomlaPack/templates'
@@ -61,6 +72,7 @@ def get_templates():
 
 
 def pluralize(word):
+    ''' Pluralize English's words. '''
     rules = {
         'regular': [
             ['(?i)(on)$', 'a'],
@@ -161,3 +173,8 @@ def pluralize(word):
                           word)
 
     return word
+
+
+def singularize(word):
+    ''' Singulrize English's words. '''
+    pass

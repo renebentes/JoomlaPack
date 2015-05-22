@@ -23,4 +23,5 @@ THE SOFTWARE.
 ]]></content>
   <tabTrigger>mit</tabTrigger>
   <scope>text.plain</scope>
+  <description>Add MIT License</description>
 </snippet>

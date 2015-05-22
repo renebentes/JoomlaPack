@@ -36,4 +36,5 @@ You can [see the release notes here](http://github.com/${6/(.+)/\L\1/g}/${2/(.+)
 ]]></content>
   <tabTrigger>readme</tabTrigger>
   <scope>text.html.markdown</scope>
+  <description>Add readme file into project</description>
 </snippet>

@@ -12,7 +12,7 @@ else:
     from lib.helpers import *
 
 
-class NewPackageCommand(sublime_plugin.WindowCommand):
+class NewPluginCommand(sublime_plugin.WindowCommand):
 
     def run(self, args):
         source = os.path.join(args["source"], 'contents')
@@ -21,11 +21,11 @@ class NewPackageCommand(sublime_plugin.WindowCommand):
         self.rename(args)
 
     def rename(self, args):
-        name = args["name"].replace('pkg_', '')
+        name = args["name"].replace('plg_', '')
         for root, dirs, files in os.walk(args["destination"]):
             for filename in files:
-                if filename.find('{{package}}') != -1:
-                    newname = filename.replace('{{package}}', name)
+                if filename.find('{{plugin}}') != -1:
+                    newname = filename.replace('{{plugin}}', name)
                 else:
                     newname = ''
 

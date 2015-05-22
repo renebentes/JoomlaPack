@@ -54,6 +54,7 @@ abstract class plg${1/(.+)/\u\1/g}Helper
   }
 }
 ]]></content>
-  <tabTrigger>jpluginhelper</tabTrigger>
-  <description>Classe helper para Plugin Joomla</description>
+  <tabTrigger>joomla-plugin-helper</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add helper class to Plugin</description>
 </snippet>

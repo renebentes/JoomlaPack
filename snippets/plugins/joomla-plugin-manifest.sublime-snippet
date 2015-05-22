@@ -16,10 +16,8 @@
     <filename>index.html</filename>
   </files>
   <languages folder="language">
-    <language tag="en-GB">en-GB/en-GB.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.ini</language>
-    <language tag="en-GB">en-GB/en-GB.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.sys.ini</language>
-    <language tag="pt-BR">pt-BR/pt-BR.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.ini</language>
-    <language tag="pt-BR">pt-BR/pt-BR.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.sys.ini</language>
+    <language tag="${11:pt-BR}">${11/([a-zA-Z]{2})-([a-zA-Z]{2})/\L\1-\U\2/g}/${11/([a-zA-Z]{2})-([a-zA-Z]{2})/\L\1-\U\2/g}.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.ini</language>
+    <language tag="${11/([a-zA-Z]{2})-([a-zA-Z]{2})/\L\1-\U\2/g}">${11/([a-zA-Z]{2})-([a-zA-Z]{2})/\L\1-\U\2/g}/${11/([a-zA-Z]{2})-([a-zA-Z]{2})/\L\1-\U\2/g}.plg_${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}.sys.ini</language>
   </languages>
   <config>
     <fields name="params">
@@ -27,6 +25,7 @@
   </config>
 </extension>
 ]]></content>
-  <tabTrigger>jpluginmanifest</tabTrigger>
-  <description>Arquivo de manifesto para plugins Joomla</description>
+  <tabTrigger>joomla-plugin-manifest</tabTrigger>
+  <scope>text.xml</scope>
+  <description>Add plugin manifest</description>
 </snippet>

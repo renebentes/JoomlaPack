@@ -4,6 +4,9 @@ CHANGELOG
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
 * 0.2.5 - 20/05/2015
+  * Added - Função para pegar idioma do sistema
+  * Fixed - Nome de pastas e arquivos de idiomas
+  * Added - script para criação de plugins Joomla
   * Added - script para criação de pacotes Joomla
 * 0.2.4 - 27/04/2015
   * Added - Novos Scripts

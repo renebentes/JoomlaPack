@@ -94,4 +94,6 @@ sftp-config.json
 .SublimeREPLHistory/
 ]]></content>
   <tabTrigger>gitignore</tabTrigger>
+  <scope>text.plain</scope>
+  <description>Add .gitigore directives</description>
 </snippet>

@@ -58,6 +58,7 @@ else:
         from lib.helpers import *
 
     def plugin_loaded():
+        get_language()
         print('Joomla Pack loaded')
 
     def plugin_unloaded():

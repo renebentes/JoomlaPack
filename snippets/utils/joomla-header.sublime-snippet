@@ -17,4 +17,5 @@ defined('_JEXEC') or die('Restricted access!');
 ]]></content>
 	<tabTrigger>joomla-header</tabTrigger>
   <scope>text.html.basic -source.php</scope>
+  <description>Add header to files PHP</description>
 </snippet>

@@ -341,4 +341,5 @@ Public License instead of this License.
 ]]></content>
   <tabTrigger>gpl2</tabTrigger>
   <scope>text.plain</scope>
+  <description>Add GPLv2 License</description>
 </snippet>

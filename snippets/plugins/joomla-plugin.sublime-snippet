@@ -36,6 +36,7 @@ class plg${2/(.+)/\u\1/g}${1/(.+)/\u\1/g} extends JPlugin
   }
 }
 ]]></content>
-  <tabTrigger>jplugin</tabTrigger>
-  <description>Cria classe para Plugin Joomla</description>
+  <tabTrigger>joomla-plugin</tabTrigger>
+  <scope>source.php</scope>
+  <description>Class to Plugin</description>
 </snippet>

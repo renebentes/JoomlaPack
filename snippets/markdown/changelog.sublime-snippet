@@ -2,11 +2,12 @@
   <content><![CDATA[CHANGELOG
 =============
 
-Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
+${1:Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.}
 
-* 0.1.0 - ${1:26/08/2014}
-  * Message - Estágio inicial de desenvolvimento
+* 0.1.0 - ${2:26/08/2014}
+  * Message - ${3:Estágio inicial de desenvolvimento}
 ]]></content>
   <tabTrigger>changelog</tabTrigger>
   <scope>text.html.markdown</scope>
+  <description>Add changelog file into project</description>
 </snippet>

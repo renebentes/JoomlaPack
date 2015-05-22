@@ -16,6 +16,7 @@ public function onContentPrepare(\$context, &\$item, &\$params, \$page = 0)
   \$app = JFactory::getApplication();$3
 }
 ]]></content>
-  <tabTrigger>jplugincontentprepare</tabTrigger>
-  <description>Adiciona método onContentPrepare para Plugin</description>
+  <tabTrigger>joomla-plugin-content-prepare</tabTrigger>
+  <description>Add onContentPrepare to Plugin</description>
+  <scope>source.php</scope>
 </snippet>

@@ -330,4 +330,5 @@
 }]]></content>
   <tabTrigger>csscomb</tabTrigger>
   <scope>source.json</scope>
+  <description>Add custom settins to CSSComb plugin</description>
 </snippet>

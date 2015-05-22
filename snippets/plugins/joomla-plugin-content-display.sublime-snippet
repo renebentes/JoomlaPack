@@ -18,6 +18,7 @@ public function onContent${3:Before}Display(\$context, &\$item, &\$params, \$pag
   return '';
 }
 ]]></content>
-  <tabTrigger>jplugincontentdisplay</tabTrigger>
-  <description>Método onContent[Before|After]Display em Plugins</description>
+  <tabTrigger>joomla-plugin-content-display</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add onContent[Before|After]Display to Plugin</description>
 </snippet>

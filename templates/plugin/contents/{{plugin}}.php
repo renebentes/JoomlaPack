@@ -1,0 +1,2 @@
+joomla-header
+joomla-plugin
