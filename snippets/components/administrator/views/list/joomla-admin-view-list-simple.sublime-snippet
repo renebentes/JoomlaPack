@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
  * View class for a list of ${1:Hellos}.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${3:project}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${3:project}
+ * @since      ${4:0.0.1}
  */
 class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 {
@@ -13,7 +13,7 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 	 *
 	 * @param  string \$tpl A template file to load. [optional]
 	 *
-	 * @return mixed  A string if successful, otherwise a JError object.
+	 * @return mixed        A string if successful, otherwise a JError object.
 	 *
 	 * @since  $4
 	 */

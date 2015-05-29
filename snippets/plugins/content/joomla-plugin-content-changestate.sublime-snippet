@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[/**
+ * Method called after content has its state change.
+ *
+ * @param  string  \$context The context for the content passed to the plugin.
+ * @param  array   \$pks     A list of primary key ids of the content that has changed state.
+ * @param  integer \$value   The value of the state that the content has been changed to.
+ *
+ * @return void
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentChangeState(\$context, \$pks, \$value)
+{
+  $2
+}]]></content>
+  <tabTrigger>joomla-plugin-content-changestate</tabTrigger>
+  <description>Add onContentChangeState into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

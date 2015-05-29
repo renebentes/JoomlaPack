@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[/**
+ * Content is passed by reference, but after the save, so no changes will be saved.
+ * Method is called right after the content is saved.
+ *
+ * @param  string  \$context The context of the content passed to the plugin.
+ * @param  object  \$item    A JTableContent object.
+ * @param  boolean \$isNew   If the content is just about to be created.
+ *
+ * @return void
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentBeforeSave(\$context, &\$item, \$isNew)
+{
+  $2
+}]]></content>
+  <tabTrigger>joomla-plugin-content-aftersave</tabTrigger>
+  <description>Add onContentAfterSave into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

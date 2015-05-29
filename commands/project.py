@@ -41,7 +41,6 @@ class NewProjectCommand(sublime_plugin.WindowCommand):
             index = -1
             for x in range(0, len(self.quickpanel)):
                 if template in self.quickpanel[x][0].lower():
-                    print(x)
                     index = x
                     break
             self.on_pincked_template(index)

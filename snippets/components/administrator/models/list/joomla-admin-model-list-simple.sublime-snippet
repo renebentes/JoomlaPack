@@ -110,7 +110,7 @@ class ${3/(.+)/\u\1/g}Model${5:Plural} extends JModelList
 	 *
 	 * @param  string \$id A prefix for the store id.
 	 *
-	 * @return string A store id.
+	 * @return string      A store id.
 	 *
 	 * @since  $4
 	 */

@@ -4,7 +4,7 @@
  *
  * @param  string \$extension  The extension.
  *
- * @return string The necessary HTML for the widget.
+ * @return string              The necessary HTML for the widget.
  *
  * @since  ${1:0.0.1}
  */

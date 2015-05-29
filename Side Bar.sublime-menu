@@ -42,45 +42,15 @@
       },
       { "caption": "-" },
       {
-        "caption": "Documentation",
-        "mnemonic": "D",
+        "caption": "Plugin",
+        "mnemonic": "l",
         "children":
         [
           {
-            "caption": "How To",
-            "mnemonic": "H",
-            "command": "open_file",
-            "args":
-            {
-              "file": "${packages}/JoomlaPack/docs/How-To.md"
-            }
-          },
-          {
-            "caption": "README",
-            "mnemonic": "R",
-            "command": "open_file",
-            "args":
-            {
-              "file": "${packages}/JoomlaPack/README.md"
-            }
-          },
-          {
-            "caption": "CHANGELOG",
-            "mnemonic": "C",
-            "command": "open_file",
-            "args":
-            {
-              "file": "${packages}/JoomlaPack/CHANGELOG.md"
-            }
-          },
-          {
-            "caption": "LICENSE",
-            "mnemonic": "L",
-            "command": "open_file",
-            "args":
-            {
-              "file": "${packages}/JoomlaPack/LICENSE"
-            }
+            "caption": "New Plugin",
+            "mnemonic": "N",
+            "command": "new_project",
+            "args": { "template": "plugin" }
           }
         ]
       }

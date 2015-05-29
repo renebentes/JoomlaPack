@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[// Call _addContentTypeCategory() function
+if (\$route != 'uninstall')
+{
+  \$this->_addContentTypeCategory();
+}]]></content>
+  <tabTrigger>joomla-installer-script-postflight-contenttype-category</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add call to _addContentTypeCategory function into install script.</description>
+</snippet>

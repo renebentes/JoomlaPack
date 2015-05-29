@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
  * ${1:Hellos} list controller class.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${3:project}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${3:project}
+ * @since      ${4:0.0.1}
  */
 class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 {
@@ -15,7 +15,7 @@ class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 	 * @param  string \$prefix The class prefix. Optional.
 	 * @param  array  \$config Configuration array for model. Optional.
    *
-	 * @return object The model.
+	 * @return object          The model.
    *
 	 * @since	 $4
 	 */

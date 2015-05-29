@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[; Fields
+COM_${1:PROJECT}_FIELD_${2:TITLE}_LABEL="$3"
+COM_${1/(.+)/\U\1/g}_FIELD_${2/(.+)/\U\1/g}_DESC="${3/(.+)/\u\1/g} do item."
+COM_${1/(.+)/\U\1/g}_FIELD_CREATED_LABEL="Criado em"
+COM_${1/(.+)/\U\1/g}_FIELD_CREATED_DESC="Data de criação do item."
+COM_${1/(.+)/\U\1/g}_FIELD_CREATED_BY_LABEL="Autor"
+COM_${1/(.+)/\U\1/g}_FIELD_CREATED_BY_DESC="Você pode alterar aqui o nome do usuário que criou o item."
+COM_${1/(.+)/\U\1/g}_FIELD_CREATED_BY_ALIAS_LABEL="Apelido"
+COM_${1/(.+)/\U\1/g}_FIELD_CREATED_BY_ALIAS_DESC="Você pode informar um apelido, para ser exibido no lugar do nome do usuário, que criou o item."
+COM_${1/(.+)/\U\1/g}_FIELD_MODIFIED_DESC="Data da última revisão do item."
+COM_${1/(.+)/\U\1/g}_FIELD_PUBLISH_UP_LABEL="Iniciar Publicação"
+COM_${1/(.+)/\U\1/g}_FIELD_PUBLISH_UP_DESC="Data/hora de início da publicação."
+COM_${1/(.+)/\U\1/g}_FIELD_PUBLISH_DOWN_LABEL="Encerrar Publicação"
+COM_${1/(.+)/\U\1/g}_FIELD_PUBLISH_DOWN_DESC="Data/hora de fim da publicação."
+COM_${1/(.+)/\U\1/g}_FIELD_VERSION_LABEL="Revisão"
+COM_${1/(.+)/\U\1/g}_FIELD_VERSION_DESC="A quantidade de vezes que este item foi revisado."
+COM_${1/(.+)/\U\1/g}_FIELD_MODIFIED_BY_DESC="Autor da última revisão."
+COM_${1/(.+)/\U\1/g}_FIELD_HITS_DESC="Exibe o número de acessos para o item."
+COM_${1/(.+)/\U\1/g}_FIELD_LANGUAGE_DESC="Idioma ao qual este item está associado."
+]]></content>
+  <tabTrigger>joomla-admin-language-fields</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+  <description>Adds default component fields into ini files</description>
+</snippet>

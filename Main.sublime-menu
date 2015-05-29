@@ -53,6 +53,20 @@
               },
               { "caption": "-" },
               {
+                "caption": "Plugin",
+                "mnemonic": "l",
+                "children":
+                [
+                  {
+                    "caption": "New Plugin",
+                    "mnemonic": "N",
+                    "command": "new_project",
+                    "args": { "template": "plugin" }
+                  }
+                ]
+              },
+              { "caption": "-" },
+              {
                 "caption": "Documentation",
                 "mnemonic": "D",
                 "children":
@@ -91,6 +105,28 @@
                     "args":
                     {
                       "file": "${packages}/JoomlaPack/LICENSE"
+                    }
+                  }
+                ]
+              },
+              {"caption": "-"},
+              {
+                "caption": "Settings",
+                "mneumonic":"S",
+                "children":
+                [
+                  {
+                    "caption": "Settings – Default",
+                    "command": "open_file", "args":
+                    {
+                      "file": "${packages}/JoomlaPack/JoomlaPack.sublime-settings"
+                    }
+                  },
+                  {
+                    "caption": "Settings – User",
+                    "command": "open_file", "args":
+                    {
+                      "file": "${packages}/User/Preferences.sublime-settings"
                     }
                   }
                 ]

@@ -26,9 +26,21 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
             for filename in files:
                 if filename.find('{{plugin}}') != -1:
                     newname = filename.replace('{{plugin}}', name)
+                elif filename.find('{{locale}}') != -1:
+                    newname = filename.replace('{{locale}}', get_language())
                 else:
                     newname = ''
 
                 if newname != '':
                     os.rename(os.path.join(root, filename),
+                              os.path.join(root, newname))
+
+            for folder in dirs:
+                if folder.find('{{locale}}') != -1:
+                    newname = filename.replace('{{locale}}', get_language())
+                else:
+                    newname = ''
+
+                if newname != '':
+                    os.rename(os.path.join(root, folder),
                               os.path.join(root, newname))

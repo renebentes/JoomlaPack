@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
  * ${1:Project} component helper.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${1/(.+)/\L\1/g}
- * @since       ${3:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${1/(.+)/\L\1/g}
+ * @since      ${3:0.0.1}
  */
 class ${1/(.+)/\u\1/g}Helper extends JHelperContent
 {
@@ -13,7 +13,7 @@ class ${1/(.+)/\u\1/g}Helper extends JHelperContent
 	/**
 	 * Configure the Linkbar.
 	 *
-	 * @param  string  \$vName  The name of the active view.
+	 * @param  string \$vName The name of the active view.
 	 *
 	 * @return void
    *

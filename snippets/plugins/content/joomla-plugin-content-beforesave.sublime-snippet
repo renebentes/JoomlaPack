@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[/**
+ * Content is passed by reference. Method is called before the content is saved.
+ *
+ * @param  string  \$context The context of the content passed to the plugin.
+ * @param  object  \$item    A JTableContent object.
+ * @param  boolean \$isNew   If the content is just about to be created.
+ *
+ * @return boolean True on success, false otherwise
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentBeforeSave(\$context, &\$item, \$isNew)
+{
+  $2
+
+  return true;
+}]]></content>
+  <tabTrigger>joomla-plugin-content-beforesave</tabTrigger>
+  <description>Add onContentBeforeSave into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

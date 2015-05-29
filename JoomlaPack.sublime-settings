@@ -1,5 +1,4 @@
 {
   // The project root folder, default is home folder
-  "project_root": "",
-  "language": "pt-BR"
+  "project_root": ""
 }

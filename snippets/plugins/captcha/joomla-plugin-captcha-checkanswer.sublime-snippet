@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Calls an HTTP POST function to verify if the user's guess was correct}
+ *
+ * @param  string \$code Answer provided by user.
+ *
+ * @return True if the answer is correct, false otherwise
+ *
+ * @since  ${2:0.0.1}
+ */
+public function onCheckAnswer(\$code = null)
+{
+  $3
+
+  return true;
+}]]></content>
+  <tabTrigger>joomla-plugin-captcha-checkanswer</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add onCheckAnswer into Captcha plugin</description>
+</snippet>

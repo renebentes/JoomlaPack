@@ -25,7 +25,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 * @param  array   \$pks      An array of row IDs.
 	 * @param  array   \$contexts An array of item contexts.
 	 *
-	 * @return mixed An array of new IDs on success, boolean false on failure.
+	 * @return mixed              An array of new IDs on success, boolean false on failure.
 	 *
 	 * @since  $4
 	 */
@@ -108,7 +108,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 *
 	 * @param  object  \$record A record object.
 	 *
-	 * @return boolean True if allowed to delete the record. Defaults to the permission set in the component.
+	 * @return boolean          True if allowed to delete the record. Defaults to the permission set in the component.
 	 *
 	 * @since  $4
 	 */
@@ -135,7 +135,8 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 *
 	 * @param  object  \$record A record object.
 	 *
-	 * @return boolean True if allowed to change the state of the record. Defaults to the permission set in the component.
+	 * @return boolean          True if allowed to change the state of the record.
+	 *                          Defaults to the permission set in the component.
 	 *
 	 * @since  $4
 	 */
@@ -159,7 +160,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	/**
 	 * Prepare and sanitise the table data prior to saving.
 	 *
-	 * @param  JTable \$table  A reference to a JTable object.
+	 * @param  JTable \$table A reference to a JTable object.
 	 *
 	 * @return void
 	 *
@@ -197,7 +198,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 * @param  string \$prefix A prefix for the table class name. Optional.
 	 * @param  array  \$config Configuration array for model. Optional.
 	 *
-	 * @return JTable A database object.
+	 * @return JTable          A database object.
 	 *
 	 * @since  $4
 	 */
@@ -211,7 +212,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 *
 	 * @param  integer \$pk The id of the primary key.
 	 *
-	 * @return mixed Object on success, false on failure.
+	 * @return mixed        Object on success, false on failure.
 	 *
 	 * @since  $4
 	 */
@@ -263,7 +264,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 * @param  array   \$data     Data for the form.
 	 * @param  boolean \$loadData True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return mixed A JForm object on success, false on failure.
+	 * @return mixed              A JForm object on success, false on failure.
 	 *
 	 * @since  $4
 	 */
@@ -366,7 +367,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 *
 	 * @param  array   \$data The form data.
 	 *
-	 * @return boolean True on success.
+	 * @return boolean        True on success.
 	 *
 	 * @since  $4
 	 */
@@ -525,7 +526,7 @@ class ${1/(.+)/\u\1/g}Model${2/(.+)/\u\1/g} extends JModelAdmin
 	 *
 	 * @param  object \$table A record object.
 	 *
-	 * @return array  An array of conditions to add to add to ordering queries.
+	 * @return array          An array of conditions to add to add to ordering queries.
 	 *
 	 * @since  $4
 	 */

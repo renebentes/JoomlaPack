@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[/**
+ * Method called right before the content is deleted from the database.
+ *
+ * @param  string \$context The context for the data
+ * @param  object \$data    An object containing the data for the form.
+ *
+ * @return boolean True on success, false otherwise
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentBeforeDelete(\$context, \$data)
+{
+  $2
+
+  return true;
+}]]></content>
+  <tabTrigger>joomla-plugin-content-beforedelete</tabTrigger>
+  <description>Add onContentBeforeDelete into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[// Load helper
+JLoader::register('${1/(.+)/\u\1/g}HelperRoute', __DIR__ . '/helpers/route.php');
+
+// Get an instance of the controller prefixed by ${1:Project}
+\$controller = JControllerLegacy::getInstance('${1/(.+)/\u\1/g}');
+
+// Perform the Request task
+\$controller->execute(JFactory::getApplication()->input->get('task'));
+
+// Redirect if set by the controller
+\$controller->redirect();
+]]></content>
+  <tabTrigger>joomla-site-component</tabTrigger>
+  <scope>source.php</scope>
+</snippet>

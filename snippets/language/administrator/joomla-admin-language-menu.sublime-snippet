@@ -1,0 +1,6 @@
+<snippet>
+  <content><![CDATA[${1:COM}_${2:PROJECT}_${3:NAME}="$4"]]></content>
+  <tabTrigger>joomla-admin-language-menu</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+  <description>Adds component menu into ini files</description>
+</snippet>

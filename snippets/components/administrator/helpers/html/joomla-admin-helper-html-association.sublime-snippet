@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
    * Render the list of associated items.
    *
-   * @param   int  \$${1:singular}id  The ${1/(.+)/\L\1/g} item id.
+   * @param  integer \$${1:singular}id The ${1/(.+)/\L\1/g} item id.
    *
-   * @return  string  The language HTML.
+   * @return string  ${1/./ /g}    The language HTML.
    *
    * @since  ${2:0.0.1}
    */

@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1This method should handle any authentication and report back to the subject}
+ *
+ * @param  array  \$credentials Array holding the user credentials
+ * @param  array  \$options     Array of extra options
+ * @param  object &\$response   Authentication response object
+ *
+ * @return boolean
+ *
+ * @since  ${2:0.0.1}
+ */
+public function onUserAuthenticate(\$credentials, \$options, &\$response)
+{
+  $3
+
+  return true;
+}]]></content>
+  <tabTrigger>joomla-plugin-authentication-authenticate</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add onUserAuthenticate into Plugin</description>
+</snippet>

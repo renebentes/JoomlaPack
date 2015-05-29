@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[/**
+ * The SQL must return the following fields that are used in a common display
+ * routine: href, title, section, created, text, browsernav.
+ *
+ * @param  string \$text     Target search string.
+ * @param  string \$phrase   Matching option (possible values: exact|any|all). Default is "any".
+ * @param  string \$ordering Ordering option (possible values: newest|oldest|popular|alpha|category).  Default is "newest".
+ * @param  string \$areas    An array if the search is to be restricted to areas or null to search all areas.
+ *
+ * @return array Search results.
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentSearch(\$text, \$phrase = '', \$ordering = '', \$areas = null)
+{
+  $return = array();
+
+  $2
+
+  return $return;
+}]]></content>
+  <tabTrigger>joomla-plugin-content-search</tabTrigger>
+  <description>Add onContentSearch into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

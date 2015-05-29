@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
  * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/}} Table class.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${3:project}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${3:project}
+ * @since      ${4:0.0.1}
  */
 class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 {
@@ -101,7 +101,8 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	 * @param  mixed \$ignore An optional array or space separated list of properties
 	 *                        to ignore while binding. [optional]
 	 *
-	 * @return mixed Null if operation was satisfactory, otherwise returns an error string.
+	 * @return mixed          Null if operation was satisfactory, otherwise returns
+	 *                        an error string.
 	 *
 	 * @see    JTable::bind()
 	 * @since  $4
@@ -142,7 +143,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	/**
 	 * Overloaded check method to ensure data integrity.
 	 *
-	 * @return boolean True on success, false on failure.
+	 * @return boolean         True on success, false on failure.
 	 *
 	 * @see    JTable::check()
 	 * @since  $4
@@ -163,7 +164,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 			\$this->alias = \$this->${6/(.+)/\L\1/g};
 		}
 
-		\$this->alias = JApplication::stringURLSafe(\$this->alias);
+		\$this->alias = JApplicationHelper::stringURLSafe(\$this->alias);
 		if (trim(str_replace('-', '', \$this->alias)) == '')
 		{
 			\$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
@@ -194,10 +195,10 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 			}
 
 			// If we don't have any access rules set at this point just use an empty JAccessRules class
-			if (!isset($this->rules))
+			if (!isset(\$this->rules))
 			{
-				$rules = $this->getDefaultAssetValues('com_${3/(.+)/\U\1/g}');
-				$this->setRules($rules);
+				\$rules = \$this->getDefaultAssetValues('com_${3/(.+)/\U\1/g}');
+				\$this->setRules(\$rules);
 			}
 		}
 
@@ -252,11 +253,32 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	}
 
 	/**
+	 * Gets the default asset values for a component.
+	 *
+	 * @param  $string      \$component The component asset name to search for
+	 *
+	 * @return JAccessRules            The JAccessRules object for the asset
+	 */
+	protected function getDefaultAssetValues(\$component)
+	{
+		// Need to find the asset id by the name of the component.
+		\$db    = JFactory::getDbo();
+		\$query = \$db->getQuery(true)
+			->select(\$db->quoteName('id'))
+			->from(\$db->quoteName('#__assets'))
+			->where(\$db->quoteName('name') . ' = ' . \$db->quote(\$component));
+		\$db->setQuery(\$query);
+		\$assetId = (int) \$db->loadResult();
+
+		return JAccess::getAssetRules(\$assetId);
+	}
+
+	/**
 	 * Overload the store method for the ${7:Plural} table.
 	 *
 	 * @param  boolean \$updateNulls Toggle whether null values should be updated.
 	 *
-	 * @return boolean True on success, false on failure.
+	 * @return boolean              True on success, false on failure.
 	 *
 	 * @since  $4
 	 */
@@ -308,7 +330,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 	 * @param  integer \$state  The publishing state. eg. [0 = unpublished, 1 = published]
 	 * @param  integer \$userId The user id of the user performing the operation.
 	 *
-	 * @return boolean True on success.
+	 * @return boolean          True on success.
 	 *
 	 * @since  $4
 	 */
@@ -350,11 +372,9 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 			\$checkin = ' AND (checked_out = 0 OR checked_out = ' . (int) \$userId . ')';
 		}
 
-		// Get the JDatabaseQuery object.
-		\$query = \$this->_db->getQuery(true);
-
 		// Update the publishing state for rows with the given primary keys.
-		\$query->update(\$this->_db->quoteName(\$this->_tbl))
+		\$query = \$this->_db->getQuery(true)
+			->update(\$this->_db->quoteName(\$this->_tbl))
 			->set(\$this->_db->quoteName('state') . ' = ' . (int) \$state)
 			->where('(' . \$where . ')' . \$checkin);
 		\$this->_db->setQuery(\$query);
@@ -366,6 +386,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 		catch (RuntimeException \$e)
 		{
 			\$this->setError(\$e->getMessage());
+
 			return false;
 		}
 
@@ -386,6 +407,7 @@ class ${3/(.+)/\u\1/g}Table${1/(.+)/\u\1/g} extends JTable
 		}
 
 		\$this->setError('');
+
 		return true;
 	}
 }]]></content>

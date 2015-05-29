@@ -4,26 +4,26 @@
 /**
  * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/g}} Field class for the ${2:Project}.
  *
- * @package     Joomla.${3:Administrator}
- * @subpackage  com_${2/(.+)/\L\1/g}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${3:Administrator}
+ * @subpackage com_${2/(.+)/\L\1/g}
+ * @since      ${4:0.0.1}
  */
 class JFormField${1/(.+)/\u\1/g} extends JFormFieldList
 {
 	/**
    * The form field type.
    *
-   * @var    string
-   * @since  $4
+   * @var   string
+   * @since $4
    */
   public \$type = '${1/(.+)/\u\1/g}';
 
 	/**
    * Method to get the field options.
    *
-   * @return  array  The field option objects.
+   * @return array The field option objects.
    *
-   * @since   $4
+   * @since  $4
    */
   protected function getOptions()
   {

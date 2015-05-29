@@ -10,6 +10,11 @@
 		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
 		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
 	</section>
+	<section name="${2:singular}">
+		<action name="core.delete" title="JACTION_DELETE" description="COM_CONTENT_ACCESS_DELETE_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="COM_CONTENT_ACCESS_EDIT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="COM_CONTENT_ACCESS_EDITSTATE_DESC" />
+	</section>
 </access>]]>
 	</content>
 	<tabTrigger>joomla-admin-access-simple</tabTrigger>

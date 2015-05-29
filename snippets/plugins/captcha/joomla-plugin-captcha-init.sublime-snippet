@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Gets the challenge HTML}
+ *
+ * @param string \$name  The name of the field. Not Used.
+ * @param string \$id    The id of the field.
+ * @param string \$class The class of the field. This should be passed as
+ *                      e.g. 'class="required"'.
+ *
+ * @return string The HTML to be embedded in the form.
+ *
+ * @since  ${2:0.0.1}
+ */
+public function onDisplay(\$name = null, \$id = '${3:dynamic_recaptcha_1}', \$class = '')
+{
+  $4
+
+  return '';
+}]]></content>
+  <tabTrigger>joomla-plugin-captcha-display</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add onDisplay into Captcha plugin</description>
+</snippet>

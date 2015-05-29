@@ -1,5 +1,6 @@
 [
   { "caption": "Joomla Pack: New Project", "command": "new_project" },
   { "caption": "Joomla Pack: New Component", "command": "new_project", "args": { "template": "component" } },
-  { "caption": "Joomla Pack: New Package", "command": "new_project", "args": { "template": "package" } }
+  { "caption": "Joomla Pack: New Package", "command": "new_project", "args": { "template": "package" } },
+  { "caption": "Joomla Pack: New Plugin", "command": "new_project", "args": { "template": "plugin" } }
 ]

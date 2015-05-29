@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[/**
+ * Method is called by the view and the results are imploded and should be
+ * placed between the content title and the content body.
+ *
+ * @param  string  \$context The context of the content passed to the plugin.
+ * @param  object  &\$item   The content object. Note \$item->text is also available
+ * @param  object  &\$params The content params
+ * @param  integer \$page    The 'page' number
+ *
+ * @return string
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentAfterTitle(\$context, &\$item, &\$params, \$page = 0)
+{
+  $3
+
+  return '';
+}]]></content>
+  <tabTrigger>joomla-plugin-content-aftertitle</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add onContentAfterTitle into Content plugin</description>
+</snippet>

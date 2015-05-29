@@ -2,19 +2,19 @@
 	<content><![CDATA[/**
  * ${1:Hellos} list controller class.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${3:project}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${3:project}
+ * @since      ${4:0.0.1}
  */
 class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 {
 	/**
 	 * Constructor.
 	 *
-	 * @param   array  \$config  An optional associative array of configuration settings.
+	 * @param array       \$config An optional associative array of configuration settings.
 	 *
-	 * @see     JController
-	 * @since   $4
+	 * @see   JController
+	 * @since $4
 	 */
 	public function __construct(\$config = array())
 	{
@@ -32,9 +32,9 @@ class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 	/**
 	 * Method to toggle the featured setting of a list of ${1/(.+)/\L\1/g}.
 	 *
-	 * @return  void
+	 * @return void
 	 *
-	 * @since   $4
+	 * @since  $4
 	 */
 	public function featured()
 	{
@@ -82,13 +82,13 @@ class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 	/**
 	 * Method to get a model object, loading it if required.
    *
-	 * @param   string  \$name    The model name. Optional.
-	 * @param   string  \$prefix  The class prefix. Optional.
-	 * @param   array   \$config  Configuration array for model. Optional.
+	 * @param  string \$name   The model name. Optional.
+	 * @param  string \$prefix The class prefix. Optional.
+	 * @param  array  \$config Configuration array for model. Optional.
    *
-	 * @return  object  The model.
+	 * @return object          The model.
    *
-	 * @since	  $4
+	 * @since	 $4
 	 */
 	public function getModel(\$name = '${5:Hello}', \$prefix = '${3/(.+)/\u\1/g}Model', \$config = array('ignore_request' => true))
 	{

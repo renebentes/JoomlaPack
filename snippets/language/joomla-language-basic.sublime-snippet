@@ -5,5 +5,5 @@ ${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_XML_DESCRIPTION="$4"
 ]]></content>
 	<tabTrigger>joomla-language-basic</tabTrigger>
   <scope>text.ini, text.plain</scope>
-  <description>Add basic description to extensions into INI files</description>
+  <description>Add basic description to extensions into ini files</description>
 </snippet>

@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[COM_${1:PROJECT}_FIELD_SHOW_EMPTY_CATEGORIES_DESC="Permite a exibição de categorias vazias. Uma categoria só está vazia se não conter ${2:Plural} ou subcategorias."
+COM_${1/(.+)/\U\1/g}_FIELD_NO_${3:PLURAL}_LABEL="Mensagem sem ${2/(.+)/\u\1/g}"
+COM_${1/(.+)/\U\1/g}_FIELD_NO_${3/(.+)/\U\1/g}_DESC="Permite a exibição da mensagem: Não existem ${2/(.+)/\u\1/g} nesta categoria, quando não houver ${2/(.+)/\u\1/g} na categoria ou quando 'Categorias Vazias' estiver configurado para exibir."
+COM_${1/(.+)/\U\1/g}_FIELD_NUMBER_CATEGORY_ITEMS_LABEL="# ${2/(.+)/\u\1/g} na Categoria"
+COM_${1/(.+)/\U\1/g}_FIELD_NUMBER_CATEGORY_ITEMS_DESC="Permite a exibição do número de ${2/(.+)/\u\1/g} na Categoria."
+COM_${1/(.+)/\U\1/g}_FIELD_SHOW_TAGS_DESC="Permite a exibição dos marcadores de Categorias."]]></content>
+  <tabTrigger>joomla-admin-language-config-category-fields</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+  <description>Adds extra component config category fields into ini files</description>
+</snippet>

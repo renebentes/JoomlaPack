@@ -13,24 +13,26 @@ class ${3/(.+)/\u\1/g}View${1/(.+)/\u\1/g} extends JViewLegacy
 	 *
 	 * @param  string \$tpl A template file to load. [optional]
 	 *
-	 * @return mixed  A string if successful, otherwise a JError object.
+	 * @return mixed        A string if successful, otherwise a JError object.
 	 *
 	 * @since  $4
 	 */
 	public function display(\$tpl = null)
 	{
 		// Initialise variables.
-		\$this->items         = \$this->get('Items');
-		\$this->pagination    = \$this->get('Pagination');
-		\$this->state         = \$this->get('State');
-		\$this->authors       = \$this->get('Authors');
-		\$this->filterForm    = \$this->get('FilterForm');
-		\$this->activeFilters = \$this->get('ActiveFilters');
+		\$app = JFactory::getApplication();
+
+		\$this->items            = \$this->get('Items');
+		\$this->pagination       = \$this->get('Pagination');
+		\$this->state            = \$this->get('State');
+		\$this->authors          = \$this->get('Authors');
+		\$this->filterForm       = \$this->get('FilterForm');
+		\$this->activeFilters    = \$this->get('ActiveFilters');
 
 		// Check for errors.
 		if (count(\$errors = \$this->get('Errors')))
 		{
-			JFactory::getApplication()->enqueueMessage(implode("\n", \$errors), 'error');
+			\$app->enqueueMessage(implode("\n", \$errors), 'error');
 			return false;
 		}
 

@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[// Call _addContentType() function
+if (\$route != 'uninstall')
+{
+  \$this->_addContentType();
+}]]></content>
+  <tabTrigger>joomla-installer-script-postflight-contenttype</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add call to _addContentType function into install script.</description>
+</snippet>

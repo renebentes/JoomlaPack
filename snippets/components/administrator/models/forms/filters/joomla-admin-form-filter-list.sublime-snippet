@@ -20,6 +20,31 @@
 		</field>
 
 		<field
+			name="category_id"
+			type="category"
+			label="JOPTION_FILTER_CATEGORY"
+			description="JOPTION_FILTER_CATEGORY_DESC"
+			extension="com_${1/(.+)/\L\1/g}"
+			onchange="this.form.submit();"
+		>
+			<option value="">JOPTION_SELECT_CATEGORY</option>
+		</field>
+
+		<field
+			name="level"
+			type="integer"
+			label="JOPTION_FILTER_LEVEL"
+			description="JOPTION_FILTER_LEVEL_DESC"
+			first="1"
+			last="10"
+			step="1"
+			languages="*"
+			onchange="this.form.submit();"
+			>
+			<option value="">JOPTION_SELECT_MAX_LEVELS</option>
+		</field>
+
+		<field
 			name="access"
 			type="accesslevel"
 			label="JOPTION_FILTER_ACCESS"
@@ -76,8 +101,12 @@
 			<option value="a.ordering DESC">JGRID_HEADING_ORDERING_DESC</option>
 			<option value="a.state ASC">JSTATUS_ASC</option>
 			<option value="a.state DESC">JSTATUS_DESC</option>
+			<option value="a.featured ASC">JFEATURED_ASC</option>
+			<option value="a.featured DESC">JFEATURED_DESC</option>
 			<option value="a.${2/(.+)/\L\1/g} ASC">COM_${1/(.+)/\U\1/g}_HEADING_${2/(.+)/\U\1/g}_ASC</option>
 			<option value="a.${2/(.+)/\L\1/g} DESC">COM_${1/(.+)/\U\1/g}_HEADING_${2/(.+)/\U\1/g}_DESC</option>
+			<option value="category_title ASC">JCATEGORY_ASC</option>
+			<option value="category_title DESC">JCATEGORY_DESC</option>
 			<option value="association ASC" requires="associations">JASSOCIATIONS_ASC</option>
 			<option value="association DESC" requires="associations">JASSOCIATIONS_DESC</option>
 			<option value="a.access ASC">JGRID_HEADING_ACCESS_ASC</option>
@@ -96,10 +125,9 @@
 
 		<field
 			name="limit"
-			type="limitbox"
-			class="inputbox input-mini"
 			label="COM_${1/(.+)/\U\1/g}_FIELD_LIST_LIMIT_LABEL"
 			description="COM_${1/(.+)/\U\1/g}_FIELD_LIST_LIMIT_DESC"
+			type="limitbox"
 			default="25"
 			onchange="this.form.submit();"
 		/>

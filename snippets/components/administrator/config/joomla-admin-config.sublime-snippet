@@ -1,6 +1,251 @@
 <snippet>
 	<content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <config>
+  <fieldset
+    name="${1:plural}"
+    label="COM_${2:PROJECT}_CONFIG_${1/(.+)/\U\1/g}_SETTINGS_LABEL"
+    description="COM_${2/(.+)/\U\1/g}_CONFIG_${1/(.+)/\U\1/g}_SETTINGS_DESC"
+  >
+    <field
+      name="${3:singular}_layout"
+      type="componentlayout"
+      label="JGLOBAL_FIELD_LAYOUT_LABEL"
+      description="JGLOBAL_FIELD_LAYOUT_DESC"
+      menuitems="true"
+      extension="com_${2/(.+)/\L\1/g}"
+      view="${2/(.+)/\L\1/g}"
+    />
+
+    <field
+      name="show_category"
+      type="radio"
+      label="JGLOBAL_SHOW_CATEGORY_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_CATEGORY_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="link_category"
+      type="radio"
+      label="JGLOBAL_LINK_CATEGORY_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_LINK_CATEGORY_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JYES</option>
+      <option value="0">JNO</option>
+    </field>
+
+    <field
+      name="show_parent_category"
+      type="radio"
+      label="JGLOBAL_SHOW_PARENT_CATEGORY_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_PARENT_CATEGORY_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="link_parent_category"
+      type="radio"
+      label="JGLOBAL_LINK_PARENT_CATEGORY_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_LINK_PARENT_CATEGORY_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JYES</option>
+      <option value="0">JNO</option>
+    </field>
+
+     <field
+      name="show_author"
+      type="radio"
+      label="JGLOBAL_SHOW_AUTHOR_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_AUTHOR_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="link_author"
+      type="radio"
+      label="JGLOBAL_LINK_AUTHOR_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_LINK_AUTHOR_DESC"
+      class="btn-group btn-group-yesno"
+      default="0"
+    >
+      <option value="1">JYES</option>
+      <option value="0">JNO</option>
+    </field>
+
+    <field
+      name="show_create_date"
+      type="radio"
+      label="JGLOBAL_SHOW_CREATE_DATE_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_CREATE_DATE_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="show_modify_date"
+      type="radio"
+      label="JGLOBAL_SHOW_MODIFY_DATE_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_MODIFY_DATE_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="show_publish_date"
+      type="radio"
+      label="JGLOBAL_SHOW_PUBLISH_DATE_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_PUBLISH_DATE_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      id="show_tags"
+      name="show_tags"
+      type="radio"
+      label="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_TAGS_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_TAGS_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="show_hits"
+      type="radio"
+      label="JGLOBAL_SHOW_HITS_LABEL"
+      description="COM_${2/(.+)/\U\1/g}_FIELD_SHOW_HITS_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="spacer2"
+      type="spacer"
+      hr="true"
+    />
+
+    <field
+      name="show_icons"
+      type="radio"
+      label="JGLOBAL_SHOW_ICONS_LABEL"
+      description="JGLOBAL_SHOW_ICONS_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="show_print_icon"
+      type="radio"
+      label="JGLOBAL_SHOW_PRINT_ICON_LABEL"
+      description="JGLOBAL_SHOW_PRINT_ICON_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+
+    <field
+      name="show_email_icon"
+      type="radio"
+      label="JGLOBAL_SHOW_EMAIL_ICON_LABEL"
+      description="JGLOBAL_SHOW_EMAIL_ICON_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+  </fieldset>
+
+  <fieldset
+    name="editinglayout"
+    label="COM_${2/(.+)/\U\1/g}_EDITING_LAYOUT"
+    description="COM_${2/(.+)/\U\1/g}_CONFIG_EDITOR_LAYOUT"
+  >
+    <field
+      name="save_history"
+      type="radio"
+      label="JGLOBAL_SAVE_HISTORY_OPTIONS_LABEL"
+      description="JGLOBAL_SAVE_HISTORY_OPTIONS_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JYES</option>
+      <option value="0">JNO</option>
+    </field>
+
+    <field
+      name="history_limit"
+      type="text"
+      label="JGLOBAL_HISTORY_LIMIT_OPTIONS_LABEL"
+      description="JGLOBAL_HISTORY_LIMIT_OPTIONS_DESC"
+      filter="integer"
+      default="5"
+    />
+  </fieldset>
+
+  <fieldset name="shared"
+    label="COM_${2/(.+)/\U\1/g}_SHARED_LABEL"
+    description="COM_${2/(.+)/\U\1/g}_SHARED_DESC"
+  >
+    <field name="show_pagination"
+      type="list"
+      label="JGLOBAL_PAGINATION_LABEL"
+      description="JGLOBAL_PAGINATION_DESC"
+      default="2"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+      <option value="2">JGLOBAL_AUTO</option>
+    </field>
+
+    <field name="show_pagination_results"
+      type="radio"
+      label="JGLOBAL_PAGINATION_RESULTS_LABEL"
+      description="JGLOBAL_PAGINATION_RESULTS_DESC"
+      class="btn-group btn-group-yesno"
+      default="1"
+    >
+      <option value="1">JSHOW</option>
+      <option value="0">JHIDE</option>
+    </field>
+  </fieldset>
+
 	<fieldset
     name="permissions"
     label="JCONFIG_PERMISSIONS_LABEL"
@@ -12,12 +257,12 @@
       label="JCONFIG_PERMISSIONS_LABEL"
       filter="rules"
       validate="rules"
-      component="com_${1:project}"
+      component="com_${2/(.+)/\L\1/g}"
       section="component"
     />
 	</fieldset>
-</config>
-]]></content>
+</config>]]></content>
 	<tabTrigger>joomla-admin-config</tabTrigger>
   <scope>text.xml</scope>
+  <description>Add defaut settings for components.</description>
 </snippet>

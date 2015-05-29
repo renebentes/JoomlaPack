@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[/**
+ * Method called after the data for a JForm has been retrieved. It can
+ * be used to modify the JForm object in memory before rendering.
+ *
+ * @param  string \$context The context for the data
+ * @param  object \$data    An object containing the data for the form.
+ *
+ * @return boolean True on success, false otherwise
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentPrepareForm(\$context, \$data)
+{
+  $2
+
+  return true;
+}]]></content>
+  <tabTrigger>joomla-plugin-content-preparedata</tabTrigger>
+  <description>Add onContentPrepareData into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

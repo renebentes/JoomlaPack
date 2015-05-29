@@ -2,10 +2,10 @@
   <content><![CDATA[/**
  * Script file of ${1:Project} ${2:Component}
  *
- * @package     Joomla.Administrator
- * @subpackage  ${3:com}_${4}${1/(.+)/\L\1/g}
+ * @package    Joomla.Administrator
+ * @subpackage ${3:com}_${4}${1/(.+)/\L\1/g}
  *
- * @since       ${5:0.0.1}
+ * @since      ${5:0.0.1}
  */
 class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 {
@@ -48,7 +48,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    * @since $5
    */
   private \$_obsoletes = array(
-    'files' => array(
+    'files'   => array(
     ),
     'folders' => array(
     )
@@ -57,85 +57,91 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method to install the ${2/(.+)/\L\1/g}
    *
-   * @param  JAdapterInstance  \$adapter  The object responsible for running this script.
+   * @param  JAdapterInstance \$adapter The object responsible for running this script.
    *
-   * @return boolean           True on success.
+   * @return boolean True on success.
    *
-   * @since  ${5}
+   * @since  $5
    */
-  function install(\$adapter)
+  public function install(JAdapterInstance \$adapter)
   {
-    ${6:echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_INSTALL_TEXT', \$this->_release) . '</p>';}
+    echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_INSTALL_TEXT', \$this->_extension, \$this->_release) . '</p>';
   }
 
   /**
    * Method to uninstall the ${2/(.+)/\L\1/g}
    *
-   * @param  JAdapterInstance  \$adapter  The object responsible for running this script.
+   * @param  JAdapterInstance \$adapter The object responsible for running this script.
    *
-   * @return boolean           True on success.
+   * @return boolean True on success.
    *
-   * @since  ${5}
+   * @since  $5
    */
-  function uninstall(JAdapterInstance \$adapter)
+  public function uninstall(JAdapterInstance \$adapter)
   {
-    ${7:echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UNINSTALL_TEXT', \$this->_release) . '</p>';}
+    echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UNINSTALL_TEXT', \$this->_extension, \$this->_release) . '</p>';
   }
 
   /**
    * Method to update the ${2/(.+)/\L\1/g}
    *
-   * @param  JAdapterInstaller \$adapter
+   * @param  JAdapterInstance \$adapter The object responsible for running this script.
    *
-   * @return boolean           True on success.
+   * @return boolean True on success.
    *
-   * @since  ${5}
+   * @since  $5
    */
-  function update(\$adapter)
+  public function update(JAdapterInstance \$adapter)
   {
-    ${8:echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_TEXT', \$this->_release) . '</p>';}
+    echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_TEXT', \$this->_extension, \$this->_release) . '</p>';
   }
 
   /**
    * Method to run before an install/update/uninstall method
    *
-   * @param  string            \$route    Which action is happening (install|uninstall|discover_install).
-   * @param  JAdapterInstance  \$adapter  The object responsible for running this script.
+   * @param  string           \$route   Which action is happening (install|uninstall|discover_install).
+   * @param  JAdapterInstance \$adapter The object responsible for running this script.
    *
-   * @return boolean           True on success.
+   * @return boolean True on success.
    *
-   * @since  ${5}
+   * @since  $5
    */
-  function preflight(\$route, \$adapter)
+  public function preflight(\$route, JAdapterInstance \$adapter)
   {
-    \$this->_checkCompatible(\$route, \$adapter);$9
+    if(!\$this->_checkCompatible(\$route, \$adapter))
+    {
+      return false;
+    }
   }
 
   /**
    * Method to run after an install/update/uninstall method
    *
-   * @param  string            \$route    Which action is happening (install|uninstall|discover_install).
-   * @param  JAdapterInstance  \$adapter  The object responsible for running this script.
+   * @param  string           \$route   Which action is happening (install|uninstall|discover_install).
+   * @param  JAdapterInstance \$adapter The object responsible for running this script.
    *
-   * @return boolean  True on success.
+   * @return boolean True on success.
    *
-   * @since  ${5}
+   * @since  $5
    */
-  function postflight(\$route, \$adapter)
+  public function postflight(\$route, JAdapterInstance \$adapter)
   {
-    \$this->_removeObsoletes();$10
+    if (\$route != 'install')
+    {
+      \$this->_removeObsoletes();
+    }
   }
 
   /**
    * Method for checking compatibility installation environment
    *
-   * @param  JAdapterInstance  \$adapter  The object responsible for running this script.
+   * @param  JAdapterInstance \$adapter The object responsible for running this script.
    *
-   * @return boolean           True if the installation environment is compatible
+   * @return boolean True if the installation environment is compatible
    *
-   * @since  ${5}
+   * @since  $5
    */
-  private function _checkCompatible(\$route, \$adapter)
+  private function _checkCompatible(\$route, JAdapterInstance \$adapter)
   {
     // Get the application.
     \$this->_release = (string) \$adapter->get('manifest')->version;
@@ -144,7 +150,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 
     if (version_compare(\$jversion->getShortVersion(), \$min_version, 'lt' ))
     {
-      echo JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_VERSION_UNSUPPORTED', \$this->_release, \$min_version);
+      JFactory::getApplication()->enquequeMessage(JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_VERSION_UNSUPPORTED', \$this->_extension, \$this->_release, \$min_version), 'error');
       return false;
     }
 
@@ -155,10 +161,12 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 
       if (version_compare(\$this->_release, \$oldRelease, 'le'))
       {
-        echo JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_UNSUPPORTED', \$oldRelease, \$this->_release);
+        JFactory::getApplication()->enquequeMessage(JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_UNSUPPORTED', \$this->_extension, \$oldRelease, \$this->_release), 'error');
         return false;
       }
     }
+
+    return true;
   }
 
   /**
@@ -168,25 +176,35 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    *
    * @return void
    *
-   * @since  ${5}
+   * @since  $5
    */
   private function _removeObsoletes(\$obsoletes = array())
   {
-    jimport('joomla.filesystem.file');
-    foreach(\$obsoletes['files'] as \$file)
+    if (!empty(\$obsoletes['files']))
     {
-      if(JFile::exists(JPATH_ROOT . \$file) && !JFile::delete(JPATH_ROOT . \$file))
+      jimport('joomla.filesystem.file');
+
+      foreach(\$obsoletes['files'] as \$file)
       {
-        echo JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', \$file) . '<br />';
+        $file = substr($file, 0, 1) == '/' ? $file : '/' . $file;
+        if(JFile::exists(JPATH_ROOT . $file) && !JFile::delete(JPATH_ROOT . $file))
+        {
+          JFactory::getApplication()->enqueueMessage(JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', $file), 'error');
+        }
       }
     }
 
-    jimport('joomla.filesystem.folder');
-    foreach(\$obsoletes['folders'] as \$folder)
+    if (!empty(\$obsoletes['folders']))
     {
-      if(!JFolder::exists(JPATH_ROOT . \$folder) && !JFolder::delete(JPATH_ROOT . \$folder))
+      jimport('joomla.filesystem.folder');
+
+      foreach(\$obsoletes['folders'] as \$folder)
       {
-        echo JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', \$folder) . '<br />';
+        $folder = substr($folder, 0, 1) == '/' ? $folder : '/' . $folder;
+        if(JFolder::exists(JPATH_ROOT . $folder) && !JFolder::delete(JPATH_ROOT . $folder))
+        {
+          JFactory::getApplication()->enqueueMessage(JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', $folder), 'error');
+        }
       }
     }
   }
@@ -198,7 +216,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    *
    * @return string Value of column name
    *
-   * @since  ${5}
+   * @since  $5
    */
   private function _getParam(\$name)
   {
@@ -217,4 +235,5 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 }]]></content>
   <tabTrigger>joomla-installer-script</tabTrigger>
   <scope>source.php</scope>
+  <description>Add installer script to extensions.</description>
 </snippet>

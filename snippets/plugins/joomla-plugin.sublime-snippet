@@ -4,38 +4,20 @@
  *
  * @package     ${1/(.+)/\u\1/g}
  * @subpackage  plg_${2/(.+)/\L\1/g}_${1/(.+)/\L\1/g}
- * @since       ${4:2.5}
+ * @since       ${3:0.0.1}
  */
 class plg${2/(.+)/\u\1/g}${1/(.+)/\u\1/g} extends JPlugin
 {
   /**
-   * Affects constructor behavior. If true, language files will be loaded automatically.
+   * Load the language file on instantiation.
    *
    * @var    boolean
-   * @since  3.1
+   * @since  $3
    */
-  protected \$autoloadLanguage = false;
+  protected \$autoloadLanguage = true;
 
-  /**
-   * Constructor
-   *
-   * @param   object  &\$subject  The object to observe
-   * @param   array   \$config    An array that holds the plugin configuration
-   *
-   * @since   ${4:2.5}
-   */
-  public function __construct(&\$subject, \$config)
-  {
-    // Load the language files if needed.
-    if (\$this->autoloadLanguage)
-    {
-      \$this->loadLanguage();
-    }
-
-    parent::__construct(\$subject, \$config);
-  }
-}
-]]></content>
+  $4
+}]]></content>
   <tabTrigger>joomla-plugin</tabTrigger>
   <scope>source.php</scope>
   <description>Class to Plugin</description>

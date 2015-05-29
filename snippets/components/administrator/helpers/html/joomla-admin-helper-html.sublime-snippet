@@ -2,9 +2,9 @@
 	<content><![CDATA[/**
  * Utility class working with ${1:Project}.
  *
- * @package     Joomla.${2:Administrator}
- * @subpackage  com_${1/(.+)/\L\1/g}
- * @since       ${3:0.0.1}
+ * @package    Joomla.${2:Administrator}
+ * @subpackage com_${1/(.+)/\L\1/g}
+ * @since      ${3:0.0.1}
  */
 abstract class JHtml${4:${TM_FILENAME/(.*?)(\..+)/\u$1/}}
 {

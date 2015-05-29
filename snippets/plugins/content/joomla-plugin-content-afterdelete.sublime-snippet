@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[/**
+ * Method called after the content is deleted from the database.
+ *
+ * @param  string \$context The context of the content
+ * @param  object \$item    A JTableContent object
+ *
+ * @return void
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentAfterDelete(\$context, \$item)
+{
+  $2
+}]]></content>
+  <tabTrigger>joomla-plugin-content-afterdelete</tabTrigger>
+  <description>Add onContentAfterDelete into Plugin</description>
+  <scope>source.php</scope>
+</snippet>

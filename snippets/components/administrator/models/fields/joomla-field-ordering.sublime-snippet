@@ -4,17 +4,17 @@
 /**
  * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/g}} Field class for the ${2:Project}.
  *
- * @package     Joomla.${3:Administrator}
- * @subpackage  com_${2/(.+)/\L\1/g}
- * @since       ${4:0.0.1}
+ * @package    Joomla.${3:Administrator}
+ * @subpackage com_${2/(.+)/\L\1/g}
+ * @since      ${4:0.0.1}
  */
 class JFormField${1/(.+)/\u\1/g} extends JFormFieldOrdering
 {
 	/**
    * The form field type.
    *
-   * @var    string
-   * @since  $4
+   * @var   string
+   * @since $4
    */
   public \$type = '${1/(.+)/\u\1/g}';
 

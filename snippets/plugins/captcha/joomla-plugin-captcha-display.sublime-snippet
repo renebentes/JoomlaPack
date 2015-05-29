@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Initialise the captcha}
+ *
+ * @param  string  \$id The id of the field.
+ *
+ * @return boolean True on success, false otherwise
+ *
+ * @since  ${2:0.0.1}
+ */
+public function onInit(\$id = '${3:dynamic_recaptcha_1}')
+{
+  $4
+
+  return true;
+}]]></content>
+  <tabTrigger>joomla-plugin-captcha-init</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add onInit into Captcha plugin</description>
+</snippet>

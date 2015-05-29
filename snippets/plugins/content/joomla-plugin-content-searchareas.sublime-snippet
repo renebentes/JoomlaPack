@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[/**
+ * Determine areas searchable by this plugin.
+ *
+ * @return array An array of search areas.
+ *
+ * @since  ${1:0.0.1}
+ */
+public function onContentSearchAreas()
+{
+  static $areas = array(
+    '${2:project}' => 'PLG_SEARCH_${2/(.+)/\U\1/g}_${2/(.+)/\U\1/g}'
+  );
+
+  return $areas;
+}]]></content>
+  <tabTrigger>joomla-plugin-content-searchareas</tabTrigger>
+  <description>Add onContentSearchAreas into Plugin</description>
+  <scope>source.php</scope>
+</snippet>
