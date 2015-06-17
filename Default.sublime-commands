@@ -1,6 +1,8 @@
 [
   { "caption": "Joomla Pack: New Project", "command": "new_project" },
-  { "caption": "Joomla Pack: New Component", "command": "new_project", "args": { "template": "component" } },
-  { "caption": "Joomla Pack: New Package", "command": "new_project", "args": { "template": "package" } },
-  { "caption": "Joomla Pack: New Plugin", "command": "new_project", "args": { "template": "plugin" } }
+  { "caption": "Joomla Pack: New Component", "command": "new_component", "args": {} },
+  { "caption": "Joomla Pack: New Package", "command": "new_package", "args": {} },
+  { "caption": "Joomla Pack: New Plugin", "command": "new_plugin", "args": {} },
+  { "caption": "Joomla Pack: Add Form To Plugin", "command": "add_form_to_plugin", "args": {} },
+  { "caption": "Joomla Pack: Add Field To Plugin", "command": "add_field_to_plugin", "args": {} }
 ]

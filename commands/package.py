@@ -1,34 +1,25 @@
 # coding: utf-8
 import sublime
 import sublime_plugin
-import os
-from shutil import copytree
 
 st_version = int(sublime.version())
 
 if st_version > 3000:
     from JoomlaPack.lib.helpers import *
+    from JoomlaPack.lib.project import Project, Package
 else:
     from lib.helpers import *
+    from lib.project import Project, Package
 
 
 class NewPackageCommand(sublime_plugin.WindowCommand):
 
-    def run(self, args):
-        source = os.path.join(args["source"], 'contents')
-        copytree(source, args["destination"])
+    def run(self):
+        show_input_panel("Type Package name: ", "package",
+                         self.on_done, None,
+                         on_cancel)
 
-        self.rename(args)
-
-    def rename(self, args):
-        name = args["name"].replace('pkg_', '')
-        for root, dirs, files in os.walk(args["destination"]):
-            for filename in files:
-                if filename.find('{{package}}') != -1:
-                    newname = filename.replace('{{package}}', name)
-                else:
-                    newname = ''
-
-                if newname != '':
-                    os.rename(os.path.join(root, filename),
-                              os.path.join(root, newname))
+    def on_done(self, name):
+        self.project = Project(Package)
+        self.project.set_attributes(name)
+        self.project.create()

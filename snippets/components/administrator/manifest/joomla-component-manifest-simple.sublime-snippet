@@ -5,10 +5,10 @@
 	<creationDate>$3</creationDate>
 	<author>${4:Rene Bentes Pinto}</author>
 	<authorEmail>${5:renebentes@yahoo.com.br}</authorEmail>
-	<authorUrl>$6</authorUrl>
+	<authorUrl>${6:http://renebentes.github.io}</authorUrl>
 	<copyright>Copyright (C) ${7:2014} ${8:Rene Bentes Pinto, Inc}. All rights reserved.</copyright>
 	<license>${9:GNU General Public License version 2 or later}; see LICENSE</license>
-	<version>${10:0.1.0}</version>
+	<version>${10:0.0.1}</version>
 	<description>COM_${2/(.+)/\U\1/g}_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
 	<install>

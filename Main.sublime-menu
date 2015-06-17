@@ -32,8 +32,8 @@
                   {
                     "caption": "New Component",
                     "mnemonic": "N",
-                    "command": "new_project",
-                    "args": { "template": "component" }
+                    "command": "new_component",
+                    "args": {}
                   }
                 ]
               },
@@ -46,8 +46,8 @@
                   {
                     "caption": "New Package",
                     "mnemonic": "N",
-                    "command": "new_project",
-                    "args": { "template": "package" }
+                    "command": "new_package",
+                    "args": {}
                   }
                 ]
               },
@@ -60,8 +60,21 @@
                   {
                     "caption": "New Plugin",
                     "mnemonic": "N",
-                    "command": "new_project",
-                    "args": { "template": "plugin" }
+                    "command": "new_plugin",
+                    "args": {}
+                  },
+                  { "caption": "-" },
+                  {
+                    "caption": "Add Form To Plugin",
+                    "mnemonic": "Form",
+                    "command": "add_form_to_plugin",
+                    "args": {}
+                  },
+                  {
+                    "caption": "Add Field To Plugin",
+                    "mnemonic": "Field",
+                    "command": "add_field_to_plugin",
+                    "args": {}
                   }
                 ]
               },
@@ -126,7 +139,7 @@
                     "caption": "Settings – User",
                     "command": "open_file", "args":
                     {
-                      "file": "${packages}/User/Preferences.sublime-settings"
+                      "file": "${packages}/User/JoomlaPack.sublime-settings"
                     }
                   }
                 ]
