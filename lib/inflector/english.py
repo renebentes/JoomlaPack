@@ -4,9 +4,9 @@ import re
 
 st_version = int(sublime.version())
 if st_version > 3000:
-    from JoomlaPack.lib.languages.base import Base
+    from JoomlaPack.lib.inflector.base import Base
 else:
-    from lib.languages.base import Base
+    from lib.inflector.base import Base
 
 
 class English(Base):
@@ -14,8 +14,11 @@ class English(Base):
     '''
     Inflector for pluralize and singularize English nouns.
 
-    This is the default Inflector for the Inflector obj
+    This is the default Inflector
     '''
+
+    def __init__(self):
+        Base.__init__(self)
 
     def pluralize(self, word):
         '''
@@ -103,31 +106,38 @@ class English(Base):
                 'swine'
             ]
         }
-        word_lower = word.lower()
-        for countable in rules['countable']:
-            if word_lower[-1 * len(countable):] == countable:
-                return word
 
-        for irregular in rules['irregular'].keys():
-            match = re.search('(' + irregular + ')$', word, re.IGNORECASE)
-            if match:
-                return re.sub('(?i)' + irregular + '$', match.expand('\\1')[0]
-                              + rules['irregular']
-                              [irregular][1:], word)
+        if Base.pluralize(word) is None:
+            word_lower = word.lower()
+            for countable in rules['countable']:
+                if word_lower[-1 * len(countable):] == countable:
+                    self.cache['pluralized'][word] = word
+                    return self.cache['pluralized'][word]
 
-        for rule in range(0, len(rules['regular'])):
-            match = re.search(rules['regular'][rule][0], word, re.IGNORECASE)
-            if match:
-                groups = match.groups()
-                for k in range(0, len(groups)):
-                    if groups[k] is None:
-                        rules['regular'][rule][1] = rules['regular'][
-                            rule][1].replace('\\' + str(k + 1), '')
-                return re.sub(rules['regular'][rule][0],
-                              rules['regular'][rule][1],
-                              word)
+            for irregular in rules['irregular'].keys():
+                match = re.search('(' + irregular + ')$', word, re.IGNORECASE)
+                if match:
+                    self.cache['pluralized'][word] = re.sub(
+                        '(?i)' + irregular + '$', match.expand('\\1')[0] +
+                        rules['irregular'][irregular][1:], word)
+                    return self.cache['pluralized'][word]
 
-        return word
+            for rule in range(0, len(rules['regular'])):
+                match = re.search(
+                    rules['regular'][rule][0], word, re.IGNORECASE)
+                if match:
+                    groups = match.groups()
+                    for k in range(0, len(groups)):
+                        if groups[k] is None:
+                            rules['regular'][rule][1] = rules['regular'][
+                                rule][1].replace('\\' + str(k + 1), '')
+                    self.cache['pluralized'][word] = re.sub(
+                        rules['regular'][rule][0], rules['regular'][rule][1],
+                        word)
+                    return self.cache['pluralized'][word]
+
+        self.cache['pluralized'][word] = word
+        return self.cache['pluralized'][word]
 
     def singularize(self, word):
         '''
@@ -224,28 +234,33 @@ class English(Base):
             ]
         }
 
-        word_lower = word.lower()
-        for countable in rules['countable']:
-            if word_lower[-1 * len(countable):] == countable:
-                return word
+        if Base.singularize(word) is None:
+            word_lower = word.lower()
+            for countable in rules['countable']:
+                if word_lower[-1 * len(countable):] == countable:
+                    return word
 
-        for irregular in rules['irregular'].keys():
-            match = re.search('(' + irregular + ')$', word, re.IGNORECASE)
-            if match:
-                return re.sub('(?i)' + irregular + '$', match.expand('\\1')[0]
-                              + rules['irregular']
-                              [irregular][1:], word)
+            for irregular in rules['irregular'].keys():
+                match = re.search('(' + irregular + ')$', word, re.IGNORECASE)
+                if match:
+                    self.cache['singularized'][word] = re.sub(
+                        '(?i)' + irregular + '$', match.expand('\\1')[0] +
+                        rules['irregular'][irregular][1:], word)
+                    return self.cache['singularized'][word]
 
-        for rule in range(0, len(rules['regular'])):
-            match = re.search(rules['regular'][rule][0], word, re.IGNORECASE)
-            if match:
-                groups = match.groups()
-                for k in range(0, len(groups)):
-                    if groups[k] is None:
-                        rules['regular'][rule][1] = rules['regular'][
-                            rule][1].replace('\\' + str(k + 1), '')
-                return re.sub(rules['regular'][rule][0],
-                              rules['regular'][rule][1],
-                              word)
+            for rule in range(0, len(rules['regular'])):
+                match = re.search(
+                    rules['regular'][rule][0], word, re.IGNORECASE)
+                if match:
+                    groups = match.groups()
+                    for k in range(0, len(groups)):
+                        if groups[k] is None:
+                            rules['regular'][rule][1] = rules['regular'][
+                                rule][1].replace('\\' + str(k + 1), '')
+                    self.cache['singularized'][word] = re.sub(
+                        rules['regular'][rule][0], rules['regular'][rule][1],
+                        word)
+                    return self.cache['singularized'][word]
 
-        return word
+        self.cache['singularized'][word] = word
+        return self.cache['singularized'][word]

@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[<field
+	name="${1:title}"
+	type="${2:text}"
+	label="${3:COM}_${4:PROJECT}_FIELD_${1/(.+)/\U\1/g}_LABEL"
+	description="${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}_FIELD_${1/(.+)/\U\1/g}_DESC"
+/>]]></content>
+	<tabTrigger>joomla-add-field</tabTrigger>
+	<scope>text.xml</scope>
+  <description>Adds field in xml forms</description>
+</snippet>

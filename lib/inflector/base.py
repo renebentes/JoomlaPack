@@ -5,9 +5,68 @@ import re
 class Base(object):
 
     '''
+    Inflector base class.
+
+    It provides methods for helping on creating programs
+    based on naming conventions like on Ruby on Rails.
+
     Locale inflectors must inherit from this base class inorder to provide the
     basic Inflector functionality.
     '''
+
+    def __init__(self):
+        self.cache = {
+            'singularized': {},
+            'pluralized': {}
+        }
+
+    def is_singular(self, word):
+        '''
+        Check to see if a word is singular.
+        '''
+        singular = self.cache['singularized'][
+            word] if word in self.cache['singularized'].keys() else None
+
+        plural = self.cache['pluralized'][singular] \
+            if (singular and singular in self.cache[
+                'pluralized'].keys()) \
+            else None
+
+        if singular and plural:
+            return plural != word
+
+        return self.singularize(self.pluralize(word)) == word
+
+    def is_plural(self, word):
+        '''
+        Check to see if a word is plural.
+        '''
+        plural = self.cache['pluralized'][word] if word in self.cache[
+            'pluralized'].keys() else None
+
+        singular = self.cache['singularized'][plural] if plural and \
+            plural in self.cache['singularized'].keys() else None
+
+        if plural and singular:
+            return singular != word
+
+        return self.pluralize(self.singularize(word)) == word
+
+    def singularize(self, word):
+        '''
+        Singularize nouns.
+        '''
+        if word in self.cache['singularized'].keys():
+            return self.cache['singularized'][word]
+        return None
+
+    def pluralize(self, word):
+        '''
+        Pluralizes nouns.
+        '''
+        if word in self.cache['pluralized'].keys():
+            return self.cache['pluralized'][word]
+        return None
 
     def conditional_plural(self, word, number=1):
         '''

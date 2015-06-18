@@ -18,6 +18,10 @@ class Base(object):
     to provide basic functionality.
     '''
 
+    def __init__(self, inflector):
+        callable(inflector)
+        self.inflector = inflector()
+
     def get_root(self):
         '''
         Get the project root define by user or standard.
@@ -40,13 +44,13 @@ class Base(object):
 
         return root
 
-    def write(self, name, content):
+    def write(self, path, name, content):
         '''
         Write files on disk.
         '''
-        with open(os.path.join(self.path, name), 'w+',
-                  encoding='utf8', newline='') as f:
-            f.write(str(content))
+        with open(os.path.join(path, name), 'w+',
+                  encoding='utf8') as f:
+            f.write(content)
 
         # Fixes as best as possible a new file permissions issue
         # See https://github.com/titoBouzout/SideBarEnhancements/issues/203
@@ -57,21 +61,32 @@ class Base(object):
                 os.chmod(self.path, 0o644)
             os.umask(oldmask)
 
-    def make_dir(self, name):
+    def make_dir(self, path, name):
         '''
         Creates structure folder to extensions.
         '''
-        data = '''<!DOCTYPE html>
-            <html>
-            <head>
-                <title>&nbsp;</title>
-            </head>
-            <body></body>
-            </html>'''
-        folder = os.path.join(self.path, name)
+        data = '<!DOCTYPE html>'
+        data += '<html>'
+        data += '<head>'
+        data += '  <title>&nbsp;</title>'
+        data += '</head>'
+        data += '<body></body>'
+        data += '</html>'
+        folder = os.path.join(path, name)
         try:
-            os.makedirs(folder, 0o755)
-            self.write('index.html', data)
+            if 3000 <= st_version < 3088:
+                # Fixes as best as possible a new directory permissions issue
+                # See https://github.com/titoBouzout/SideBarEnhancements/issues/203
+                # See https://github.com/SublimeTextIssues/Core/issues/239
+                oldmask = os.umask(0o000)
+                if oldmask == 0:
+                    os.makedirs(path, 0o755)
+                else:
+                    os.makedirs(path)
+                os.umask(oldmask)
+            else:
+                os.makedirs(folder)
+            self.write(folder, 'index.html', data)
         except Exception as e:
             show_message("error",
                          "[Error] Folder %s could not be created! %s"
@@ -141,7 +156,7 @@ class Base(object):
         }
 
         try:
-            self.write(self.inflector.variablize(self.fullname) +
+            self.write(self.path, self.inflector.variablize(self.fullname) +
                        '.sublime-project', json.dumps(data, sort_keys=True,
                                                       indent=2))
         except (Exception, IOError) as e:

@@ -12,6 +12,7 @@ if st_version > 3000:
     from JoomlaPack.lib.helpers import on_cancel
     from JoomlaPack.lib.helpers import directories
     from JoomlaPack.lib.helpers import refresh
+    from JoomlaPack.lib.helpers import project_file
 else:
     from lib.helpers import window
     from lib.helpers import settings
@@ -21,6 +22,7 @@ else:
     from lib.helpers import on_cancel
     from lib.helpers import directories
     from lib.helpers import refresh
+    from lib.helpers import project_file
 
 __all__ = [
     'window',
@@ -30,5 +32,6 @@ __all__ = [
     'show_message',
     'on_cancel',
     'directories',
-    'refresh'
+    'refresh',
+    'project_file'
 ]

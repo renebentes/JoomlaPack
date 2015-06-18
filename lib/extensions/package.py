@@ -5,10 +5,10 @@ import os
 st_version = int(sublime.version())
 if st_version > 3000:
     from JoomlaPack.lib.extensions.base import Base
-    from JoomlaPack.lib.inflector import Inflector, English
+    from JoomlaPack.lib.inflector import *
 else:
     from lib.extensions.base import Base
-    from lib.inflector import Inflector, English
+    from lib.inflector import *
 
 
 class Package(Base):
@@ -17,11 +17,17 @@ class Package(Base):
     Implements the Joomla's Package of extensions.
     '''
 
-    def set_attributes(self, content):
-        self.inflector = Inflector(English)
+    def __init__(self, content=None, inflector=English):
+        Base.__init__(self, inflector)
+
         self.prefix = 'pkg_'
-        self.name = self.inflector.underscore(self.prefix + content)
         self.template_path = 'package'
+
+        if content is not None:
+            self.name = content
+            self.fullname = self.inflector.underscore(self.prefix + content)
+        else:
+            pass
 
     def rename(self):
         name = self.inflector.humanize(self.name, self.prefix)

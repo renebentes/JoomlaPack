@@ -1,3 +1,4 @@
+# coding: utf-8
 import sublime
 
 st_version = int(sublime.version())

@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params">
+		<fieldset name="params"
+			addrulepath="/plugins/${1:group}/{2:project}/rules"
+			addfieldpath="/plugins/${1/(.+)/\l\1/g}/${2/(.+)/\l\1/g}/fields"
+		>
+		</fieldset>
+	</fields>
+</form>]]>
+	</content>
+	<tabTrigger>joomla-add-form</tabTrigger>
+	<scope>text.xml</scope>
+	<description>Adds extra xml forms with path to fields and rules.</description>
+</snippet>

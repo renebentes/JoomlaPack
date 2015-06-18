@@ -3,6 +3,8 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.7 - 18/06/2015
+  * Updated - classes refeitas
 * 0.2.6 - 01/06/2015
   * Added - Teste para existência de caminho para o projeto
 * 0.2.5 - 20/05/2015

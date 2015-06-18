@@ -5,13 +5,13 @@ import re
 
 st_version = int(sublime.version())
 if st_version > 3000:
-    from JoomlaPack.lib.helpers import *
     from JoomlaPack.lib.extensions.base import Base
-    from JoomlaPack.lib.inflector import Inflector, English
+    from JoomlaPack.lib.helpers import *
+    from JoomlaPack.lib.inflector import *
 else:
-    from lib.helpers import *
     from lib.extensions.base import Base
-    from lib.inflector import Inflector, English
+    from lib.helpers import *
+    from lib.inflector import *
 
 
 class Plugin(Base):
@@ -20,14 +20,22 @@ class Plugin(Base):
     Implements the Joomla's Plugin extension.
     '''
 
-    def set_attributes(self, content):
-        self.inflector = Inflector(English)
+    def __init__(self, content=None, inflector=English):
+        Base.__init__(self, inflector)
+
         self.prefix = 'plg_'
-        self.group = content['group'][1]
-        self.name = content['name'][1]
-        self.fullname = self.inflector.underscore(self.inflector.variablize(
-            self.prefix + self.group + ' ' + self.name))
         self.template_path = 'plugin'
+
+        if content is not None:
+            self.group = content['group'][1]
+            self.name = content['name'][1]
+            self.fullname = self.inflector.underscore(
+                self.inflector.variablize(self.prefix +
+                                          self.group + ' ' + self.name))
+        else:
+            print(project_file())
+            self.fullname = self.inflector.underscore(project_file())
+            print(self.fullname)
 
     def rename(self):
         for root, dirs, files in os.walk(self.path):
@@ -52,7 +60,12 @@ class Plugin(Base):
 
     def add_form(self, name):
         self.path()
-        print(self.path)
+        self.make_dir(self.path, 'forms')
+        form_path = os.path.join(self.path, 'forms')
+        data = 'joomla-add-form-simple'
+        self.write(form_path, self.inflector.underscore(
+            name) + '.xml', data)
+        refresh()
 
     def __str__(self):
         return "JoomlaPack: Joomla Plugin"

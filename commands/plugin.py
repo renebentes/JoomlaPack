@@ -6,10 +6,10 @@ st_version = int(sublime.version())
 
 if st_version > 3000:
     from JoomlaPack.lib.helpers import *
-    from JoomlaPack.lib.project import Project, Plugin
+    from JoomlaPack.lib.extensions import Plugin
 else:
     from lib.helpers import *
-    from lib.project import Project, Plugin
+    from lib.extensions import Plugin
 
 
 class NewPluginCommand(sublime_plugin.WindowCommand):
@@ -35,8 +35,7 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
         if self.counter < (len(self.options)):
             self.show_input_panel()
         else:
-            self.project = Project(Plugin)
-            self.project.set_attributes(self.options)
+            self.project = Plugin(self.options)
             self.project.create()
 
 
@@ -49,22 +48,21 @@ class AddFormToPluginCommand(sublime_plugin.WindowCommand):
             show_message('info', message)
         else:
             show_input_panel("Type Form name: ", "content",
-                             self.on_done, None,
-                             on_cancel)
+                             self.on_done, None, on_cancel)
 
     def on_done(self, name):
-        self.project = Project(Plugin)
+        self.project = Plugin(name)
         self.project.add_form(name)
 
 
 class AddFieldToPluginCommand(sublime_plugin.WindowCommand):
 
     def run(self):
-        self.project = Project(Plugin)
+        self.project = Plugin()
         if directories():
             show_input_panel("Type Field name: ", "title",
                              self.project.on_done, None,
-                             project.on_cancel)
+                             on_cancel)
         else:
             message = '''[Error] Project folder not found! Please,
             create a Joomla plugin first.'''

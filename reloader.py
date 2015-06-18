@@ -23,17 +23,15 @@ mods_load_order = [
 
     '.lib.helpers',
 
-    '.lib.project',
-    '.lib.project.extensions',
-    '.lib.project.extensions.base',
-    '.lib.project.extensions.component',
-    '.lib.project.extensions.package',
-    '.lib.project.extensions.plugin',
+    '.lib.extensions',
+    '.lib.extensions.base',
+    '.lib.extensions.component',
+    '.lib.extensions.package',
+    '.lib.extensions.plugin',
 
     '.lib.inflector',
-    '.lib.inflector.languages',
-    '.lib.inflector.languages.base',
-    '.lib.inflector.languages.english',
+    '.lib.inflector.base',
+    '.lib.inflector.english',
 
     ".commands",
     ".commands.new_project",

@@ -5,13 +5,13 @@ import re
 
 st_version = int(sublime.version())
 if st_version > 3000:
-    from JoomlaPack.lib.helpers import *
     from JoomlaPack.lib.extensions.base import Base
-    from JoomlaPack.lib.inflector import Inflector, English
+    from JoomlaPack.lib.helpers import *
+    from JoomlaPack.lib.inflector import *
 else:
-    from lib.helpers import *
     from lib.extensions.base import Base
-    from lib.inflector import Inflector, English
+    from lib.helpers import *
+    from lib.inflector import *
 
 
 class Component(Base):
@@ -20,12 +20,17 @@ class Component(Base):
     Implements the Joomla's Component extension. This is default.
     '''
 
-    def set_attributes(self, name):
-        self.inflector = Inflector(English)
+    def __init__(self, content=None, inflector=English):
+        Base.__init__(self, inflector)
+
         self.prefix = 'com_'
-        self.name = name
-        self.fullname = self.inflector.underscore(self.prefix + self.name)
         self.template_path = 'component/basic'
+
+        if content is not None:
+            self.name = content
+            self.fullname = self.inflector.underscore(self.prefix + self.name)
+        else:
+            pass
 
     def rename(self):
         singular = self.inflector.singularize(

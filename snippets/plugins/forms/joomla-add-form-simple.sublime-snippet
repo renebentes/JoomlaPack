@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params">
+		<fieldset
+			name="params"
+		>
+		</fieldset>
+	</fields>
+</form>]]>
+	</content>
+	<tabTrigger>joomla-add-form-simple</tabTrigger>
+	<scope>text.xml</scope>
+	<description>Adds extra xml forms without paths to fields and rules.</description>
+</snippet>

@@ -6,10 +6,10 @@ st_version = int(sublime.version())
 
 if st_version > 3000:
     from JoomlaPack.lib.helpers import *
-    from JoomlaPack.lib.project import Project, Component
+    from JoomlaPack.lib.extensions import Component
 else:
     from lib.helpers import *
-    from lib.project import Project, Component
+    from lib.extensions import Component
 
 
 class NewComponentCommand(sublime_plugin.WindowCommand):
@@ -20,6 +20,5 @@ class NewComponentCommand(sublime_plugin.WindowCommand):
                          on_cancel)
 
     def on_done(self, name):
-        self.project = Project(Component)
-        self.project.set_attributes(name)
+        self.project = Component(name)
         self.project.create()

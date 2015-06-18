@@ -65,7 +65,7 @@ def directories():
     '''
     Get directories for extension project.
     '''
-    return window().folders()
+    return window().folders()[0]
 
 
 def refresh():
@@ -79,3 +79,10 @@ def refresh():
             lambda: window().run_command('refresh_folder_list'), 1300)
     except:
         pass
+
+
+def project_file():
+    '''
+    Gets the project file name.
+    '''
+    return window().project_file_name()
