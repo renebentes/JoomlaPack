@@ -4,6 +4,8 @@ CHANGELOG
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
 * 0.2.7 - 18/06/2015
+  * Fixed - arquivos __init__.py
+  * Added - project.py, helper.py
   * Updated - classes refeitas
 * 0.2.6 - 01/06/2015
   * Added - Teste para existência de caminho para o projeto

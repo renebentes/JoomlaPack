@@ -5,12 +5,12 @@ import re
 
 st_version = int(sublime.version())
 if st_version > 3000:
+    from JoomlaPack.lib import *
     from JoomlaPack.lib.extensions.base import Base
-    from JoomlaPack.lib.helpers import *
     from JoomlaPack.lib.inflector import *
 else:
+    from lib import *
     from lib.extensions.base import Base
-    from lib.helpers import *
     from lib.inflector import *
 
 
@@ -33,16 +33,17 @@ class Plugin(Base):
                 self.inflector.variablize(self.prefix +
                                           self.group + ' ' + self.name))
         else:
-            print(project_file())
-            self.fullname = self.inflector.underscore(project_file())
-            print(self.fullname)
+            print(Project().get_project_json())
+            # self.fullname = self.inflector.underscore(project_file())
+            # print(self.fullname)
 
     def rename(self):
         for root, dirs, files in os.walk(self.path):
             for filename in files:
                 newname = re.sub('{{name}}', self.name,
                                  re.sub('{{group}}', self.group,
-                                        re.sub('{{locale}}', language(),
+                                        re.sub('{{locale}}',
+                                               Helper().language(),
                                                filename)))
 
                 if newname != filename:
@@ -52,7 +53,7 @@ class Plugin(Base):
         for root, dirs, files in os.walk(self.path):
             for folder in dirs:
                 newname = folder.replace(
-                    '{{locale}}', language())
+                    '{{locale}}', Helper().language())
 
                 if newname != folder:
                     os.rename(os.path.join(root, folder),
@@ -60,12 +61,12 @@ class Plugin(Base):
 
     def add_form(self, name):
         self.path()
-        self.make_dir(self.path, 'forms')
+        Project().make_dir(self.path, 'forms')
         form_path = os.path.join(self.path, 'forms')
         data = 'joomla-add-form-simple'
-        self.write(form_path, self.inflector.underscore(
+        Project().write(form_path, self.inflector.underscore(
             name) + '.xml', data)
-        refresh()
+        Project.refresh()
 
     def __str__(self):
         return "JoomlaPack: Joomla Plugin"

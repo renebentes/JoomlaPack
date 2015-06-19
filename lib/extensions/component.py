@@ -5,12 +5,12 @@ import re
 
 st_version = int(sublime.version())
 if st_version > 3000:
+    from JoomlaPack.lib import *
     from JoomlaPack.lib.extensions.base import Base
-    from JoomlaPack.lib.helpers import *
     from JoomlaPack.lib.inflector import *
 else:
+    from lib import *
     from lib.extensions.base import Base
-    from lib.helpers import *
     from lib.inflector import *
 
 
@@ -47,7 +47,8 @@ class Component(Base):
                                  re.sub('{{singular}}', singular,
                                         re.sub('{{plural}}', plural,
                                                re.sub('{{locale}}',
-                                                      language(), filename))))
+                                                      Helper().language(),
+                                                      filename))))
 
                 if newname != filename:
                     os.rename(os.path.join(root, filename),
@@ -57,7 +58,8 @@ class Component(Base):
             for folder in dirs:
                 newname = re.sub('{{singular}}', singular,
                                  re.sub('{{plural}}', plural,
-                                        re.sub('{{locale}}', language(),
+                                        re.sub('{{locale}}',
+                                               Helper().language(),
                                                folder)))
 
                 if newname != folder:

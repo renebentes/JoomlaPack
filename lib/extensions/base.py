@@ -6,9 +6,9 @@ from shutil import copytree, rmtree
 
 st_version = int(sublime.version())
 if st_version > 3000:
-    from JoomlaPack.lib.helpers import *
+    from JoomlaPack.lib import *
 else:
-    from lib.helpers import *
+    from lib import *
 
 
 class Base(object):
@@ -26,11 +26,11 @@ class Base(object):
         '''
         Get the project root define by user or standard.
         '''
-        root = settings('project_root')
+        root = Helper().settings('project_root')
         if root is None:
             message = '''[Error] Project root is invalid! Please, check the
                 sublime-settings file.'''
-            show_message("error", message)
+            Helper().show_message("error", message)
             return None
 
         if root == "":
@@ -39,64 +39,16 @@ class Base(object):
         if not os.path.exists(root):
             message = '''[Error] Project root not exists! Please, check the
                 sublime-settings file.'''
-            show_message("error", message)
+            Helper().show_message("error", message)
             return None
 
         return root
-
-    def write(self, path, name, content):
-        '''
-        Write files on disk.
-        '''
-        with open(os.path.join(path, name), 'w+',
-                  encoding='utf8') as f:
-            f.write(content)
-
-        # Fixes as best as possible a new file permissions issue
-        # See https://github.com/titoBouzout/SideBarEnhancements/issues/203
-        # See https://github.com/SublimeTextIssues/Core/issues/239
-        if 3000 <= st_version < 3088:
-            oldmask = os.umask(0o000)
-            if oldmask == 0:
-                os.chmod(self.path, 0o644)
-            os.umask(oldmask)
-
-    def make_dir(self, path, name):
-        '''
-        Creates structure folder to extensions.
-        '''
-        data = '<!DOCTYPE html>'
-        data += '<html>'
-        data += '<head>'
-        data += '  <title>&nbsp;</title>'
-        data += '</head>'
-        data += '<body></body>'
-        data += '</html>'
-        folder = os.path.join(path, name)
-        try:
-            if 3000 <= st_version < 3088:
-                # Fixes as best as possible a new directory permissions issue
-                # See https://github.com/titoBouzout/SideBarEnhancements/issues/203
-                # See https://github.com/SublimeTextIssues/Core/issues/239
-                oldmask = os.umask(0o000)
-                if oldmask == 0:
-                    os.makedirs(path, 0o755)
-                else:
-                    os.makedirs(path)
-                os.umask(oldmask)
-            else:
-                os.makedirs(folder)
-            self.write(folder, 'index.html', data)
-        except Exception as e:
-            show_message("error",
-                         "[Error] Folder %s could not be created! %s"
-                         % (folder, e))
 
     def path(self, path=None):
         if path is not None:
             self.path = os.path.join(self.get_root(), path)
         else:
-            self.path = directories()
+            self.path = Project().get_directories()
 
     def create(self):
         '''
@@ -104,9 +56,10 @@ class Base(object):
         '''
         self.path(self.fullname)
         if os.path.exists(self.path):
-            if not show_message("confirm",
-                                "[Confirm] Project %s already exists!"
-                                % self.fullname, "Delete and overwrite"):
+            if not Helper().show_message("confirm",
+                                         "[Confirm] Project %s already exists!"
+                                         % self.fullname,
+                                         "Delete and overwrite"):
                 return
             else:
                 rmtree(self.path)
@@ -118,9 +71,9 @@ class Base(object):
                 self.rename()
         except Exception as e:
             rmtree(self.path)
-            show_message("error",
-                         "[Error] Project %s could not be created! %s"
-                         % (self.fullname, e))
+            Helper().show_message("error",
+                                  "[Error] Project %s could not be created! %s"
+                                  % (self.fullname, e))
         else:
             self.save_project_file()
 
@@ -143,7 +96,7 @@ class Base(object):
             message = '[Error] No such folder: "%s" or "%s"!' % (
                 os.path.join(packages_path, self.template_path),
                 os.path.join(installed_packages_path, self.template_path))
-            show_message("error", message)
+            Helper().show_message("error", message)
             self.template_path = None
 
     def save_project_file(self):
@@ -156,12 +109,13 @@ class Base(object):
         }
 
         try:
-            self.write(self.path, self.inflector.variablize(self.fullname) +
-                       '.sublime-project', json.dumps(data, sort_keys=True,
-                                                      indent=2))
+            Project().write_file(self.path,
+                                 self.inflector.variablize(self.fullname) +
+                                 '.sublime-project',
+                                 json.dumps(data, sort_keys=True, indent=2))
         except (Exception, IOError) as e:
-            show_message("error",
-                         '''[Error] %s.sublime-project could not
-                              be created! %s''' % (self.fullname, e))
+            message = '[Error] %s.sublime-project could not be created! %s' % (
+                self.fullname, e)
+            Helper().show_message("error", message)
         else:
-            window().set_project_data(data)
+            Helper().window().set_project_data(data)

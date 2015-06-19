@@ -2,7 +2,7 @@
 import sys
 import sublime
 
-st_version = 3
+st_version = 2
 
 if sublime.version() == '' or int(sublime.version()) > 3000:
     st_version = 3
@@ -20,8 +20,8 @@ if st_version == 3:
 mods_load_order = [
     '',
     '.lib',
-
-    '.lib.helpers',
+    '.lib.helper',
+    '.lib.project',
 
     '.lib.extensions',
     '.lib.extensions.base',
