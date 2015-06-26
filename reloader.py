@@ -20,7 +20,10 @@ if st_version == 3:
 mods_load_order = [
     '',
     '.lib',
+    '.lib.file',
+    '.lib.folder',
     '.lib.helper',
+    '.lib.json_file',
     '.lib.project',
 
     '.lib.extensions',

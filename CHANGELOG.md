@@ -3,7 +3,12 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.8 - 25/06/2015
+  * Added - folder.py, file.py
+  * Fixed - variáveis internas
+  * Fixed - chamadas a funções
 * 0.2.7 - 18/06/2015
+  * Removed - Comandos de criação do menu de configurações do plugin
   * Fixed - arquivos __init__.py
   * Added - project.py, helper.py
   * Updated - classes refeitas

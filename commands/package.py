@@ -20,5 +20,5 @@ class NewPackageCommand(sublime_plugin.WindowCommand):
                                   Helper().on_cancel)
 
     def on_done(self, name):
-        self.project = Package(name)
-        self.project.create()
+        self.extension = Package(name)
+        self.extension.create()

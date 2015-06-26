@@ -35,8 +35,8 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
         if self.counter < (len(self.options)):
             self.show_input_panel()
         else:
-            self.project = Plugin(self.options)
-            self.project.create()
+            self.extension = Plugin(self.options)
+            self.extension.create()
 
 
 class AddFormToPluginCommand(sublime_plugin.WindowCommand):
@@ -46,8 +46,8 @@ class AddFormToPluginCommand(sublime_plugin.WindowCommand):
                                   self.on_done, None, Helper().on_cancel)
 
     def on_done(self, name):
-        self.project = Plugin()
-        # self.project.add_form(name)
+        self.extension = Plugin()
+        # self.extension.add_form(name)
 
     def is_enabled(self):
         return Project().has_directories()
@@ -56,10 +56,10 @@ class AddFormToPluginCommand(sublime_plugin.WindowCommand):
 class AddFieldToPluginCommand(sublime_plugin.WindowCommand):
 
     def run(self):
-        self.project = Plugin()
+        self.extension = Plugin()
         if Project().directories():
             Helper().show_input_panel("Type Field name: ", "title",
-                                      self.project.on_done, None,
+                                      self.extension.on_done, None,
                                       Helper().on_cancel)
         else:
             message = '''[Error] Project folder not found! Please,

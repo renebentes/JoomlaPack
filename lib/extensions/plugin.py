@@ -33,9 +33,11 @@ class Plugin(Base):
                 self.inflector.variablize(self.prefix +
                                           self.group + ' ' + self.name))
         else:
-            print(Project().get_project_json())
+            # print(
+            #     JsonFile(self.path, self.fullname + 'sublime-project').read()))
             # self.fullname = self.inflector.underscore(project_file())
             # print(self.fullname)
+            pass
 
     def rename(self):
         for root, dirs, files in os.walk(self.path):
@@ -43,8 +45,7 @@ class Plugin(Base):
                 newname = re.sub('{{name}}', self.name,
                                  re.sub('{{group}}', self.group,
                                         re.sub('{{locale}}',
-                                               Helper().language(),
-                                               filename)))
+                                               Helper().language(), filename)))
 
                 if newname != filename:
                     os.rename(os.path.join(root, filename),
@@ -61,7 +62,7 @@ class Plugin(Base):
 
     def add_form(self, name):
         self.path()
-        Project().make_dir(self.path, 'forms')
+        self.add_folder('forms')
         form_path = os.path.join(self.path, 'forms')
         data = 'joomla-add-form-simple'
         Project().write(form_path, self.inflector.underscore(

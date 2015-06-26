@@ -1,6 +1,5 @@
 # coding: utf-8
 import sublime
-import json
 import os
 from shutil import copytree, rmtree
 
@@ -19,7 +18,6 @@ class Base(object):
     '''
 
     def __init__(self, inflector):
-        callable(inflector)
         self.inflector = inflector()
 
     def get_root(self):
@@ -75,7 +73,24 @@ class Base(object):
                                   "[Error] Project %s could not be created! %s"
                                   % (self.fullname, e))
         else:
-            self.save_project_file()
+            data = {
+                "folders": [{"follow_symlinks": True, "path": self.path}],
+                "settings": [{"tab_size": 2, "translate_tabs_to_spaces": True}]
+            }
+
+            Project().set_project_file(self.path,
+                                       self.inflector.variablize(
+                                           self.fullname),
+                                       data=data)
+            # Project().set_session_file(self.path)
+            # Helper().window().run_command(
+            #     'prompt_add_folder', {'path': self.path})
+
+    def add_folder(self, name):
+        '''
+        Add folder on extensions.
+        '''
+        return Folder(self.path, name)
 
     def get_template(self):
         '''
@@ -98,24 +113,3 @@ class Base(object):
                 os.path.join(installed_packages_path, self.template_path))
             Helper().show_message("error", message)
             self.template_path = None
-
-    def save_project_file(self):
-        '''
-        Save the project file to extension.
-        '''
-        data = {
-            "folders": [{"follow_symlinks": True, "path": self.path}],
-            "settings": [{"tab_size": 2, "translate_tabs_to_spaces": True}]
-        }
-
-        try:
-            Project().write_file(self.path,
-                                 self.inflector.variablize(self.fullname) +
-                                 '.sublime-project',
-                                 json.dumps(data, sort_keys=True, indent=2))
-        except (Exception, IOError) as e:
-            message = '[Error] %s.sublime-project could not be created! %s' % (
-                self.fullname, e)
-            Helper().show_message("error", message)
-        else:
-            Helper().window().set_project_data(data)

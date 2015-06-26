@@ -20,5 +20,5 @@ class NewComponentCommand(sublime_plugin.WindowCommand):
                                   Helper().on_cancel)
 
     def on_done(self, name):
-        self.project = Component(name)
-        self.project.create()
+        self.extension = Component(name)
+        self.extension.create()

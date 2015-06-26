@@ -18,23 +18,23 @@ elif st_version == 2:
 
 # Ensure the user has installed Joomla Pack properly
 if installed_dir != 'JoomlaPack':
-    message = (u"Joomla Pack\n\nThis package appears to be installed " +
-               u"incorrectly.\n\nIt should be installed as \"Joomla Pack\", " +
-               u"but seems to be installed as \"%s\".\n\n" % installed_dir)
+    message = ("Joomla Pack\n\nThis package appears to be installed " +
+               "incorrectly.\n\nIt should be installed as \"Joomla Pack\", " +
+               "but seems to be installed as \"%s\".\n\n" % installed_dir)
     # If installed unpacked
     if os.path.exists(os.path.join(sublime.packages_path(), installed_dir)):
-        message += (u"Please use the Preferences > Browse Packages... menu " +
-                    u"entry to open the \"Packages/\" folder and rename" +
-                    u"\"%s/\" to \"JoomlaPack/\" " % installed_dir)
+        message += ("Please use the Preferences > Browse Packages... menu " +
+                    "entry to open the \"Packages/\" folder and rename" +
+                    "\"%s/\" to \"JoomlaPack/\" " % installed_dir)
     # If installed as a .sublime-package file
     else:
-        message += (u"Please use the Preferences > Browse Packages... menu " +
-                    u"entry to open the \"Packages/\" folder, then browse up " +
-                    u"a folder and into the \"Installed Packages/\" folder." +
-                    u"\n\nInside of \"Installed Packages/\", rename " +
-                    u"\"%s.sublime-package\" to " % installed_dir +
-                    u"\"JoomlaPack.sublime-package\" ")
-    message += u"and restart Sublime Text."
+        message += ("Please use the Preferences > Browse Packages... menu " +
+                    "entry to open the \"Packages/\" folder, then browse up " +
+                    "a folder and into the \"Installed Packages/\" folder." +
+                    "\n\nInside of \"Installed Packages/\", rename " +
+                    "\"%s.sublime-package\" to " % installed_dir +
+                    "\"JoomlaPack.sublime-package\" ")
+    message += "and restart Sublime Text."
     sublime.error_message(message)
 else:
     reloader_name = 'reloader'
