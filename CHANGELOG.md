@@ -3,6 +3,14 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.10 - 30/06/2015
+  * Added - classe Xml
+  * Fixed - classes Folder, File, Json
+* 0.2.9 - 29/06/2015
+  * Removed - extensions/base get_root()
+  * Added - project.py get_project_name() - retornar nome do projeto
+  * Added - project.py root() - retornar diretório raiz para projetos
+  * Added - função para abrir projeto a partir de arquivos .sublime-project
 * 0.2.8 - 25/06/2015
   * Added - folder.py, file.py
   * Fixed - variáveis internas

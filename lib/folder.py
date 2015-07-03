@@ -16,41 +16,57 @@ class Folder:
     Represents a simple folder.
     '''
 
-    def __init__(self, path, name):
-        self.path = path
-        self.name = name
-        self.fullpath = os.path.join(self.path, self.name)
-
-    def exists(self):
+    def exists(self, path):
         '''
         Checks if folder already exists.
         '''
-        return os.path.exists(self.fullpath)
+        return os.path.exists(path)
 
-    def read(self):
-        pass
-
-    def save(self, data):
+    def create(self, path, mode=0o755):
         '''
-        Writes a folder on disk.
+        Create a folder, and all necessary parent folders.
         '''
-        if not self.exists():
-            if os.makedir(self.path, 0o755):
-                self.on_save()
-            else:
-                Helper().show_message("error",
-                                      "[Error] Folder %s could not be created!"
-                                      % self.fullpath)
-        else:
-            Helper().show_message("error", "[Error] Folder %s already exists!"
-                                  % self.fullpath)
+        nested = 0
 
-        def on_save(self):
-            data = ('<!DOCTYPE html>' +
-                    '<html>' +
-                    '<head>' +
-                    '  <title>&nbsp;</title>' +
-                    '</head>' +
-                    '<body></body>' +
-                    '</html>')
-            File(self.fullpath, 'index.html').save(data)
+        parent = os.path.dirname(path)
+        if not self.exists(parent):
+            # Prevent infinit loops
+            nested += 1
+
+            if nested > 20 or parent == path:
+                nested -= 1
+                Helper().show_message('', '[Error] Infinite loop detected.')
+                return False
+
+            if not self.create(parent, mode):
+                nested -= 1
+                return False
+
+            # Parent directory has been created
+            nested -= 1
+
+        if self.exists(path):
+            return True
+
+        oldmask = os.umask(0o000)
+        try:
+            os.makedirs(path, mode)
+            os.umask(oldmask)
+            self._on_create(path)
+        except Exception as e:
+            message = '[Error] Folder %s could not be created! %s' % (
+                self.path, e)
+            Helper().show_message('', message)
+            os.umask(oldmask)
+            return False
+        return True
+
+    def _on_create(self, path):
+        data = ('<!DOCTYPE html>\n' +
+                '<html>\n' +
+                '<head>\n' +
+                '  <title>&nbsp;</title>\n' +
+                '</head>\n' +
+                '<body></body>\n' +
+                '</html>\n')
+        File().write(os.path.join(path, 'index.html'), data)

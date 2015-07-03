@@ -6,13 +6,13 @@
     "id": "joomla",
     "children":
     [
-      {
-        "caption": "New Project",
-        "mnemonic": "N",
-        "command": "new_project",
-        "args": {}
-      },
-      { "caption": "-" },
+      // {
+      //  "caption": "New Project",
+      //  "mnemonic": "N",
+      //  "command": "new_project",
+      //  "args": {}
+      // },
+      // { "caption": "-" },
       {
         "caption": "Components",
         "mnemonic": "C",

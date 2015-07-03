@@ -47,10 +47,10 @@ class AddFormToPluginCommand(sublime_plugin.WindowCommand):
 
     def on_done(self, name):
         self.extension = Plugin()
-        # self.extension.add_form(name)
+        self.extension.add_form(name, 'joomla-add-form-simple')
 
     def is_enabled(self):
-        return Project().has_directories()
+        return Project().has_directories() and Project().has_valid_manifest()
 
 
 class AddFieldToPluginCommand(sublime_plugin.WindowCommand):
@@ -67,4 +67,4 @@ class AddFieldToPluginCommand(sublime_plugin.WindowCommand):
             Helper().show_message('error', message)
 
     def is_enabled(self):
-        return Project().has_directories()
+        return Project().has_directories() and Project().has_valid_manifest()

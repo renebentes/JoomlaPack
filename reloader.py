@@ -37,7 +37,7 @@ mods_load_order = [
     '.lib.inflector.english',
 
     ".commands",
-    ".commands.new_project",
+    # ".commands.new_project",
     ".commands.new_component",
     ".commands.new_package",
     ".commands.new_plugin"

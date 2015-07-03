@@ -12,6 +12,28 @@ else:
 
 class Project:
 
+    def root(self):
+        '''
+        Get the project root define by user or standard.
+        '''
+        root = Helper().settings('project_root')
+        if root is None:
+            message = '''[Error] Project root is invalid! Please, check the
+                sublime-settings file.'''
+            Helper().show_message("error", message)
+            return None
+
+        if root == "":
+            root = os.path.expanduser("~")
+
+        if not os.path.exists(root):
+            message = '''[Error] Project root not exists! Please, check the
+                sublime-settings file.'''
+            Helper().show_message("error", message)
+            return None
+
+        return root
+
     def get_directories(self):
         '''
         Returns directories for projects.
@@ -30,9 +52,15 @@ class Project:
         '''
         return Helper().window().project_file_name()
 
-    def set_project_file(self, path, name, data):
-        JsonFile(path, name + '.sublime-project').save(data)
-        JsonFile(path, name + '.sublime-workspace').save({})
+    def get_project_name(self):
+        return os.path.splitext(os.path.basename(self.get_project_file()))[0]
+
+    def set_project_file(self, path, data):
+        '''
+        Defines data to project file name.
+        '''
+        Json().write(path + '.sublime-project', data)
+        Json().write(path + '.sublime-workspace', {})
 
     def get_project_json(self):
         '''
@@ -46,17 +74,37 @@ class Project:
         '''
         return Helper().window().set_project_data(data)
 
-    def set_session_file(self, path):
-        print(os.path.exists(os.path.join(
-            sublime.packages_path(),
-            '..',
-            'Local',
-            'Session.sublime_session')
-        )
-        )
-
     def has_opened_project(self):
+        '''
+        Checks if project is opened.
+        '''
         return self.get_project_file() is not None
+
+    def has_valid_manifest(self):
+        if self.has_opened_project():
+            for f in os.listdir(self.get_directories()[0]):
+                if f.endswith('.xml'):
+                    return Xml().is_valid(os.path.join(
+                        self.get_directories()[0], f))
+        return False
+
+    def open(self, path):
+        '''
+        Open project from file name.
+        '''
+        import subprocess
+
+        if not path.endswith('.sublime-project'):
+            path += '.sublime-project'
+
+        executable_path = sublime.executable_path()
+        if sublime.platform() == 'osx':
+            app_path = executable_path[:executable_path.rfind(".app/") + 5]
+            executable_path = app_path + 'Contents/SharedSupport/bin/subl'
+
+        command = [executable_path, '--project ', path]
+        sublime.set_timeout_async(
+            lambda: subprocess.Popen(command), 10)
 
     def refresh(self):
         '''

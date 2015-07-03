@@ -16,47 +16,50 @@ class File:
     Represents a simple file text.
     '''
 
-    def __init__(self, path, name, encoding='utf8'):
-        self.path = path
-        self.name = name
-        self.encoding = encoding
-        self.fullpath = os.path.join(self.path, self.name)
-
-    def exists(self):
+    def exists(self, path):
         '''
         Checks if file already exists.
         '''
-        return os.path.exists(self.fullpath)
+        return os.path.exists(path)
 
-    def read(self):
+    def read(self, path, encoding='utf8'):
         '''
         Reads a file.
         '''
-        if self.exists():
+        if self.exists(path):
             try:
-                with open(self.fullpath, 'r+', encoding=self.encoding) as f:
+                with open(path, 'r', encoding=encoding) as f:
                     return f.read()
             except Exception as e:
-                Helper().show_message('error', 'File %s not be read! %s' %
-                                      (self.fullpath, e))
+                Helper().show_message('', 'File %s not be read! %s' %
+                                      (path, e))
+                return None
         else:
             Helper().show_message(
-                'error', 'File %s not found!' % self.fullpath)
+                'error', 'File %s not found!' % path)
             return None
 
-    def save(self, data):
+    def write(self, path, data, encoding='utf8', mode=0o644):
         '''
         Writes data file on disk.
         '''
-        if not self.exists():
-            try:
-                with open(self.fullpath, 'w+', encoding=self.encoding) as f:
-                    f.write(data)
-                os.chmod(self.fullpath, 0o644)
-            except Exception as e:
-                Helper().show_message('error', 'File %s not be write! %s' %
-                                      (self.fullpath, e))
+        if not Folder().exists(os.path.dirname(path)):
+            if not Folder().create(os.path.dirname(path)):
+                return False
 
+        if self.exists(path):
+            return True
         else:
-            Helper().show_message(
-                'error', 'File %s already exists!' % self.fullpath)
+            oldmask = os.umask(0o000)
+            try:
+                with open(path, 'w', encoding=encoding) as f:
+                    f.write(data)
+                if oldmask == 0:
+                    os.chmod(path, mode)
+                os.umask(oldmask)
+                return True
+            except Exception as e:
+                Helper().show_message('', 'File %s not be write! %s' %
+                                      (path, e))
+                os.umask(oldmask)
+                return False

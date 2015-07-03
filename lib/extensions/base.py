@@ -20,31 +20,9 @@ class Base(object):
     def __init__(self, inflector):
         self.inflector = inflector()
 
-    def get_root(self):
-        '''
-        Get the project root define by user or standard.
-        '''
-        root = Helper().settings('project_root')
-        if root is None:
-            message = '''[Error] Project root is invalid! Please, check the
-                sublime-settings file.'''
-            Helper().show_message("error", message)
-            return None
-
-        if root == "":
-            root = os.path.expanduser("~")
-
-        if not os.path.exists(root):
-            message = '''[Error] Project root not exists! Please, check the
-                sublime-settings file.'''
-            Helper().show_message("error", message)
-            return None
-
-        return root
-
     def path(self, path=None):
         if path is not None:
-            self.path = os.path.join(self.get_root(), path)
+            self.path = os.path.join(Project().root(), path)
         else:
             self.path = Project().get_directories()
 
@@ -78,19 +56,13 @@ class Base(object):
                 "settings": [{"tab_size": 2, "translate_tabs_to_spaces": True}]
             }
 
-            Project().set_project_file(self.path,
-                                       self.inflector.variablize(
-                                           self.fullname),
-                                       data=data)
-            # Project().set_session_file(self.path)
-            # Helper().window().run_command(
-            #     'prompt_add_folder', {'path': self.path})
-
-    def add_folder(self, name):
-        '''
-        Add folder on extensions.
-        '''
-        return Folder(self.path, name)
+            Project().set_project_file(os.path.join(self.path,
+                                                    self.inflector.variablize(
+                                                        self.fullname)),
+                                       data)
+            Project().open(os.path.join(self.path,
+                                        self.inflector.variablize(
+                                            self.fullname)))
 
     def get_template(self):
         '''

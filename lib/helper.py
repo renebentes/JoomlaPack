@@ -2,7 +2,6 @@
 import sublime
 import locale
 import re
-import os
 
 
 class Helper:
@@ -48,9 +47,12 @@ class Helper:
             return sublime.message_dialog(message)
         elif dialog == "error":
             return sublime.error_message(message)
-        else:
+        elif dialog == "status":
             return sublime.status_message(re.sub('\n\n', ': ',
                                                  message))
+        else:
+            print(re.sub('\n\n', ': ', message))
+            return None
 
     def on_cancel(self, message='Operation Canceled!'):
         '''

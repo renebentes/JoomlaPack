@@ -33,11 +33,12 @@ class Plugin(Base):
                 self.inflector.variablize(self.prefix +
                                           self.group + ' ' + self.name))
         else:
-            # print(
-            #     JsonFile(self.path, self.fullname + 'sublime-project').read()))
-            # self.fullname = self.inflector.underscore(project_file())
-            # print(self.fullname)
-            pass
+            self.fullname = self.inflector.underscore(
+                Project().get_project_name())
+            self.group, self.name = self.inflector.humanize(
+                self.fullname,
+                prefix='plg_').split(' ')
+            self.path(self.fullname)
 
     def rename(self):
         for root, dirs, files in os.walk(self.path):
@@ -60,14 +61,18 @@ class Plugin(Base):
                     os.rename(os.path.join(root, folder),
                               os.path.join(root, newname))
 
-    def add_form(self, name):
-        self.path()
-        self.add_folder('forms')
-        form_path = os.path.join(self.path, 'forms')
-        data = 'joomla-add-form-simple'
-        Project().write(form_path, self.inflector.underscore(
-            name) + '.xml', data)
-        Project.refresh()
+    def add_form(self, name, data):
+        '''
+        Adds forms on plugins.
+        '''
+        if Folder().create(os.path.join(self.path, 'forms')):
+            File().write(os.path.join(self.path, 'forms', '%s.xml' % name),
+                         data)
+
+            Xml().add_child(os.path.join(self.path, '%s.xml' %
+                                         self.name),
+                            'files', {'tag': 'file', 'text': 'forms'})
+        Project().refresh()
 
     def __str__(self):
         return "JoomlaPack: Joomla Plugin"
