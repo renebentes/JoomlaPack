@@ -3,6 +3,9 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.11 - 06/07/2015
+  * Added - adição de elementos ao xml do manifesto
+  * Fixed - classe Xml renomeada para Manifest
 * 0.2.10 - 30/06/2015
   * Added - classe Xml
   * Fixed - classes Folder, File, Json

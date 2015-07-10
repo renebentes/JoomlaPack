@@ -19,11 +19,19 @@ if st_version == 3:
 
 mods_load_order = [
     '',
+
+    ".commands",
+    # ".commands.new_project",
+    ".commands.new_component",
+    ".commands.new_package",
+    ".commands.new_plugin",
+
     '.lib',
     '.lib.file',
     '.lib.folder',
     '.lib.helper',
-    '.lib.json_file',
+    '.lib.json',
+    '.lib.manifest',
     '.lib.project',
 
     '.lib.extensions',
@@ -34,13 +42,7 @@ mods_load_order = [
 
     '.lib.inflector',
     '.lib.inflector.base',
-    '.lib.inflector.english',
-
-    ".commands",
-    # ".commands.new_project",
-    ".commands.new_component",
-    ".commands.new_package",
-    ".commands.new_plugin"
+    '.lib.inflector.english'
 ]
 
 for suffix in mods_load_order:

@@ -16,43 +16,46 @@ class Folder:
     Represents a simple folder.
     '''
 
-    def exists(self, path):
+    def __init__(self, path):
+        self.path = path
+
+    def exists(self):
         '''
         Checks if folder already exists.
         '''
-        return os.path.exists(path)
+        return os.path.exists(self.path) and os.path.isdir(self.path)
 
-    def create(self, path, mode=0o755):
+    def create(self, mode=0o755):
         '''
         Create a folder, and all necessary parent folders.
         '''
         nested = 0
 
-        parent = os.path.dirname(path)
-        if not self.exists(parent):
+        parent = Folder(os.path.dirname(self.path))
+        if not parent.exists():
             # Prevent infinit loops
             nested += 1
 
-            if nested > 20 or parent == path:
+            if nested > 20 or parent.path == self.path:
                 nested -= 1
                 Helper().show_message('', '[Error] Infinite loop detected.')
                 return False
 
-            if not self.create(parent, mode):
+            if not parent.create(mode):
                 nested -= 1
                 return False
 
             # Parent directory has been created
             nested -= 1
 
-        if self.exists(path):
+        if self.exists():
             return True
 
         oldmask = os.umask(0o000)
         try:
-            os.makedirs(path, mode)
+            os.makedirs(self.path, mode)
             os.umask(oldmask)
-            self._on_create(path)
+            self.__on_create()
         except Exception as e:
             message = '[Error] Folder %s could not be created! %s' % (
                 self.path, e)
@@ -61,7 +64,7 @@ class Folder:
             return False
         return True
 
-    def _on_create(self, path):
+    def __on_create(self):
         data = ('<!DOCTYPE html>\n' +
                 '<html>\n' +
                 '<head>\n' +
@@ -69,4 +72,4 @@ class Folder:
                 '</head>\n' +
                 '<body></body>\n' +
                 '</html>\n')
-        File().write(os.path.join(path, 'index.html'), data)
+        File(os.path.join(self.path, 'index.html')).write(data)

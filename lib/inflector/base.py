@@ -70,7 +70,8 @@ class Base(object):
 
     def conditional_plural(self, word, number=1):
         '''
-        Returns the plural form of a word if number parameter is greater than 1.
+        Returns the plural form of a word if number parameter is greater
+        than 1.
         '''
 
         if number > 1:
@@ -80,8 +81,8 @@ class Base(object):
 
     def humanize(self, word, prefix='id_', suffix='_id'):
         '''
-        Returns a human-readable string from word, by replacing underscores with
-        a space.
+        Returns a human-readable string from word, by replacing underscores
+        with a space.
         '''
         return re.sub('^' + prefix, '',
                       re.sub(suffix + '$', '', word)).replace('_', ' ')

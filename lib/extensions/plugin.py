@@ -65,13 +65,13 @@ class Plugin(Base):
         '''
         Adds forms on plugins.
         '''
-        if Folder().create(os.path.join(self.path, 'forms')):
-            File().write(os.path.join(self.path, 'forms', '%s.xml' % name),
-                         data)
+        if Folder(os.path.join(self.path, 'forms')).create():
+            File(os.path.join(self.path, 'forms', '%s.xml' % name)).write(data)
 
-            Xml().add_child(os.path.join(self.path, '%s.xml' %
-                                         self.name),
-                            'files', {'tag': 'file', 'text': 'forms'})
+            Manifest(os.path.join(self.path, '%s.xml' % self.name)) \
+                .add_child('files', {'tag': 'folder', 'text': 'forms'})
+            Manifest(os.path.join(self.path, '%s.xml' % self.name)) \
+                .add_child('filess', {'tag': 'folder', 'text': 'forms'})
         Project().refresh()
 
     def __str__(self):

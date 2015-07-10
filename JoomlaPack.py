@@ -51,13 +51,14 @@ else:
     try:
         # Python 3
         from .commands import *
+        from .lib import *
+        from .lib.extensions import *
         from .lib.inflector import *
-        from .lib.project import *
     except (ValueError):
         # Python 2
         from commands import *
-        from lib.inflector import *
-        from lib.project import *
+        from lib import *
+        from lib.extensions import *
 
     def plugin_loaded():
         print('Joomla Pack loaded')

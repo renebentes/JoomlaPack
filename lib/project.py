@@ -59,8 +59,8 @@ class Project:
         '''
         Defines data to project file name.
         '''
-        Json().write(path + '.sublime-project', data)
-        Json().write(path + '.sublime-workspace', {})
+        Json('%s.sublime-project' % path).write(data)
+        Json('%s..sublime-workspace' % path).write({})
 
     def get_project_json(self):
         '''
@@ -84,8 +84,8 @@ class Project:
         if self.has_opened_project():
             for f in os.listdir(self.get_directories()[0]):
                 if f.endswith('.xml'):
-                    return Xml().is_valid(os.path.join(
-                        self.get_directories()[0], f))
+                    return Manifest(os.path.join(self.get_directories()[0],
+                                                 f)).is_manifest()
         return False
 
     def open(self, path):
