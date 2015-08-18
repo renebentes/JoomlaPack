@@ -10,7 +10,7 @@
  *
  * @return array Search results.
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 public function onContentSearch(\$text, \$phrase = '', \$ordering = '', \$areas = null)
 {

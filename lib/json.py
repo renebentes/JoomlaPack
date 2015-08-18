@@ -30,9 +30,9 @@ class Json(File):
                                   self.path)
             return None
 
-    def write(self, data, mode=0o644, indent=4):
+    def write(self, data, force=False, indent=4):
         '''
         Writes JSON data file on disk.
         '''
         data = json.dumps(data, sort_keys=False, indent=indent)
-        return File.write(self, data, mode)
+        return File.write(self, data, force)

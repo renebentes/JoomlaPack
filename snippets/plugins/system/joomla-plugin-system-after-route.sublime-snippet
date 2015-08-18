@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[/**
+ * This event is triggered after the framework has loaded and initialised and
+ * the router has routed the client request.
+ *
+ * @return void
+ *
+ * @since  ${1:0.1.0}
+ */
+public function onAfterRoute()
+{
+  $2
+}]]></content>
+  <tabTrigger>joomla-plugin-system-after-route</tabTrigger>
+  <description>Adds onAfterRoute on plugin.</description>
+  <scope>source.php</scope>
+</snippet>

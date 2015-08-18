@@ -1,8 +1,0 @@
-<snippet>
-  <content><![CDATA[COM_${1:PROJECT}_FIELD_${2:TITLE}_LABEL="$3"
-COM_${1/(.+)/\U\1/g}_FIELD_${2/(.+)/\U\1/g}_DESC="$4"
-]]></content>
-  <tabTrigger>joomla-admin-language-field</tabTrigger>
-  <scope>source.ini, text.plain</scope>
-  <description>Adds extra component field into ini files</description>
-</snippet>

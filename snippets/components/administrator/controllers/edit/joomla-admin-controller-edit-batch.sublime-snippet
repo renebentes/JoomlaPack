@@ -6,7 +6,7 @@
  *
  * @return boolean         True if successful, false otherwise and internal error is set.
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 public function batch(\$model = null)
 {

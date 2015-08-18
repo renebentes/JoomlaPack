@@ -4,7 +4,7 @@
  *
  * @return void
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 protected function _addCategory()
 {
@@ -48,5 +48,5 @@ protected function _addCategory()
 }]]></content>
   <tabTrigger>joomla-installer-script-category</tabTrigger>
   <scope>source.php</scope>
-  <description>Add _addCategory function into install script.</description>
+  <description>Adds _addCategory method into install script.</description>
 </snippet>

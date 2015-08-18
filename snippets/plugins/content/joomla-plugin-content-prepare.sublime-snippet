@@ -9,7 +9,7 @@
  *
  * @return mixed Returns void on success or false otherwise
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 public function onContentPrepare(\$context, &\$item, &\$params, \$page = 0)
 {

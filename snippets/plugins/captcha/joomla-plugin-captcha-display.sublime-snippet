@@ -6,7 +6,7 @@
  *
  * @return boolean True on success, false otherwise
  *
- * @since  ${2:0.0.1}
+ * @since  ${2:0.1.0}
  */
 public function onInit(\$id = '${3:dynamic_recaptcha_1}')
 {

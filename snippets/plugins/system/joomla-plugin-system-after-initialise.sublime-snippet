@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[/**
+ * This event is triggered after the framework has loaded and the application
+ * initialise method has been called.
+ *
+ * @return void
+ *
+ * @since  ${1:0.1.0}
+ */
+public function onAfterInitialise()
+{
+  $2
+}]]></content>
+  <tabTrigger>joomla-plugin-system-after-initialise</tabTrigger>
+  <description>Adds onAfterInitialise on plugin.</description>
+  <scope>source.php</scope>
+</snippet>

@@ -4,7 +4,7 @@
  *
  * @return void
  *
- * @since  ${2:0.0.1}
+ * @since  ${2:0.1.0}
  */
 private function _addContentType()
 {
@@ -136,5 +136,5 @@ private function _addContentType()
 }]]></content>
   <tabTrigger>joomla-installer-script-contenttype-simple</tabTrigger>
   <scope>source.php</scope>
-  <description>Add _addContentType function into install script (no category).</description>
+  <description>Adds _addContentType method into install script (no category).</description>
 </snippet>

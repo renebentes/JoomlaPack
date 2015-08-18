@@ -2,16 +2,18 @@
   <content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <extension version="${1:3.3.0}" type="plugin" group="${2:content}" method="upgrade">
   <name>plg_${2/(.+)/\L\1/g}_${3:hello}</name>
-  <creationDate>$3</creationDate>
-  <author>${4:Rene Bentes Pinto}</author>
-  <authorEmail>${5:renebentes@yahoo.com.br}</authorEmail>
-  <authorUrl>${6:http://renebentes.github.io}</authorUrl>
-  <copyright>Copyright (C) ${7:2014} ${8:Rene Bentes Pinto, Inc}. All rights reserved.</copyright>
-  <license>${9:GNU General Public License version 2 or later}; see LICENSE</license>
-  <version>${10:0.0.1}</version>
+  <creationDate>$4</creationDate>
+  <author>${5:Rene Bentes Pinto}</author>
+  <authorEmail>${6:renebentes@yahoo.com.br}</authorEmail>
+  <authorUrl>${7:http://renebentes.github.io}</authorUrl>
+  <copyright>Copyright (C) ${8:2014} ${9:Rene Bentes Pinto, Inc}. All rights reserved.</copyright>
+  <license>${10:GNU General Public License version 2 or later}; see LICENSE</license>
+  <version>${11:0.1.0}</version>
   <description>PLG_${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_XML_DESCRIPTION</description>
   <files>
-    <folder>tmpl</folder>
+    <filename>CHANGELOG.md</filename>
+    <filename>LICENSE</filename>
+    <filename>README.md</filename>
     <filename plugin="${3/(.+)/\L\1/g}">${3/(.+)/\L\1/g}.php</filename>
     <filename>index.html</filename>
   </files>

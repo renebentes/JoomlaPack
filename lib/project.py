@@ -53,6 +53,9 @@ class Project:
         return Helper().window().project_file_name()
 
     def get_project_name(self):
+        '''
+        Returns the project name.
+        '''
         return os.path.splitext(os.path.basename(self.get_project_file()))[0]
 
     def set_project_file(self, path, data):
@@ -81,12 +84,26 @@ class Project:
         return self.get_project_file() is not None
 
     def has_valid_manifest(self):
+        '''
+        Checks if Manifest XML file is valid.
+        '''
         if self.has_opened_project():
             for f in os.listdir(self.get_directories()[0]):
                 if f.endswith('.xml'):
                     return Manifest(os.path.join(self.get_directories()[0],
                                                  f)).is_manifest()
         return False
+
+    def type(self):
+        '''
+        Returns the project type.
+        '''
+        if self.has_opened_project():
+            for f in os.listdir(self.get_directories()[0]):
+                if f.endswith('.xml'):
+                    return Manifest(os.path.join(self.get_directories()[0],
+                                                 f)).type()
+        return None
 
     def open(self, path):
         '''

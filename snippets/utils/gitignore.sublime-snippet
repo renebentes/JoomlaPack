@@ -92,6 +92,13 @@ sftp-config.json
 
 # SublimeREPL
 .SublimeREPLHistory/
+
+# Bower settings and dirs
+.bowerrc
+bower_components
+node_modules
+dist
+.tmp
 ]]></content>
   <tabTrigger>gitignore</tabTrigger>
   <scope>text.plain</scope>

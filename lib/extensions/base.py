@@ -12,31 +12,35 @@ else:
 
 class Base(object):
 
-    '''
-    Joomla's extensions types must inherit from this base class inorder
-    to provide basic functionality.
-    '''
+    """Joomla's extensions types must inherit from this base class inorder
+    to provide basic functionality."""
 
     def __init__(self, inflector):
         self.inflector = inflector()
 
-    def path(self, path=None):
-        if path is not None:
-            self.path = os.path.join(Project().root(), path)
-        else:
-            self.path = Project().get_directories()
+    def path(self, path):
+        '''
+        Defines path to extensions.
+        '''
+        self.path = os.path.join(Project().root(), path)
 
     def create(self):
         '''
         Creates structure to extensions.
         '''
-        self.path(self.fullname)
+
+        if Project().type() == 'package':
+            self.path(os.path.join(Project().get_directories()[0],
+                                   'packages', self.fullname))
+        else:
+            self.path(self.fullname)
+
         if os.path.exists(self.path):
             if not Helper().show_message("confirm",
                                          "[Confirm] Project %s already exists!"
                                          % self.fullname,
                                          "Delete and overwrite"):
-                return
+                return False
             else:
                 rmtree(self.path)
 
@@ -45,24 +49,13 @@ class Base(object):
             if self.template_path is not None:
                 copytree(self.template_path, self.path)
                 self.rename()
+            return True
         except Exception as e:
             rmtree(self.path)
             Helper().show_message("error",
                                   "[Error] Project %s could not be created! %s"
                                   % (self.fullname, e))
-        else:
-            data = {
-                "folders": [{"follow_symlinks": True, "path": self.path}],
-                "settings": [{"tab_size": 2, "translate_tabs_to_spaces": True}]
-            }
-
-            Project().set_project_file(os.path.join(self.path,
-                                                    self.inflector.variablize(
-                                                        self.fullname)),
-                                       data)
-            Project().open(os.path.join(self.path,
-                                        self.inflector.variablize(
-                                            self.fullname)))
+            return False
 
     def get_template(self):
         '''
@@ -85,3 +78,41 @@ class Base(object):
                 os.path.join(installed_packages_path, self.template_path))
             Helper().show_message("error", message)
             self.template_path = None
+
+    def add_folder(self, name):
+        """Adds folders on Joomla! Extensions.
+
+        Args:
+            name (str): Name of folder
+
+        Returns:
+            bool: True on success, false otherwise.
+        """
+        return Folder(os.path.join(self.path, name)).create()
+
+    def add_file(self, name, data):
+        """Adds files on Joomla! Extensions.
+
+        Args:
+            name (str): Name of file
+            data (str): Data of file
+
+        Returns:
+            bool: True on success, false otherwise.
+        """
+        return File(os.path.join(self.path, name)).write(data)
+
+    def set_project(self):
+        """Defines and open project extensions."""
+        data = {
+            "folders": [{"follow_symlinks": True, "path": self.path}],
+            "settings": [{"tab_size": 2, "translate_tabs_to_spaces": True}]
+        }
+
+        Project().set_project_file(os.path.join(self.path,
+                                                self.inflector.variablize(
+                                                    self.fullname)),
+                                   data)
+        Project().open(os.path.join(self.path,
+                                    self.inflector.variablize(
+                                        self.fullname)))

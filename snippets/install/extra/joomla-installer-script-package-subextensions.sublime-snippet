@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[/**
+ * Array of sub extensions package
+ *
+ * @var   array
+ * @since ${1:0.1.0}
+ */
+private \$_subextensions = array(
+  'modules' => array(
+  ),
+  'plugins' => array(
+  )
+);]]></content>
+  <tabTrigger>joomla-installer-script-packacge-subextensions</tabTrigger>
+  <scope>source.php</scope>
+  <description>Adds _substextensions attribute into install script.</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[// ${1:NAME CLASS DEFINITION}
+// ${1/./=/g}
+]]></content>
+	<tabTrigger>comment-js</tabTrigger>
+  <scope>source.js</scope>
+  <description>Adds comment line into JS files.</description>
+</snippet>

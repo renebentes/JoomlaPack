@@ -6,7 +6,7 @@
  *
  * @return string              The necessary HTML for the widget.
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 public static function item(\$extension)
 {

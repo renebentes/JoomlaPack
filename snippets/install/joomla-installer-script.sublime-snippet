@@ -2,41 +2,30 @@
   <content><![CDATA[/**
  * Script file of ${1:Project} ${2:Component}
  *
- * @package    Joomla.Administrator
- * @subpackage ${3:com}_${4}${1/(.+)/\L\1/g}
+ * @package    Joomla.${3:Administrator}
+ * @subpackage ${4:Components}.${1/(.+)/\u\1/g}
  *
- * @since      ${5:0.0.1}
+ * @since      ${5:0.1.0}
  */
-class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
+class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
 {
   /**
    * Extension name
    *
    * @var   string
+   *
    * @since $5
    */
-  private \$_extension = '${3/(.+)/\L\1/g}_${4/(.+)/\L\1/g}${1/(.+)/\L\1/g}';
+  private \$_extension = '${6/(.+)/\L\1/g}_${7/(.+)/\L\1_/g}${1/(.+)/\L\1/g}';
 
   /**
    * Version release
    *
    * @var   string
+   *
    * @since $5
    */
   private \$_release = '';
-
-  /**
-   * Array of sub extensions package
-   *
-   * @var   array
-   * @since $5
-   */
-  private \$_subextensions = array(
-    'modules' => array(
-    ),
-    'plugins' => array(
-    )
-  );
 
   /**
    * Array of obsolete files and folders.
@@ -45,6 +34,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    *    /path/to/folder
    *
    * @var   array
+   *
    * @since $5
    */
   private \$_obsoletes = array(
@@ -65,7 +55,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    */
   public function install(JAdapterInstance \$adapter)
   {
-    echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_INSTALL_TEXT', \$this->_extension, \$this->_release) . '</p>';
+    JFactory::getApplication()->enqueueMessage(JText::sprintf('${6/(.+)/\U\1/g}_${7/(.+)/\U\1_/g}${1/(.+)/\U\1/g}_INSTALL_TEXT', \$this->_extension, \$this->_release));
   }
 
   /**
@@ -79,7 +69,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    */
   public function uninstall(JAdapterInstance \$adapter)
   {
-    echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UNINSTALL_TEXT', \$this->_extension, \$this->_release) . '</p>';
+    JFactory::getApplication()->enqueueMessage(JText::sprintf('${6/(.+)/\U\1/g}_${7/(.+)/\U\1_/g}${1/(.+)/\U\1/g}_UNINSTALL_TEXT', \$this->_extension, \$this->_release));
   }
 
   /**
@@ -93,7 +83,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
    */
   public function update(JAdapterInstance \$adapter)
   {
-    echo '<p>' . JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_TEXT', \$this->_extension, \$this->_release) . '</p>';
+    JFactory::getApplication()->enqueueMessage(JText::sprintf('${6/(.+)/\U\1/g}_${7/(.+)/\U\1_/g}${1/(.+)/\U\1/g}_UPDATE_TEXT', \$this->_extension, \$this->_release));
   }
 
   /**
@@ -150,7 +140,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 
     if (version_compare(\$jversion->getShortVersion(), \$min_version, 'lt' ))
     {
-      JFactory::getApplication()->enquequeMessage(JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_VERSION_UNSUPPORTED', \$this->_extension, \$this->_release, \$min_version), 'error');
+      JFactory::getApplication()->enqueueMessage(JText::sprintf('${6/(.+)/\U\1/g}_${7/(.+)/\U\1_/g}${1/(.+)/\U\1/g}_VERSION_UNSUPPORTED', \$this->_extension, \$this->_release, \$min_version), 'error');
       return false;
     }
 
@@ -161,7 +151,7 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
 
       if (version_compare(\$this->_release, \$oldRelease, 'le'))
       {
-        JFactory::getApplication()->enquequeMessage(JText::sprintf('${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}${1/(.+)/\U\1/g}_UPDATE_UNSUPPORTED', \$this->_extension, \$oldRelease, \$this->_release), 'error');
+        JFactory::getApplication()->enqueueMessage(JText::sprintf('${6/(.+)/\U\1/g}_${7/(.+)/\U\1_/g}${1/(.+)/\U\1/g}_UPDATE_UNSUPPORTED', \$this->_extension, \$oldRelease, \$this->_release), 'error');
         return false;
       }
     }
@@ -172,38 +162,36 @@ class ${3/(.+)/\u\1/g}_${4/(.+)[_]/\u\1/g}${1/(.+)/\u\1/g}InstallerScript
   /**
    * Removes obsoletes files and folders
    *
-   * @param  array \$obsoletes Array with obsolete files and folders
-   *
    * @return void
    *
    * @since  $5
    */
-  private function _removeObsoletes(\$obsoletes = array())
+  private function _removeObsoletes()
   {
-    if (!empty(\$obsoletes['files']))
+    if (!empty(\$this->_obsoletes['files']))
     {
       jimport('joomla.filesystem.file');
 
-      foreach(\$obsoletes['files'] as \$file)
+      foreach(\$this->_obsoletes['files'] as \$file)
       {
-        $file = substr($file, 0, 1) == '/' ? $file : '/' . $file;
-        if(JFile::exists(JPATH_ROOT . $file) && !JFile::delete(JPATH_ROOT . $file))
+        \$file = JPATH_ROOT . (substr(\$file, 0, 1) == '/' ? \$file : '/' . \$file);
+        if(JFile::exists(\$file) && !JFile::delete(\$file))
         {
-          JFactory::getApplication()->enqueueMessage(JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', $file), 'error');
+          JFactory::getApplication()->enqueueMessage(JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', \$file), 'error');
         }
       }
     }
 
-    if (!empty(\$obsoletes['folders']))
+    if (!empty(\$this->_obsoletes['folders']))
     {
       jimport('joomla.filesystem.folder');
 
-      foreach(\$obsoletes['folders'] as \$folder)
+      foreach(\$this->_obsoletes['folders'] as \$folder)
       {
-        $folder = substr($folder, 0, 1) == '/' ? $folder : '/' . $folder;
-        if(JFolder::exists(JPATH_ROOT . $folder) && !JFolder::delete(JPATH_ROOT . $folder))
+        \$folder = JPATH_ROOT . (substr(\$folder, 0, 1) == '/' ? \$folder : '/' . \$folder);
+        if(JFolder::exists(\$folder) && !JFolder::delete(\$folder))
         {
-          JFactory::getApplication()->enqueueMessage(JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', $folder), 'error');
+          JFactory::getApplication()->enqueueMessage(JText::sprintf('FILES_JOOMLA_ERROR_FILE_FOLDER', \$folder), 'error');
         }
       }
     }

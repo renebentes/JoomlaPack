@@ -2,11 +2,11 @@
 	<content><![CDATA[JFormHelper::loadFieldClass('predefinedList');
 
 /**
- * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/}} Field class for the ${2:Project}.
+ * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/g}} Field class for the ${2:Project}.
  *
  * @package    Joomla.${3:Administrator}
- * @subpackage com_${2/(.+)/\L\1/g}
- * @since      ${4:0.0.1}
+ * @subpackage ${4:com_}${2/(.+)/\L\1/g}
+ * @since      ${5:0.1.0}
  */
 class JFormField${1/(.+)/\u\1/g} extends JFormFieldPredefinedList
 {
@@ -14,7 +14,7 @@ class JFormField${1/(.+)/\u\1/g} extends JFormFieldPredefinedList
    * The form field type.
    *
    * @var   string
-   * @since $4
+   * @since $5
    */
   public \$type = '${1/(.+)/\u\1/g}';
 
@@ -22,13 +22,14 @@ class JFormField${1/(.+)/\u\1/g} extends JFormFieldPredefinedList
    * Available predefined options
    *
    * @var   array
-   * @since $4
+   * @since $5
    */
   protected \$predefinedOptions = array(
-  	$5
+  	$6
   );
 }]]>
 	</content>
 	<tabTrigger>joomla-field-predefined-list</tabTrigger>
 	<scope>source.php</scope>
+  <description>Adds code to fields of type predefined list.</description>
 </snippet>

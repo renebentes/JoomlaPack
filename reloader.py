@@ -8,25 +8,25 @@ if sublime.version() == '' or int(sublime.version()) > 3000:
     st_version = 3
     from imp import reload
 
+mod_prefix = ''
 reload_mods = []
+
 for mod in sys.modules:
-    if mod[0:10] == 'JoomlaPack' and sys.modules[mod] is not None:
+    if mod.startswith('JoomlaPack') and sys.modules[mod] is not None:
         reload_mods.append(mod)
 
-mod_prefix = ""
 if st_version == 3:
-    mod_prefix = "JoomlaPack" + mod_prefix
+    mod_prefix = 'JoomlaPack' + mod_prefix
 
 mods_load_order = [
     '',
 
-    ".commands",
-    # ".commands.new_project",
-    ".commands.new_component",
-    ".commands.new_package",
-    ".commands.new_plugin",
-
     '.lib',
+
+    '.lib.inflector',
+    '.lib.inflector.base',
+    '.lib.inflector.english',
+
     '.lib.file',
     '.lib.folder',
     '.lib.helper',
@@ -40,15 +40,17 @@ mods_load_order = [
     '.lib.extensions.package',
     '.lib.extensions.plugin',
 
-    '.lib.inflector',
-    '.lib.inflector.base',
-    '.lib.inflector.english'
+    '.commands',
+    '.commands.component',
+    '.commands.package',
+    '.commands.plugin'
 ]
 
-for suffix in mods_load_order:
-    mod = mod_prefix + suffix
+for mod in mods_load_order:
+    mod = mod_prefix + mod
     if mod in reload_mods:
         try:
             reload(sys.modules[mod])
-        except (ImportError):
-            pass
+        except ImportError as e:
+            sublime.error_message('Joomla Pack\n\n[Error] Modules could not ' +
+                                  'be imported! %s' % e)

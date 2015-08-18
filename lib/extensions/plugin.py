@@ -61,18 +61,5 @@ class Plugin(Base):
                     os.rename(os.path.join(root, folder),
                               os.path.join(root, newname))
 
-    def add_form(self, name, data):
-        '''
-        Adds forms on plugins.
-        '''
-        if Folder(os.path.join(self.path, 'forms')).create():
-            File(os.path.join(self.path, 'forms', '%s.xml' % name)).write(data)
-
-            Manifest(os.path.join(self.path, '%s.xml' % self.name)) \
-                .add_child('files', {'tag': 'folder', 'text': 'forms'})
-            Manifest(os.path.join(self.path, '%s.xml' % self.name)) \
-                .add_child('filess', {'tag': 'folder', 'text': 'forms'})
-        Project().refresh()
-
     def __str__(self):
         return "JoomlaPack: Joomla Plugin"

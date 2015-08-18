@@ -10,7 +10,7 @@
  *
  * @return string
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 public function onContentAfterTitle(\$context, &\$item, &\$params, \$page = 0)
 {

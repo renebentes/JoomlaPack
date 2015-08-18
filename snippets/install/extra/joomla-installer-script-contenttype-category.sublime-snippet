@@ -4,7 +4,7 @@
  *
  * @return void
  *
- * @since  ${2:0.0.1}
+ * @since  ${2:0.1.0}
  */
 private function _addContentTypeCategory()
 {
@@ -146,5 +146,5 @@ private function _addContentTypeCategory()
 }]]></content>
   <tabTrigger>joomla-installer-script-contenttype-category</tabTrigger>
   <scope>source.php</scope>
-  <description>Add _addContentTypeCategory function into install script.</description>
+  <description>Adds _addContentTypeCategory method into install script.</description>
 </snippet>

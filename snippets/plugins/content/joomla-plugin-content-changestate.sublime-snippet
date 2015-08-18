@@ -8,7 +8,7 @@
  *
  * @return void
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
 public function onContentChangeState(\$context, \$pks, \$value)
 {

@@ -3,6 +3,18 @@ CHANGELOG
 
 Este arquivo refere-se às mudanças realizadas desde a versão inicial de desenvolvimento.
 
+* 0.2.14 - 24/07/2015
+  * Fixed - joomla-admin-view-edit-layout, joomla-admin-view-edit-layout-simple, joomla-plugin
+  * Added - snippets joomla-plugin-system-after-route, joomla-plugin-system-after-initialise
+  * Removed - comandos para projeto
+* 0.2.13 - 21/07/2015
+  * Fixed - snippets joomla-add-form, joomla-add-form-simple
+  * Added - funcionalidade de adicionar template, script de instalação a plugins
+* 0.2.12 - 14/07/2015
+  * Added - INI Syntax Highlighting
+  * Added - descrição de snippets
+  * Fixed - métodos add_folder e add_file na classe base de extensões
+  * Added - funcionalidade de adicionar forms e fields a plugins
 * 0.2.11 - 06/07/2015
   * Added - adição de elementos ao xml do manifesto
   * Fixed - classe Xml renomeada para Manifest

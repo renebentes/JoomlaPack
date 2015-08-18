@@ -1,29 +1,29 @@
 <snippet>
-	<content><![CDATA[/**
+  <content><![CDATA[/**
  * ${1:Hellos} list controller class.
  *
  * @package    Joomla.${2:Administrator}
  * @subpackage com_${3:project}
- * @since      ${4:0.0.1}
+ * @since      ${4:0.1.0}
  */
 class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
 {
-	/**
-	 * Method to get a model object, loading it if required.
+  /**
+   * Method to get a model object, loading it if required.
    *
-	 * @param  string \$name   The model name. Optional.
-	 * @param  string \$prefix The class prefix. Optional.
-	 * @param  array  \$config Configuration array for model. Optional.
+   * @param  string \$name   The model name. Optional.
+   * @param  string \$prefix The class prefix. Optional.
+   * @param  array  \$config Configuration array for model. Optional.
    *
-	 * @return object          The model.
+   * @return object          The model.
    *
-	 * @since	 $4
-	 */
-	public function getModel(\$name = '${5:Hello}', \$prefix = '${3/(.+)/\u\1/g}Model', \$config = array('ignore_request' => true))
-	{
-		return parent::getModel(\$name, \$prefix, \$config);
-	}
+   * @since  $4
+   */
+  public function getModel(\$name = '${5:Hello}', \$prefix = '${3/(.+)/\u\1/g}Model', \$config = array('ignore_request' => true))
+  {
+    return parent::getModel(\$name, \$prefix, \$config);
+  }
 }]]></content>
-	<tabTrigger>joomla-admin-controller-list</tabTrigger>
-	<scope>source.php</scope>
+  <tabTrigger>joomla-admin-controller-list</tabTrigger>
+  <scope>source.php</scope>
 </snippet>

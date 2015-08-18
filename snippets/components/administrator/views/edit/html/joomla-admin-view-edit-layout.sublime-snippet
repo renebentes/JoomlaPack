@@ -31,30 +31,30 @@ if (!\$editoroptions)
 }
 
 // Check if the ${1/(.+)/\L\1/g} uses configuration settings besides global. If so, use them.
-if (isset(\$this->item->params['show_publishing_options']) && \$this->item->params['show_publishing_options'] != '')
+if (isset(\$this->item->${2:params}['show_publishing_options']) && \$this->item->${2/(.+)/\L\1/g}['show_publishing_options'] != '')
 {
-	\$params->show_publishing_options = \$this->item->params['show_publishing_options'];
+	\$params->show_publishing_options = \$this->item->${2/(.+)/\L\1/g}['show_publishing_options'];
 }
 
-if (isset($this->item->attribs['show_${1/(.+)/\L\1/g}_options']) && $this->item->attribs['show_${1/(.+)/\L\1/g}_options'] != '')
+if (isset(\$this->item->${2/(.+)/\L\1/g}['show_${1/(.+)/\L\1/g}_options']) && \$this->item->${2/(.+)/\L\1/g}['show_${1/(.+)/\L\1/g}_options'] != '')
 {
-	$params->show_${1/(.+)/\L\1/g}_options = $this->item->attribs['show_${1/(.+)/\L\1/g}_options'];
+	\$params->show_${1/(.+)/\L\1/g}_options = \$this->item->${2/(.+)/\L\1/g}['show_${1/(.+)/\L\1/g}_options'];
 }
 
 JFactory::getDocument()->addScriptDeclaration('
 	Joomla.submitbutton = function(task) {
-		if (task == '${1/(.+)/\L\1/g}.cancel' || document.formvalidator.isValid(document.id('item-form'))) {
-			Joomla.submitform(task, document.getElementById('item-form'));
+		if (task == "${1/(.+)/\L\1/g}.cancel" || document.formvalidator.isValid(document.id("item-form"))) {
+			Joomla.submitform(task, document.getElementById("item-form"));
 		}
 	};'
 );
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_${2:project}&amp;layout=edit&id=' . (int) \$this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_${3:project}&amp;layout=edit&amp;id=' . (int) \$this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
 	<?php echo JLayoutHelper::render('joomla.edit.title_alias', \$this); ?>
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'details')); ?>
-			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_${2/(.+)/\U\1/g}_FIELDSET_${1/(.+)/\U\1/g}_CONTENT', true)); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_${3/(.+)/\U\1/g}_FIELDSET_${1/(.+)/\U\1/g}_CONTENT', true)); ?>
 				<div class="row-fluid">
 					<div class="span9">
 						<?php echo JLayoutHelper::render('joomla.edit.${1/(.+)/\L\1/g}', \$this, JPATH_COMPONENT . '/layouts'); ?>
@@ -67,7 +67,7 @@ JFactory::getDocument()->addScriptDeclaration('
 
 			<?php // Do not show the publishing options if the edit form is configured not to. ?>
 			<?php if (\$params->show_publishing_options == 1): ?>
-				<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('COM_${2/(.+)/\U\1/g}_FIELDSET_${1/(.+)/\U\1/g}_PUBLISHING', true)); ?>
+				<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('COM_${3/(.+)/\U\1/g}_FIELDSET_${1/(.+)/\U\1/g}_PUBLISHING', true)); ?>
 					<div class="row-fluid form-horizontal-desktop">
 						<div class="span6">
 							<?php echo JLayoutHelper::render('joomla.edit.publishingdata', \$this); ?>
@@ -89,13 +89,13 @@ JFactory::getDocument()->addScriptDeclaration('
 			<?php echo JLayoutHelper::render('joomla.edit.params', \$this); ?>
 
 		<?php if (\$this->canDo->get('core.admin')) : ?>
-			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'editor', JText::_('COM_${2/(.+)/\U\1/g}_SLIDER_EDITOR_CONFIG', true)); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'editor', JText::_('COM_${3/(.+)/\U\1/g}_SLIDER_EDITOR_CONFIG', true)); ?>
 			<?php echo \$this->form->renderFieldset('editorConfig'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php endif; ?>
 
 		<?php if (\$this->canDo->get('core.admin')) : ?>
-			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'permissions', JText::_('COM_${2/(.+)/\U\1/g}_FIELDSET_RULES', true)); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'permissions', JText::_('COM_${3/(.+)/\U\1/g}_FIELDSET_RULES', true)); ?>
 				<?php echo \$this->form->getInput('rules'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php endif; ?>
@@ -103,7 +103,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value="" />
-		<input type="hidden" name="return" value="<?php echo JFactory::getApplication()->input->getBase64('return'); ?>" />
+		<input type="hidden" name="return" value="<?php echo $input->getBase64('return'); ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 
 	</div>

@@ -25,7 +25,7 @@ class Folder:
         '''
         return os.path.exists(self.path) and os.path.isdir(self.path)
 
-    def create(self, mode=0o755):
+    def create(self, force=False):
         '''
         Create a folder, and all necessary parent folders.
         '''
@@ -41,35 +41,29 @@ class Folder:
                 Helper().show_message('', '[Error] Infinite loop detected.')
                 return False
 
-            if not parent.create(mode):
+            if not parent.create():
                 nested -= 1
                 return False
 
             # Parent directory has been created
             nested -= 1
 
-        if self.exists():
+        if self.exists() and not force:
             return True
 
-        oldmask = os.umask(0o000)
         try:
-            os.makedirs(self.path, mode)
-            os.umask(oldmask)
-            self.__on_create()
+            os.makedirs(self.path, 0o755)
+            data = ('<!DOCTYPE html>\n' +
+                    '<html>\n' +
+                    '<head>\n' +
+                    '  <title>&nbsp;</title>\n' +
+                    '</head>\n' +
+                    '<body></body>\n' +
+                    '</html>\n')
+            File(os.path.join(self.path, 'index.html')).write(data)
+            return True
         except Exception as e:
             message = '[Error] Folder %s could not be created! %s' % (
                 self.path, e)
             Helper().show_message('', message)
-            os.umask(oldmask)
             return False
-        return True
-
-    def __on_create(self):
-        data = ('<!DOCTYPE html>\n' +
-                '<html>\n' +
-                '<head>\n' +
-                '  <title>&nbsp;</title>\n' +
-                '</head>\n' +
-                '<body></body>\n' +
-                '</html>\n')
-        File(os.path.join(self.path, 'index.html')).write(data)

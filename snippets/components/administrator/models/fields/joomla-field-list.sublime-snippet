@@ -5,8 +5,8 @@
  * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/g}} Field class for the ${2:Project}.
  *
  * @package    Joomla.${3:Administrator}
- * @subpackage com_${2/(.+)/\L\1/g}
- * @since      ${4:0.0.1}
+ * @subpackage ${4:com_}${2/(.+)/\L\1/g}
+ * @since      ${5:0.1.0}
  */
 class JFormField${1/(.+)/\u\1/g} extends JFormFieldList
 {
@@ -14,7 +14,7 @@ class JFormField${1/(.+)/\u\1/g} extends JFormFieldList
    * The form field type.
    *
    * @var   string
-   * @since $4
+   * @since $5
    */
   public \$type = '${1/(.+)/\u\1/g}';
 
@@ -23,14 +23,14 @@ class JFormField${1/(.+)/\u\1/g} extends JFormFieldList
    *
    * @return array The field option objects.
    *
-   * @since  $4
+   * @since  $5
    */
   protected function getOptions()
   {
     // Initialiase variables.
     \$options = array();
 
-    ${5:Code here}
+    ${6://Code here}
 
     // Merge any additional options in the XML definition.
     return array_merge(parent::getOptions(), \$options);
@@ -39,4 +39,5 @@ class JFormField${1/(.+)/\u\1/g} extends JFormFieldList
 	</content>
 	<tabTrigger>joomla-field-list</tabTrigger>
 	<scope>source.php</scope>
+  <description>Adds code to fields of type list.</description>
 </snippet>

@@ -1,5 +1,7 @@
 <snippet>
-  <content><![CDATA[# editorconfig.org
+  <content><![CDATA[# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
 
 root = true
 
@@ -9,11 +11,17 @@ indent_size = 2
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
-insert_final_newline = false
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
 
 [*.py]
-indent_size = true
-insert_final_newline = false
+indent_size = 4
+insert_final_newline = true
+
+[*.php]
+indent_style = tab
 ]]></content>
   <tabTrigger>editorconfig</tabTrigger>
   <scope>source.ini</scope>

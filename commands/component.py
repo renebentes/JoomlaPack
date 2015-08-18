@@ -21,4 +21,5 @@ class NewComponentCommand(sublime_plugin.WindowCommand):
 
     def on_done(self, name):
         self.extension = Component(name)
-        self.extension.create()
+        if self.extension.create():
+            self.extension.set_project()

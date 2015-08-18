@@ -19,7 +19,7 @@ elif st_version == 2:
 # Ensure the user has installed Joomla Pack properly
 if installed_dir != 'JoomlaPack':
     message = ("Joomla Pack\n\nThis package appears to be installed " +
-               "incorrectly.\n\nIt should be installed as \"Joomla Pack\", " +
+               "incorrectly.\n\nIt should be installed as \"JoomlaPack\", " +
                "but seems to be installed as \"%s\".\n\n" % installed_dir)
     # If installed unpacked
     if os.path.exists(os.path.join(sublime.packages_path(), installed_dir)):
@@ -59,6 +59,7 @@ else:
         from commands import *
         from lib import *
         from lib.extensions import *
+        from lib.inflector import *
 
     def plugin_loaded():
         print('Joomla Pack loaded')

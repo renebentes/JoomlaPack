@@ -2,8 +2,8 @@
 	<content><![CDATA[<?php
 /**
  * @package    Joomla.${1:Administrator}
- * @subpackage ${2:com}_${3:project}
- * @since      ${4:0.0.1}
+ * @subpackage ${2:Components}.${3:Project}
+ * @since      ${4:0.1.0}
  *
  * @author     ${5:Rene Bentes Pinto} <${6:renebentes@yahoo.com.br}>
  * @link       ${7:http://renebentes.github.io}

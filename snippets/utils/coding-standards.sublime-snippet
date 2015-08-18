@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[{
+    "phpcs_additional_args": {
+        "--standard": "Joomla!",
+        "-n": ""
+    }
+}]]></content>
+  <tabTrigger>blank</tabTrigger>
+  <scope>text.sublime-settings</scope>
+  <description>Adds settings to Joomla! coding standards.</description>
+</snippet>

@@ -1,6 +1,6 @@
 <snippet>
-  <content><![CDATA[${1:COM}_${2:PROJECT}_ERROR_${3:TABLE}_${4:ERROR}="${5:Mensagem}."]]></content>
+  <content><![CDATA[${1:COM}_${2:PROJECT}_ERROR_${3:TABLE}_${4:ERROR}="$5"]]></content>
   <tabTrigger>joomla-language-error</tabTrigger>
-  <scope>text.ini, text.plain</scope>
+  <scope>source.ini</scope>
   <description>Adds message error to extensions into ini files</description>
 </snippet>

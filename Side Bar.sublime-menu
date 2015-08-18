@@ -6,13 +6,6 @@
     "id": "joomla",
     "children":
     [
-      // {
-      //  "caption": "New Project",
-      //  "mnemonic": "N",
-      //  "command": "new_project",
-      //  "args": {}
-      // },
-      // { "caption": "-" },
       {
         "caption": "Components",
         "mnemonic": "C",
@@ -55,14 +48,32 @@
           { "caption": "-" },
           {
             "caption": "Add Form To Plugin",
-            "mnemonic": "Form",
+            "mnemonic": "F",
             "command": "add_form_to_plugin",
-            "args": {}
+            "args": { "dirs": [] }
           },
           {
             "caption": "Add Field To Plugin",
-            "mnemonic": "Field",
+            "mnemonic": "e",
             "command": "add_field_to_plugin",
+            "args": {}
+          },
+          {
+            "caption": "Add Install Script To Plugin",
+            "mnemonic": "I",
+            "command": "add_install_script_to_plugin",
+            "args": {}
+          },
+          {
+            "caption": "Add Template To Plugin",
+            "mnemonic": "T",
+            "command": "add_template_to_plugin",
+            "args": {}
+          },
+          {
+            "caption": "Add Layout To Plugin",
+            "mnemonic": "L",
+            "command": "add_layout_to_plugin",
             "args": {}
           }
         ]

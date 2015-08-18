@@ -1,0 +1,37 @@
+<snippet>
+  <content><![CDATA[/**
+ * Enable ${1:Project} ${2:Extension}
+ *
+ * @param  string \$name The name of extension to enable
+ *
+ * @return void
+ *
+ * @since  ${3:0.1.0}
+ */
+private function _enableExtension(\$name)
+{
+  // Initialiase variables.
+  \$db    = JFactory::getDbo();
+  \$query = \$db->getQuery(true);
+
+  // Create the base update statement.
+  \$query->update(\$db->quoteName('#__extensions'));
+  \$query->set(\$db->quoteName('enabled') . ' = ' . \$db->quote('1'));
+  \$query->where(\$db->quoteName('name') . ' = ' . \$db->quote(\$name));
+
+  // Set the query and execute the update.
+  \$db->setQuery(\$query);
+
+  try
+  {
+    \$db->execute();
+  }
+  catch (RuntimeException \$e)
+  {
+    JFactory::getApplication()->enqueueMessage(\$e->getMessage(), 'warning');
+  }
+}]]></content>
+  <tabTrigger>joomla-installer-script-enable</tabTrigger>
+  <scope>source.php</scope>
+  <description>Adds _enableExtension method into install script.</description>
+</snippet>

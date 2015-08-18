@@ -8,9 +8,9 @@
  *
  * @return boolean True on success, false otherwise
  *
- * @since  ${1:0.0.1}
+ * @since  ${1:0.1.0}
  */
-public function onContentPrepareForm(\$context, \$data)
+public function onContentPrepareData(\$context, \$data)
 {
   $2
 

@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[<fieldset name="${1:basic}">
+</fieldset>
+]]></content>
+	<tabTrigger>joomla-manifest-params-fieldset</tabTrigger>
+	<scope>text.xml</scope>
+  <description>Adds fieldsets for parameters on manifest files.</description>
+</snippet>

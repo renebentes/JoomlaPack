@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[<field
+    name="${1:name}"
+    type="text"
+    label="${2:COM}_${3:PROJECT}_PARAMETER_FIELD_${1/(.+)/\U\1/g}_LABEL"
+    description="${2:COM}_${3:PROJECT}_PARAMETER_FIELD_${1/(.+)/\U\1/g}_DESC"
+    default="1"
+  />
+]]></content>
+	<tabTrigger>joomla-manifest-params-field-text</tabTrigger>
+	<scope>text.xml</scope>
+  <description>Adds field parameter text on manifest files.</description>
+</snippet>

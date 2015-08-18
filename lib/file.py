@@ -43,27 +43,27 @@ class File():
                 'error', 'File %s not found!' % self.path)
             return None
 
-    def write(self, data, mode=0o644):
+    def write(self, data, force=False):
         '''
         Writes data file on disk.
         '''
+        if not isinstance(data, str):
+            raise TypeError('data must be a string!')
+            return False
+
         if not Folder(os.path.dirname(self.path)).exists():
             if not Folder(os.path.dirname(self.path)).create():
                 return False
 
-        if self.exists():
+        if self.exists() and not force:
             return True
         else:
-            oldmask = os.umask(0o000)
             try:
                 with open(self.path, 'w', encoding=self.encoding) as f:
                     f.write(data)
-                if oldmask == 0:
-                    os.chmod(self.path, mode)
-                os.umask(oldmask)
+                os.chmod(self.path, 0o644)
                 return True
             except Exception as e:
                 Helper().show_message('', 'File %s not be write! %s' %
                                       (self.path, e))
-                os.umask(oldmask)
                 return False

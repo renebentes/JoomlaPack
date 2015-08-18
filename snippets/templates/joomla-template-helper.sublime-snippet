@@ -2,14 +2,192 @@
   <content><![CDATA[/**
  * ${1:Project} template helper.
  *
- * @package     ${1/(.+)/\u\1/g}
- * @subpackage  tpl_${1/(.+)/\L\1/g}
- * @since       ${4:2.5}
+ * @package     Joomla.${2:Site}
+ * @subpackage  Templates.${1/(.+)/\u\1/g}
+ * @since       ${4:0.1.0}
  */
 abstract class tpl${1/(.+)/\u\1/g}Helper
 {
+  /**
+   * Initialize template configuration
+   *
+   * @param JDocument \$document The html document
+   *
+   * @return void
+   *
+   * @since  $4
+   */
+  public static function init(&\$document)
+  {
+    \$app = JFactory::getApplication();
 
+    \$document->params = !isset(\$document->params) ? \$app->getTemplate(true)->params : \$document->params;
+    \$document->path   = \$document->baseurl . '/templates/' . \$document->template;
+
+    self::_setMetadata();
+    self::_prepareHead(\$document);
+    self::_clearDefaultScripts(\$document->params);
+  }
+
+  /**
+   * Defines metadata params
+   *
+   * @return void
+   *
+   * @since  $4
+   */
+  private static function _setMetadata()
+  {
+    \$doc = JFactory::getDocument();
+
+    \$doc->setGenerator(null);
+    \$doc->setMetaData('charset', 'utf-8');
+    \$doc->setMetaData('author','Rene Bentes Pinto');
+    \$doc->setMetaData('X-UA-Compatible','IE=edge', true);
+    \$doc->setMetaData('viewport','width=device-width, initial-scale=1');
+  }
+
+  /**
+   * Attach elements to html head
+   *
+   * @param JDocument \$document The html document
+   *
+   * @return void
+   *
+   * @since  $4
+   */
+  private static function _prepareHead(\$document)
+  {
+    \$doc = JFactory::getDocument();
+
+    // JS
+    JHtml::_('bootstrap.framework');
+    \$doc->addScript(\$document->path . '/js/application.js');
+    \$doc->addScript(\$document->path . '/js/holder.min.js');
+
+    // CSS
+    \$doc->addStyleSheet(\$document->path . '/css/template.css.php?baseurl=' . \$document->baseurl . '&amp;template=' . \$document->template);
+
+    // Favicon & Icons
+    \$favicon  = \$document->params->get('favicon') ? \$document->baseurl . '/' . \$document->params->get('favicon') : \$document->path . '/assets/images/ico/favicon.ico';
+    \$iconpath = substr(\$favicon, 0, strrpos(\$favicon, '/'));
+    \$doc->addFavicon(\$favicon);
+
+    \$icons = array(
+      'icon-144' => array('sizes' => '144x144'),
+      'icon-114' => array('sizes' => '114x114'),
+      'icon-72' => array('sizes' => '72x72'),
+      'icon-57' => array()
+    );
+
+    foreach (\$icons as \$key => \$value)
+      \$doc->addHeadlink(\$iconpath . '/apple-touch-' . \$key . '-precomposed.png', 'apple-touch-icon-precomposed', 'rel', \$value);
+  }
+
+  /**
+   * Disables loading of javascript files
+   *
+   * @param Array \$params The template params
+   *
+   * @return void
+   *
+   * @since  $4
+   */
+  private static function _clearDefaultScripts(\$params)
+  {
+    \$doc = JFactory::getDocument();
+
+    if(\$params['disablejs'])
+    {
+      \$filejs = \$params['filejs'];
+
+      unset(\$doc->_scripts[JUri::base(true) . '/media/system/js/mootools-core.js']);
+      unset(\$doc->_scripts[JUri::base(true) . '/media/system/js/mootools-more.js']);
+      unset(\$doc->_scripts[JUri::base(true) . '/media/system/js/caption.js']);
+
+      if (trim(\$filejs) !== '')
+      {
+        \$filejs = explode(',', \$filejs);
+
+        foreach (\$scripts as \$key => \$value)
+        {
+          foreach (\$filejs as \$file)
+            if (strpos(\$key, trim(\$file)))
+              unset(\$doc->_scripts[\$key]);
+        }
+      }
+
+      foreach (\$doc->_script as \$key => \$value)
+        if(strpos(\$value, "new JCaption('img.caption');") !== false)
+        {
+          unset(\$doc->_script[\$key]);
+          break;
+        }
+    }
+  }
+
+  /**
+   * Get classes css for pages
+   *
+   * @return  string  CSS classes
+   *
+   * @since  $4
+   */
+  public static function getPageClass()
+  {
+    \$app       = JFactory::getApplication();
+    \$menu      = \$app->getMenu();
+    \$active    = \$menu->getActive();
+    \$alias     = isset(\$active->alias) ? ' ' . \$active->alias : '';
+    \$pageClass = \$app->getParams()->get('pageclass_sfx', '') ? ' ' . \$app->getParams()->get('pageclass_sfx', '') : '';
+
+    return ' class="' . (\$active == \$menu->getDefault() ? 'front' : 'site' . \$alias . \$pageClass) . '"';
+  }
+
+  /**
+   * Includes site logo
+   *
+   * @param JDocument \$document The html document
+   *
+   * @return string The html output
+   *
+   * @since  $4
+   */
+  public static function getLogo(\$document)
+  {
+    \$logo = \$document->params->get('logo') ? \$document->baseurl . '/' . \$document->params->get('logo') : \$document->path . '/images/logo.png';
+    \$alternative = \$document->params->get('alternative') ? \$document->params->get('alternative') : JFactory::getApplication()->getCfg('sitename');
+
+    return '<img class="img-responsive" src="' . \$logo . '" alt="' . \$alternative . '" />';
+  }
+
+  /**
+   * Get Slogan text
+   *
+   * @param JDocument \$document The html document
+   *
+   * @return string The text
+   *
+   * @since  $4
+   */
+  public static function getSlogan(\$document)
+  {
+    return \$document->params->get('slogan') ? \$document->params->get('slogan') : JFactory::getApplication()->getCfg('sitename');
+  }
+
+  /**
+   * Checks if the page is the front page display
+   *
+   * @return boolean True for the front page
+   *
+   * @since  $4
+   */
+  public static function isFrontPage()
+  {
+    return JFactory::getApplication()->getMenu()->getActive() == JFactory::getApplication()->getMenu()->getDefault();
+  }
 }]]></content>
   <tabTrigger>joomla-template-helper</tabTrigger>
   <scope>text.plain, text.php, source.php</scope>
+  <description>Adds configuration helper into templates.</description>
 </snippet>

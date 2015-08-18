@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[// Call _enableExtension() method
+\$this->_enableExtension(${1:\$adapter->get('name')});
+]]></content>
+  <tabTrigger>joomla-installer-script-postflight-enable</tabTrigger>
+  <scope>source.php</scope>
+  <description>Add call to _enableExtension() method into install script.</description>
+</snippet>

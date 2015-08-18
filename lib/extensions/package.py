@@ -4,9 +4,11 @@ import os
 
 st_version = int(sublime.version())
 if st_version > 3000:
+    from JoomlaPack.lib import *
     from JoomlaPack.lib.extensions.base import Base
     from JoomlaPack.lib.inflector import *
 else:
+    from lib import *
     from lib.extensions.base import Base
     from lib.inflector import *
 
@@ -27,7 +29,10 @@ class Package(Base):
             self.name = content
             self.fullname = self.inflector.underscore(self.prefix + content)
         else:
-            pass
+            self.fullname = self.inflector.underscore(
+                Project().get_project_name())
+            self.name = self.inflector.humanize(self.fullname, prefix='pkg_')
+            self.path(self.fullname)
 
     def rename(self):
         name = self.inflector.humanize(self.name, self.prefix)

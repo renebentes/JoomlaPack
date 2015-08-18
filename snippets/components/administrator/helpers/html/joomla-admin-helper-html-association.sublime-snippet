@@ -6,7 +6,7 @@
    *
    * @return string  ${1/./ /g}    The language HTML.
    *
-   * @since  ${2:0.0.1}
+   * @since  ${2:0.1.0}
    */
   public static function association(\$${1/(.+)/\L\1/g}id)
   {

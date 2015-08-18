@@ -6,7 +6,7 @@
  *
  * @return True if the answer is correct, false otherwise
  *
- * @since  ${2:0.0.1}
+ * @since  ${2:0.1.0}
  */
 public function onCheckAnswer(\$code = null)
 {

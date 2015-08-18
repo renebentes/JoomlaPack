@@ -1,8 +1,8 @@
 # coding: utf-8
 
 import sublime
-import os
-import xml.etree.ElementTree as ET
+import re
+from xml.dom import minidom
 
 st_version = int(sublime.version())
 if st_version > 3000:
@@ -13,152 +13,235 @@ else:
 
 class Manifest(File):
 
-    '''
-    Represents a Manifest XML file.
-    '''
+    """Represents a Manifest XML file."""
 
     def __init__(self, path, encoding='utf-8'):
+        """Initialize the object Manifest
+
+        Args:
+            path (str): Path to XML file
+            encoding (str, optional): Encoding of file.
+        """
         File.__init__(self, path, encoding)
 
-    def is_manifest(self):
-        '''
-        Checks if a Manifest XML file is valid.
-        '''
-        xml = self.read()
-        return True if xml is not None and xml.tag == 'extension' else False
-
-    def add_child(self, parent, child, childRef=''):
-        '''
-        Adds elements on Manifest XML.
-        '''
-        if parent is None or not isinstance(parent, str):
-            Helper().show_message('', 'parent must be a string!')
-            return False
-
-        if child is None or not isinstance(child, dict) \
-                or not all(k in child for k in ('tag', 'text')):
-            Helper().show_message('', 'child parameter is invalid!')
-            return False
-
-        xml = self.read()
-        if xml is None:
-            return False
-
-        if parent == '':
-            parent = xml
-        else:
-            parent = xml.find(parent)
-            if parent is None:
-                Helper().show_message('',
-                                      'Parent element %s not found!' % parent)
-                return False
-
-        found = False
-        for node in parent.iterfind(child['tag']):
-            if node.text == child['text']:
-                found = True
-                break
-
-        if not found:
-            node = ET.Element(child['tag'])
-            node.text = child['text']
-            self._insert(parent, node, childRef)
-
-        if 'attribs' in child.keys():
-            for key in child['attribs'].keys():
-                node.set(key, child['attribs'][key])
-
-        self._update_version(xml)
-        self.write(xml)
-
     def read(self):
-        '''
-        Reads a Manifest XML file.
-        '''
+        """Reads a Manifest XML file.
+
+        Returns:
+            minidom.DocumentElement: The root element from XML, None otherwise
+        """
         try:
-            return ET.fromstring(File.read(self))
+            return minidom.parseString(File.read(self))
         except Exception as e:
             Helper().show_message('',
                                   'Manifest XML file %s not be valid! %s' %
                                   (self.path, e))
             return None
 
-    def write(self, data, mode=0o644):
-        '''
-        Writes data Manifest XML file on disk.
-        '''
-        if not Folder(os.path.dirname(self.path)).exists():
-            if not Folder(os.path.dirname(self.path)).create():
-                return False
+    def write(self, data, force=False):
+        """Writes data Manifest XML file on disk.
 
-        oldmask = os.umask(0o000)
-        try:
-            ET.ElementTree(data).write(self.path,
-                                       encoding=self.encoding,
-                                       xml_declaration=True)
-            if oldmask == 0:
-                os.chmod(self.path, mode)
-            os.umask(oldmask)
-            return True
-        except Exception as e:
-            Helper().show_message('', 'Manifest XML file %s not be write! %s' %
-                                  (self.path, e))
-            os.umask(oldmask)
+        Args:
+            data (minidom.DocumentElement): The root element from XML.
+            force (bool, optional): Force the file creation
+
+        Returns:
+            bool: True on success, false otherwise
+        """
+        self._update_version(data)
+
+        data = str(data.toprettyxml(encoding=self.encoding),
+                   encoding=self.encoding)
+        rc = []
+        for line in data.split('\n'):
+            if line.strip():
+                rc.append(line)
+
+        data = re.sub(r'\]\>\t\<', ']><',
+                      re.sub(r'\>\n\<\!', '><!', '\n'.join(rc)))
+
+        return File.write(self, data, True)
+
+    def is_manifest(self):
+        """Checks if a Manifest XML file is valid.
+
+        Returns:
+            bool: True if XML file is manfest valid, false otherwise.
+        """
+        xml = self.read()
+        return True if xml is not None \
+            and xml.documentElement.tagName == 'extension' else False
+
+    def type(self):
+        xml = self.read()
+        return xml.documentElement.getAttribute('type') if xml is not None \
+            else None
+
+    def add_child(self, parent, child, childRef=None):
+        """Adds element on Manifest XML.
+
+        Args:
+            parent (str): The parent element tag
+            child (dict): The new element
+            childRef (dict, optional): The references element.
+
+        Returns:
+            bool: True on success, false otherwise
+        """
+        if parent is not None and not isinstance(parent, str):
+            raise TypeError('parent must be a string!')
             return False
 
-    def _update_version(self, xml):
-        '''
-        Updates version element on Manifest XML.
-        '''
+        if child is None or not isinstance(child, dict) \
+                or not all(k in child for k in ('tag', 'text')):
+            raise TypeError('child parameter is invalid!')
+            return False
+
+        if childRef is not None \
+            and (not isinstance(childRef, dict)
+                 or not all(k in childRef for k in ('tag', 'text'))):
+            raise TypeError('childRef parameter is invalid!')
+            return False
+
+        xml = self.read()
         if xml is None:
             return False
 
-        version = xml.find('version')
-        if version is not None:
-            version_list = version.text.split('.')
+        if parent is None or parent == '':
+            parent = xml
+        else:
+            parent = xml.getElementsByTagName(parent)
+            if parent.length == 0:
+                print('Parent element %s not found!' % parent)
+                return False
+
+        found = False
+        for node in parent[0].childNodes:
+            if node.nodeType == node.ELEMENT_NODE \
+                    and node.tagName == child['tag']:
+                for childNode in node.childNodes:
+                    if childNode.nodeType == childNode.TEXT_NODE \
+                            and childNode.data == child['text']:
+                        found = True
+            if found:
+                break
+
+        if not found:
+            node = xml.createElement(child['tag'])
+            node.appendChild(xml.createTextNode(child['text']))
+
+            if childRef is None:
+                self._insert(parent[0], node)
+            else:
+                found = False
+                for nodeRef in parent[0].childNodes:
+                    if nodeRef.nodeType == nodeRef.ELEMENT_NODE \
+                            and nodeRef.tagName == childRef['tag']:
+                        for childNode in nodeRef.childNodes:
+                            if childNode.nodeType == childNode.TEXT_NODE \
+                               and childNode.data == childRef['text']:
+                                found = True
+                    if found:
+                        break
+                if found:
+                    self._insert(parent[0], node, nodeRef)
+                else:
+                    self._insert(parent[0], node)
+
+        if 'attribs' in child.keys():
+            for key in child['attribs'].keys():
+                node.setAttribute(key, child['attribs'][key])
+
+        return self.write(xml)
+
+    def _update_version(self, xml):
+        """Updates version elementent on Manifest XML.
+
+        Args:
+            xml (minidom.DocumentElement): The root element from XML.
+
+        Returns:
+            bool: True on success, false otherwise.
+        """
+        if xml is None:
+            return False
+
+        version = xml.getElementsByTagName('version')
+        if version.length > 0:
+            version_list = self._get_text(version[0].childNodes).split('.')
             if len(version_list) >= 2:
                 major = version_list[0]
                 minor = version_list[1]
                 patch = '0'
             else:
-                major = version.text
+                major = self._get_text(version)
                 minor = '0'
                 patch = '0'
             minor = int(minor) + 1
-            version.text = '.'.join([major, str(minor), patch])
+            self._set_text(version[0].childNodes,
+                           '.'.join([major, str(minor), patch]))
         else:
-            version = ET.Element('version')
-            version.text = '0.1.0'
-            self._insert(xml, version, 'description')
+            version = xml.createElement('version')
+            version.appendChild(xml.createTextNode('0.1.0'))
+            description = xml.getElementsByTagName('description')
+            if description.lenght > 0:
+                self._insert(xml.documentElement, version, description[0])
+            else:
+                self._insert(xml.documentElement, version)
         return True
 
-    def _insert(self, parent, child, childRef=''):
-        '''
-        Alias to insert elements on XML structure.
+    def _insert(self, parent, child, childRef=None):
+        """Alias to insert elements on XML structure.
 
-        If childRef empty string, call function append() from
-        xml.etree.ElementTree library, otherwise insert() instead.
-        '''
-        if not isinstance(parent, ET.Element):
-            Helper().show_message('', 'parent must be ElementTree.Element!')
+        If childRef is None, call function appendChild from xml.dom.minidom
+        library, otherwise insertBefore.
+
+        Args:
+            parent (minidom.Element): The parent element.
+            child (minidom.Element): The new element.
+            childRef (minidom.Element, optional): The reference element.
+
+        Returns:
+            bool: True on success, false otherwise
+        """
+        if not isinstance(parent, minidom.Element):
+            raise TypeError('parent must be minidom.Element instance!')
             return False
 
-        if not isinstance(child, ET.Element):
-            Helper().show_message('', 'child must be a ElementTree.Element!')
+        if not isinstance(child, minidom.Element):
+            raise TypeError('child must be a minidom.Element instance!')
             return False
 
-        if not isinstance(childRef, str):
-            Helper().show_message('', 'childRef must be a string!')
-            return False
+        if childRef is not None and not isinstance(childRef, minidom.Element):
+            raise TypeError('childRef must be a minidom.Element instance!')
 
-        if childRef == '':
-            parent.append(child)
-            return True
+        if childRef is None:
+            parent.appendChild(child)
         else:
-            index = 0
-            for node in parent.iter():
-                if node.tag == childRef:
-                    break
-                index += 1
-            parent.insert(index - 1, child)
-            return True
+            parent.insertBefore(child, childRef)
+
+    def _get_text(self, nodelist):
+        """Returns the text from nodelist elements.
+
+        Args:
+            nodelist (minidom.NodeList): The element
+
+        Returns:
+            str: The text
+        """
+        rc = []
+        for node in nodelist:
+            if node.nodeType == node.TEXT_NODE:
+                rc.append(node.data)
+        return ''.join(rc)
+
+    def _set_text(self, nodelist, text):
+        """Defines the text of nodelist elements.
+
+        Args:
+            nodelist (minidom.NodeList): The element
+            text (str): The text
+        """
+        for node in nodelist:
+            if node.nodeType == node.TEXT_NODE:
+                node.data = text

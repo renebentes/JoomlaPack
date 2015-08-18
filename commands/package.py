@@ -5,9 +5,11 @@ import sublime_plugin
 st_version = int(sublime.version())
 
 if st_version > 3000:
+    from JoomlaPack.commands.plugin import *
     from JoomlaPack.lib import *
     from JoomlaPack.lib.extensions import Package
 else:
+    from commands.plugin import *
     from lib import *
     from lib.extensions import Package
 
@@ -21,4 +23,5 @@ class NewPackageCommand(sublime_plugin.WindowCommand):
 
     def on_done(self, name):
         self.extension = Package(name)
-        self.extension.create()
+        if self.extension.create():
+            self.extension.set_project()

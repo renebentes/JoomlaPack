@@ -4,7 +4,7 @@
  *
  * @package    Joomla.${2:Administrator}
  * @subpackage com_${3:project}
- * @since      ${4:0.0.1}
+ * @since      ${4:0.1.0}
  */
 class ${3/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerForm
 {
