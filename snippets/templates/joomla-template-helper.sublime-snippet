@@ -40,8 +40,8 @@ abstract class tpl${1/(.+)/\u\1/g}Helper
   {
     \$doc = JFactory::getDocument();
 
+    \$doc->setHtml5(true);
     \$doc->setGenerator(null);
-    \$doc->setMetaData('charset', 'utf-8');
     \$doc->setMetaData('author','Rene Bentes Pinto');
     \$doc->setMetaData('X-UA-Compatible','IE=edge', true);
     \$doc->setMetaData('viewport','width=device-width, initial-scale=1');
@@ -87,19 +87,19 @@ abstract class tpl${1/(.+)/\u\1/g}Helper
   /**
    * Disables loading of javascript files
    *
-   * @param Array \$params The template params
+   * @param JDocument \$document The html document
    *
    * @return void
    *
    * @since  $4
    */
-  private static function _clearDefaultScripts(\$params)
+  private static function _clearDefaultScripts(\$document)
   {
     \$doc = JFactory::getDocument();
 
-    if(\$params['disablejs'])
+    if(\$document->params->get('disablejs', 1) == 1)
     {
-      \$filejs = \$params['filejs'];
+      \$filejs = \$document->params->get('filejs');
 
       unset(\$doc->_scripts[JUri::base(true) . '/media/system/js/mootools-core.js']);
       unset(\$doc->_scripts[JUri::base(true) . '/media/system/js/mootools-more.js']);

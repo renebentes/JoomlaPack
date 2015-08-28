@@ -1,13 +1,13 @@
 <snippet>
-	<content><![CDATA[/* ========================================================${10/./\=/g}
+	<content><![CDATA[/*!
  * ${1:Project}: ${2:filename}.js v${3:0.1.0}
  * ${4:http://github.com/${5:renebentes}/${2/(.+)/\L\1/g}}
- * ========================================================${10/./\=/g}
+ *
  * Author: ${6:Rene Bentes Pinto} <${7:renebentes@yahoo.com.br}>
  * Link: ${8:http://${5/(.+)/\L\1/g}.github.io}
  * Copyright ${9:2015} ${10:Rene Bentes Pinto, Inc}. All rights reserved.
  * License under the terms of the ${11:MIT}; see LICENSE
- * ========================================================${10/./\=/g} */
+ */
 
 ]]></content>
 	<tabTrigger>header-js</tabTrigger>

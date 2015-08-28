@@ -87,7 +87,7 @@ public static function email(\$item, \$params, \$attribs = array(), \$legacy = f
     else
     {
       \$attribs['aria-label'] = JText::_('JGLOBAL_EMAIL');
-      \$text = '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>' . JText::_('JGLOBAL_EMAIL');
+      \$text                  = '<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>';
     }
   }
   else
@@ -101,7 +101,7 @@ public static function email(\$item, \$params, \$attribs = array(), \$legacy = f
   }
   else
   {
-    \$attribs['class'] = 'btn btn-default btn-xs';
+    \$attribs['class'] = 'btn btn-default btn-xs extra-tooltip';
   }
 
   \$attribs['title']   = JText::_('JGLOBAL_EMAIL');
