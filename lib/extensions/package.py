@@ -32,7 +32,8 @@ class Package(Base):
             self.fullname = self.inflector.underscore(
                 Project().get_project_name())
             self.name = self.inflector.humanize(self.fullname, prefix='pkg_')
-            self.path(self.fullname)
+
+        self.path(os.path.join(Project().root(), self.fullname))
 
     def rename(self):
         name = self.inflector.humanize(self.name, self.prefix)

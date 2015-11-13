@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[; Headings
+${1:COM}_${2:PROJECT}_${3:VIEWNAME}_HEADING_${4:TITLE}="${5:Título}"
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_HEADING_ASSOCIATION="${7:Associação}"
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_HEADING_${4/(.+)/\U\1/g}_ASC="${8:${5/(.+)/\u\1/g} ascendente}"
+${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_HEADING_${4/(.+)/\U\1/g}_DESC="${9:${5/(.+)/\u\1/g} descendente}"
+]]></content>
+  <tabTrigger>joomla-language-list-heading</tabTrigger>
+  <scope>source.ini</scope>
+</snippet>

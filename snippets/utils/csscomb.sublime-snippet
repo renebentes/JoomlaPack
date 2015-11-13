@@ -4,23 +4,23 @@
 
   ],
   "always-semicolon": true,
-  "block-indent": "  ",
+  "block-indent": 2,
   "color-case": "lower",
   "color-shorthand": true,
   "element-case": "lower",
-  "eof-newline": false,
+  "eof-newline": true,
   "leading-zero": false,
   "quotes": "double",
   "remove-empty-rulesets": true,
-  "space-after-colon": " ",
-  "space-after-combinator": " ",
+  "space-after-colon": 1,
+  "space-after-combinator": 1,
   "space-after-opening-brace": "\n",
   "space-after-selector-delimiter": "\n",
-  "space-before-colon": "",
+  "space-before-colon": 0,
   "space-before-closing-brace": "\n",
-  "space-before-combinator": " ",
-  "space-before-opening-brace": " ",
-  "space-before-selector-delimiter": "",
+  "space-before-combinator": 1,
+  "space-before-opening-brace": 1,
+  "space-before-selector-delimiter": 0,
   "space-between-declarations": "\n",
   "strip-spaces": true,
   "unitless-zero": true,
@@ -28,6 +28,11 @@
   "sort-order-fallback": "abc",
   "tab-size": true,
   "sort-order": [
+    [
+      \$variable,
+      \$include,
+      \$import
+    ],
     [
       "font",
       "font-family",
@@ -232,7 +237,7 @@
     [
       "opacity",
       "filter:progid:DXImageTransform.Microsoft.Alpha(Opacity",
-      "-ms-filter:\\'progid:DXImageTransform.Microsoft.Alpha",
+      "-ms-filter:\\\'progid:DXImageTransform.Microsoft.Alpha",
       "-ms-interpolation-mode",
       "color",
       "border",
@@ -323,12 +328,11 @@
       "-moz-box-shadow",
       "box-shadow",
       "filter:progid:DXImageTransform.Microsoft.gradient",
-      "-ms-filter:\\'progid:DXImageTransform.Microsoft.gradient",
+      "-ms-filter:\\\'progid:DXImageTransform.Microsoft.gradient",
       "text-shadow"
     ]
   ]
 }]]></content>
   <tabTrigger>csscomb</tabTrigger>
   <scope>source.json</scope>
-  <description>Add custom settins to CSSComb plugin</description>
 </snippet>

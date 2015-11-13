@@ -38,9 +38,15 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
         if self.counter < (len(self.options)):
             self.show_input_panel()
         else:
-            self.extension = Plugin(self.options)
+            self.extension = Plugin(self.options['group'][1] + '_'
+                                    + self.options['name'][1])
+
             if Project().type() == 'package':
                 self.package = Package()
+                self.extension.path(os.path.join(self.package.path,
+                                                 'packages',
+                                                 self.extension.fullname))
+
                 if self.extension.create():
                     Manifest(os.path.join(self.package.path,
                                           '%s.xml' % self.package.name)) \
@@ -55,20 +61,32 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
                         })
                     Project().refresh()
             else:
+                self.extension.path(os.path.join(Project().root(),
+                                                 self.extension.fullname))
+
                 if self.extension.create():
                     self.extension.set_project()
 
 
 class AddFormToPluginCommand(sublime_plugin.WindowCommand):
 
-    def run(self, dirs):
-        print(dirs)
+    def run(self, paths):
         Helper().show_input_panel("Type Form name: ", "content",
-                                  self.on_done, None, Helper().on_cancel)
+                                  functools.partial(self.on_done, paths[0]),
+                                  None, Helper().on_cancel)
 
-    def on_done(self, name):
+    def on_done(self, path, name):
         name = name if name.endswith('.xml') else name + '.xml'
-        self.extension = Plugin()
+        path = None if Project().type() == 'plugin' else path
+
+        if path is not None:
+            path = path if os.path.isdir(path) else os.path.dirname(path)
+            self.extension = Plugin(os.path.basename(path))
+            self.extension.path(path)
+        else:
+            self.extension = Plugin()
+            self.extension.path(os.path.join(Project().root(),
+                                             self.extension.fullname))
 
         if self.extension.add_folder('forms') \
             and self.extension.add_file(os.path.join('forms', name),
@@ -81,29 +99,45 @@ class AddFormToPluginCommand(sublime_plugin.WindowCommand):
                            {'tag': 'folder', 'text': 'tmpl'})
         Project().refresh()
 
-    def is_enabled(self, dirs):
-        if len(dirs) == 1:
-            for f in os.listdir(dirs[0]):
-                if f.endswith('.xml'):
-                    return Manifest(os.path.join(dirs[0], f)).is_manifest() \
-                        and Manifest(os.path.join(dirs[0],
-                                                  f)).type() == 'plugin'
-        return Project().has_directories() and Project().has_valid_manifest() \
-            and Project().type() == 'plugin'
+    def is_enabled(self, paths):
+        if Project().type() == 'plugin':
+            return True
+        elif Project().type() == 'package':
+            if len(paths) == 1:
+                path = paths[0] if os.path.isdir(paths[0]) \
+                    else os.path.dirname(paths[0])
+                for f in os.listdir(path):
+                    if f.endswith('.xml') and \
+                            Manifest(os.path.join(path, f)).is_manifest() and \
+                            Manifest(os.path.join(path, f)).type() == 'plugin':
+                        return True
+
+        return False
 
 
 class AddFieldToPluginCommand(sublime_plugin.WindowCommand):
 
-    def run(self):
+    def run(self, paths):
         Helper().show_input_panel("Type Field name: ", "title",
-                                  self.on_done, None, Helper().on_cancel)
+                                  functools.partial(self.on_done, paths[0]),
+                                  None, Helper().on_cancel)
 
-    def on_done(self, name):
+    def on_done(self, path, name):
         name = name if name.endswith('.php') else name + '.php'
-        self.extension = Plugin()
+        path = None if Project().type() == 'plugin' else path
+
+        if path is not None:
+            path = path if os.path.isdir(path) else os.path.dirname(path)
+            self.extension = Plugin(os.path.basename(path))
+            self.extension.path(path)
+        else:
+            self.extension = Plugin()
+            self.extension.path(os.path.join(Project().root(),
+                                             self.extension.fullname))
 
         if self.extension.add_folder('fields') \
             and self.extension.add_file(os.path.join('fields', name),
+                                        'joomla-header\n' +
                                         'joomla-field-custom'):
 
             Manifest(os.path.join(self.extension.path,
@@ -113,15 +147,36 @@ class AddFieldToPluginCommand(sublime_plugin.WindowCommand):
                            {'tag': 'folder', 'text': 'forms'})
         Project().refresh()
 
-    def is_enabled(self):
-        return Project().has_directories() and Project().has_valid_manifest() \
-            and Project().type() == 'plugin'
+    def is_enabled(self, paths):
+        if Project().type() == 'plugin':
+            return True
+        elif Project().type() == 'package':
+            if len(paths) == 1:
+                path = paths[0] if os.path.isdir(paths[0]) \
+                    else os.path.dirname(paths[0])
+                for f in os.listdir(path):
+                    if f.endswith('.xml') and \
+                            Manifest(os.path.join(path, f)).is_manifest() and \
+                            Manifest(os.path.join(path, f)).type() == 'plugin':
+                        return True
+
+        return False
 
 
 class AddInstallScriptToPluginCommand(sublime_plugin.WindowCommand):
 
-    def run(self):
-        self.extension = Plugin()
+    def run(self, paths):
+        path = None if Project().type() == 'plugin' else paths[0]
+
+        if path is not None:
+            path = path if os.path.isdir(path) else os.path.dirname(path)
+            self.extension = Plugin(os.path.basename(path))
+            self.extension.path(path)
+        else:
+            self.extension = Plugin()
+            self.extension.path(os.path.join(Project().root(),
+                                             self.extension.fullname))
+
         if self.extension.add_file('script.php',
                                    'joomla-header\njoomla-installer-script'):
 
@@ -132,20 +187,41 @@ class AddInstallScriptToPluginCommand(sublime_plugin.WindowCommand):
                            {'tag': 'files', 'text': None})
         Project().refresh()
 
-    def is_enabled(self):
-        return Project().has_directories() and Project().has_valid_manifest() \
-            and Project().type() == 'plugin'
+    def is_enabled(self, paths):
+        if Project().type() == 'plugin':
+            return True
+        elif Project().type() == 'package':
+            if len(paths) == 1:
+                path = paths[0] if os.path.isdir(paths[0]) \
+                    else os.path.dirname(paths[0])
+                for f in os.listdir(path):
+                    if f.endswith('.xml') and \
+                            Manifest(os.path.join(path, f)).is_manifest() and \
+                            Manifest(os.path.join(path, f)).type() == 'plugin':
+                        return True
+
+        return False
 
 
 class AddTemplateToPluginCommand(sublime_plugin.WindowCommand):
 
-    def run(self):
+    def run(self, paths):
         Helper().show_input_panel("Type Template name: ", "default",
-                                  self.on_done, None, Helper().on_cancel)
+                                  functools.partial(self.on_done, paths[0]),
+                                  None, Helper().on_cancel)
 
-    def on_done(self, name):
+    def on_done(self, path, name):
         name = name if name.endswith('.php') else name + '.php'
-        self.extension = Plugin()
+        path = None if Project().type() == 'plugin' else path
+
+        if path is not None:
+            path = path if os.path.isdir(path) else os.path.dirname(path)
+            self.extension = Plugin(os.path.basename(path))
+            self.extension.path(path)
+        else:
+            self.extension = Plugin()
+            self.extension.path(os.path.join(Project().root(),
+                                             self.extension.fullname))
 
         if self.extension.add_folder('tmpl') \
             and self.extension.add_file(os.path.join('tmpl', name),
@@ -159,21 +235,42 @@ class AddTemplateToPluginCommand(sublime_plugin.WindowCommand):
                             'text': '%s.php' % self.extension.name})
         Project().refresh()
 
-    def is_enabled(self):
-        return Project().has_directories() and Project().has_valid_manifest() \
-            and Project().type() == 'plugin'
+    def is_enabled(self, paths):
+        if Project().type() == 'plugin':
+            return True
+        elif Project().type() == 'package':
+            if len(paths) == 1:
+                path = paths[0] if os.path.isdir(paths[0]) \
+                    else os.path.dirname(paths[0])
+                for f in os.listdir(path):
+                    if f.endswith('.xml') and \
+                            Manifest(os.path.join(path, f)).is_manifest() and \
+                            Manifest(os.path.join(path, f)).type() == 'plugin':
+                        return True
+
+        return False
 
 
 class AddLayoutToPluginCommand(sublime_plugin.WindowCommand):
 
-    def run(self):
+    def run(self, paths):
         Helper().show_input_panel("Type Layout context: ",
                                   "joomla.edit.title_alias",
-                                  self.on_done, None, Helper().on_cancel)
+                                  functools.partial(self.on_done, paths[0]),
+                                  None, Helper().on_cancel)
 
-    def on_done(self, name):
+    def on_done(self, path, name):
         name = re.sub('\.php$', '', re.sub('\.', '/', name))
-        self.extension = Plugin()
+        path = None if Project().type() == 'plugin' else path
+
+        if path is not None:
+            path = path if os.path.isdir(path) else os.path.dirname(path)
+            self.extension = Plugin(os.path.basename(path))
+            self.extension.path(path)
+        else:
+            self.extension = Plugin()
+            self.extension.path(os.path.join(Project().root(),
+                                             self.extension.fullname))
 
         if self.extension.add_folder('layouts') \
             and self.extension.add_file(os.path.join('layouts', name),
@@ -186,6 +283,17 @@ class AddLayoutToPluginCommand(sublime_plugin.WindowCommand):
                            {'tag': 'folder', 'text': 'tmpl'})
         Project().refresh()
 
-    def is_enabled(self):
-        return Project().has_directories() and Project().has_valid_manifest() \
-            and Project().type() == 'plugin'
+    def is_enabled(self, paths):
+        if Project().type() == 'plugin':
+            return True
+        elif Project().type() == 'package':
+            if len(paths) == 1:
+                path = paths[0] if os.path.isdir(paths[0]) \
+                    else os.path.dirname(paths[0])
+                for f in os.listdir(path):
+                    if f.endswith('.xml') and \
+                            Manifest(os.path.join(path, f)).is_manifest() and \
+                            Manifest(os.path.join(path, f)).type() == 'plugin':
+                        return True
+
+        return False

@@ -9,5 +9,4 @@
 ]]></content>
 	<tabTrigger>joomla-header-ini</tabTrigger>
   <scope>source.ini</scope>
-  <description>Add header to files INI</description>
 </snippet>

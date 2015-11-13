@@ -1,9 +1,0 @@
-<snippet>
-  <content><![CDATA[COM_${1:PROJECT}_FIELD_SHOW_CATEGORY_DESC="Permite a exibição do título da categoria de ${2:Plural}."
-COM_${1/(.+)/\U\1/g}_FIELD_LINK_CATEGORY_DESC="Vincula o título da categoria a um esquema que exibirá ${2/(.+)/\u\1/g} desta categoria."
-COM_${1/(.+)/\U\1/g}_FIELD_SHOW_PARENT_CATEGORY_DESC="Permite a exibição do título da categoria pai de ${2/(.+)/\u\1/g}."
-COM_${1/(.+)/\U\1/g}_FIELD_SHOW_PARENT_CATEGORY_DESC="Vincula o título da categoria pai a um esquema que exibirá ${2/(.+)/\u\1/g} desta categoria."]]></content>
-  <tabTrigger>joomla-admin-language-config-fields-category</tabTrigger>
-  <scope>source.ini, text.plain</scope>
-  <description>Adds extra component config fields category into ini files</description>
-</snippet>

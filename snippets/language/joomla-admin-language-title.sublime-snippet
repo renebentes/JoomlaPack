@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[; Titles
+COM_${1:PROJECT}_${2:PLURAL}_TITLE="$3"
+COM_${1/(.+)/\U\1/g}_VIEW_${4:SINGULAR}_TITLE="$5"
+COM_${1/(.+)/\U\1/g}_ADD_${4/(.+)/\U\1/g}_TITLE="$6"
+COM_${1/(.+)/\U\1/g}_EDIT_${4/(.+)/\U\1/g}_TITLE="$7"
+]]></content>
+  <tabTrigger>joomla-admin-language-title</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

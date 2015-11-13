@@ -1,2 +1,2 @@
 joomla-header
-joomla-admin-layout-list-modal
+joomla-admin-view-list-layout-modal

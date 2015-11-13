@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[; Fieldsets
+COM_${1:PROJECT}_${2:VIEW}_FIELDSET_DETAILS_LABEL="${3:Detalhes de Conteúdo}"
+COM_${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_FIELDSET_PUBLISHING_LABEL="${4:Detalhes de Publicação}"
+COM_${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_FIELDSET_EDITORCONFIG_LABEL="${5:Configurações da Tela de Edição}"
+COM_${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_FIELDSET_PARAMS_LABEL="${6:Opções de Exibição}"
+COM_${1/(.+)/\U\1/g}_${2/(.+)/\U\1/g}_FIELDSET_RULES_LABEL="${7:Permissões de Acesso}"
+]]></content>
+  <tabTrigger>joomla-admin-language-fieldsets</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

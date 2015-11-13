@@ -1,6 +1,7 @@
 # coding: utf-8
 import sublime
 import sublime_plugin
+import os
 
 st_version = int(sublime.version())
 
@@ -21,5 +22,28 @@ class NewComponentCommand(sublime_plugin.WindowCommand):
 
     def on_done(self, name):
         self.extension = Component(name)
-        if self.extension.create():
-            self.extension.set_project()
+
+        if Project().type() == 'package':
+            self.package = Package()
+            self.extension.path(os.path.join(self.package.path,
+                                             'packages',
+                                             self.extension.fullname))
+
+            if self.extension.create():
+                Manifest(os.path.join(self.package.path,
+                                      '%s.xml' % self.package.name)) \
+                    .add_child('files', {
+                        'tag': 'file',
+                        'text': '%s.zip' % self.extension.fullname,
+                        'attribs': {
+                            'type': 'component',
+                            'id': self.extension.fullname,
+                        }
+                    })
+                Project().refresh()
+        else:
+            self.extension.path(os.path.join(Project().root(),
+                                             self.extension.fullname))
+
+            if self.extension.create():
+                self.extension.set_project()

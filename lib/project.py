@@ -98,7 +98,7 @@ class Project:
         '''
         Returns the project type.
         '''
-        if self.has_opened_project():
+        if self.has_opened_project() and self.has_valid_manifest():
             for f in os.listdir(self.get_directories()[0]):
                 if f.endswith('.xml'):
                     return Manifest(os.path.join(self.get_directories()[0],

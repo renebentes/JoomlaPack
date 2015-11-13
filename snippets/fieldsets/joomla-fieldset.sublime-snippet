@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[<fieldset
+  name="${1:basic}"
+  label="${2:COM}_${3:PROJECT}_${4:VIEWNAME_OR_PARAMETER_}FIELDSET_${1/(.+)/\U\1/g}_LABEL"
+  description="${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}FIELDSET_${1/(.+)/\U\1/g}_DESC"
+>
+</fieldset>
+]]></content>
+	<tabTrigger>joomla-fieldset</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>

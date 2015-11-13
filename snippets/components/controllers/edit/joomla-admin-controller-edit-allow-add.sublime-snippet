@@ -1,0 +1,35 @@
+<snippet>
+	<content><![CDATA[/**
+ * Method override to check if you can add a new ${1:Singular}.
+ *
+ * @param   array    \$data  An array of input data.
+ *
+ * @return  boolean
+ *
+ * @since   ${2:0.1.0}
+ */
+protected function allowAdd(\$data = array())
+{
+  \$user       = JFactory::getUser();
+  \$categoryId = JArrayHelper::getValue(\$data, 'catid', \$this->input->getInt('filter_category_id'), 'int');
+  \$allow      = null;
+
+  if (\$categoryId)
+  {
+    // If the category has been passed in the data or URL check it.
+    \$allow = \$user->authorise('core.create', 'com_${3:project}.category.' . \$categoryId);
+  }
+
+  if (\$allow === null)
+  {
+    // In the absense of better information, revert to the component permissions.
+    return parent::allowAdd();
+  }
+  else
+  {
+    return \$allow;
+  }
+}]]></content>
+	<tabTrigger>joomla-admin-controller-edit-allow-add</tabTrigger>
+  <scope>source.php</scope>
+</snippet>

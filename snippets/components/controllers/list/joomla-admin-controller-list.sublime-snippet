@@ -1,0 +1,30 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Plural} list controller class.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  Components.${2:Project}
+ * @since       ${3:0.1.0}
+ */
+class ${2/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerAdmin
+{
+  /**
+   * Method to get a model object, loading it if required.
+   *
+   * @param   string  \$name    The model name. Optional.
+   * @param   string  \$prefix  The class prefix. Optional.
+   * @param   array   \$config  Configuration array for model. Optional.
+   *
+   * @return  object           The model.
+   *
+   * @since   $3
+   */
+  public function getModel(\$name = '${4:Singular}', \$prefix = '${2/(.+)/\u\1/g}Model', \$config = array('ignore_request' => true))
+  {
+    return parent::getModel(\$name, \$prefix, \$config);
+  }
+}
+]]></content>
+  <tabTrigger>joomla-admin-controller-list</tabTrigger>
+  <scope>source.php</scope>
+</snippet>

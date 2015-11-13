@@ -22,19 +22,12 @@ class Base(object):
         '''
         Defines path to extensions.
         '''
-        self.path = os.path.join(Project().root(), path)
+        self.path = path
 
     def create(self):
         '''
         Creates structure to extensions.
         '''
-
-        if Project().type() == 'package':
-            self.path(os.path.join(Project().get_directories()[0],
-                                   'packages', self.fullname))
-        else:
-            self.path(self.fullname)
-
         if os.path.exists(self.path):
             if not Helper().show_message("confirm",
                                          "[Confirm] Project %s already exists!"

@@ -2,9 +2,9 @@
   <content><![CDATA[/**
  * Add Content Type for ${1:Plural}
  *
- * @return void
+ * @return  void
  *
- * @since  ${2:0.1.0}
+ * @since   ${2:0.1.0}
  */
 private function _addContentType()
 {
@@ -39,23 +39,23 @@ private function _addContentType()
     \$common->core_alias           = 'alias';
     \$common->core_created_time    = 'created';
     \$common->core_modified_time   = 'modified';
-    \$common->core_body            = '${7:null}';
+    \$common->core_body            = ${7:null};
     \$common->core_hits            = 'hits';
     \$common->core_publish_up      = 'publish_up';
     \$common->core_publish_down    = 'publish_down';
     \$common->core_access          = 'access';
     \$common->core_params          = 'params';
-    \$common->core_featured        = '${8:null}';
+    \$common->core_featured        = ${8:null};
     \$common->core_metadata        = 'metadata';
     \$common->core_language        = 'language';
     \$common->core_images          = 'images';
-    \$common->core_urls            = '${9:null}';
+    \$common->core_urls            = ${9:null};
     \$common->core_version         = 'version';
     \$common->core_ordering        = 'ordering';
     \$common->core_metakey         = 'metakey';
     \$common->core_metadesc        = 'metadesc';
-    \$common->core_catid           = '${10:null}';
-    \$common->core_xreference      = '${11:null}';
+    \$common->core_catid           = ${10:null};
+    \$common->core_xreference      = ${11:null};
     \$common->asset_id             = 'asset_id';
 
     // Special fields columns
@@ -90,12 +90,6 @@ private function _addContentType()
     );
 
     \$displayLookup = array(
-      array(
-        'sourceColumn' => 'catid',
-        'targetTable' => '#__categories',
-        'targetColumn' => 'id',
-        'displayColumn' => 'title'
-      ),
       array(
         'sourceColumn'  => 'created_by',
         'targetTable'   => '#__users',
@@ -136,5 +130,4 @@ private function _addContentType()
 }]]></content>
   <tabTrigger>joomla-installer-script-contenttype-simple</tabTrigger>
   <scope>source.php</scope>
-  <description>Adds _addContentType method into install script (no category).</description>
 </snippet>

@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[// Prepare Content Types and Category
+if (\$route == 'install' || \$route == 'discover_install')
+{
+  \$this->_addCategory();
+  \$this->_addContentType();
+  \$this->_addContentTypeCategory();
+}
+]]></content>
+  <tabTrigger>joomla-installer-script-postflight-prepare-content</tabTrigger>
+  <scope>source.php</scope>
+</snippet>

@@ -69,8 +69,8 @@ class Manifest(File):
             bool: True if XML file is manfest valid, false otherwise.
         """
         xml = self.read()
-        return True if xml is not None \
-            and xml.documentElement.tagName == 'extension' else False
+        return xml is not None \
+            and xml.documentElement.tagName == 'extension'
 
     def type(self):
         xml = self.read()
@@ -108,7 +108,7 @@ class Manifest(File):
             return False
 
         if parent is None or parent == '':
-            parent = xml
+            parent = xml.getElementsByTagName('extension')
         else:
             parent = xml.getElementsByTagName(parent)
             if parent.length == 0:
@@ -138,8 +138,9 @@ class Manifest(File):
                     if nodeRef.nodeType == nodeRef.ELEMENT_NODE \
                             and nodeRef.tagName == childRef['tag']:
                         for childNode in nodeRef.childNodes:
-                            if childNode.nodeType == childNode.TEXT_NODE \
-                               and childNode.data == childRef['text']:
+                            if childRef['text'] is None or \
+                                    childNode.nodeType == childNode.TEXT_NODE \
+                                    and childNode.data == childRef['text']:
                                 found = True
                     if found:
                         break

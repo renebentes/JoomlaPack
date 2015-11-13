@@ -107,37 +107,36 @@ class English(Base):
             ]
         }
 
-        if Base.pluralize(word) is None:
-            word_lower = word.lower()
-            for countable in rules['countable']:
-                if word_lower[-1 * len(countable):] == countable:
-                    self.cache['pluralized'][word] = word
-                    return self.cache['pluralized'][word]
+        word = word.lower()
 
-            for irregular in rules['irregular'].keys():
-                match = re.search('(' + irregular + ')$', word, re.IGNORECASE)
-                if match:
-                    self.cache['pluralized'][word] = re.sub(
-                        '(?i)' + irregular + '$', match.expand('\\1')[0] +
-                        rules['irregular'][irregular][1:], word)
-                    return self.cache['pluralized'][word]
+        for key, value in self.cache.items():
+            if word == key or word == value:
+                return value
 
-            for rule in range(0, len(rules['regular'])):
-                match = re.search(
-                    rules['regular'][rule][0], word, re.IGNORECASE)
-                if match:
-                    groups = match.groups()
-                    for k in range(0, len(groups)):
-                        if groups[k] is None:
-                            rules['regular'][rule][1] = rules['regular'][
-                                rule][1].replace('\\' + str(k + 1), '')
-                    self.cache['pluralized'][word] = re.sub(
-                        rules['regular'][rule][0], rules['regular'][rule][1],
-                        word)
-                    return self.cache['pluralized'][word]
+        if word in rules['countable']:
+            self.cache[word] = word
+            return word
 
-        self.cache['pluralized'][word] = word
-        return self.cache['pluralized'][word]
+        for key, value in rules['irregular'].items():
+            if word == key or word == value:
+                self.cache[key] = value
+                return value
+
+        for rule in range(0, len(rules['regular'])):
+            match = re.search(rules['regular'][rule][0], word,
+                              re.IGNORECASE)
+            if match:
+                groups = match.groups()
+                for k in range(0, len(groups)):
+                    if groups[k] is None:
+                        rules['regular'][rule][1] = rules['regular'][
+                            rule][1].replace('\\' + str(k + 1), '')
+                self.cache[word] = re.sub(rules['regular'][rule][0],
+                                          rules['regular'][rule][1],
+                                          word)
+                return self.cache[word]
+
+        return Base.pluralize(self, word)
 
     def singularize(self, word):
         '''
@@ -192,13 +191,13 @@ class English(Base):
                 'men': 'man',
                 # 'mementos': 'memento',
                 # 'memos': 'memo',
-                'moves': 'move',
+                # 'moves': 'move',
                 'people': 'person',
                 # 'pianos': 'piano',
                 # 'photos': 'photo',
                 # 'pros': 'pro',
                 # 'safes': 'safe',
-                'sexes': 'sex',
+                # 'sexes': 'sex',
                 # 'silos': 'silo',
                 # 'solos': 'solo',
                 'staves': 'staff',
@@ -234,33 +233,37 @@ class English(Base):
             ]
         }
 
-        if Base.singularize(word) is None:
-            word_lower = word.lower()
-            for countable in rules['countable']:
-                if word_lower[-1 * len(countable):] == countable:
-                    return word
+        word = word.lower()
 
-            for irregular in rules['irregular'].keys():
-                match = re.search('(' + irregular + ')$', word, re.IGNORECASE)
-                if match:
-                    self.cache['singularized'][word] = re.sub(
-                        '(?i)' + irregular + '$', match.expand('\\1')[0] +
-                        rules['irregular'][irregular][1:], word)
-                    return self.cache['singularized'][word]
+        for key, value in self.cache.items():
+            if word == key or word == value:
+                return key
 
-            for rule in range(0, len(rules['regular'])):
-                match = re.search(
-                    rules['regular'][rule][0], word, re.IGNORECASE)
-                if match:
-                    groups = match.groups()
-                    for k in range(0, len(groups)):
-                        if groups[k] is None:
-                            rules['regular'][rule][1] = rules['regular'][
-                                rule][1].replace('\\' + str(k + 1), '')
-                    self.cache['singularized'][word] = re.sub(
-                        rules['regular'][rule][0], rules['regular'][rule][1],
-                        word)
-                    return self.cache['singularized'][word]
+        if word in rules['countable']:
+            self.cache[word] = word
+            return word
 
-        self.cache['singularized'][word] = word
-        return self.cache['singularized'][word]
+        for key, value in rules['irregular'].items():
+            if word == key or word == value:
+                self.cache[value] = key
+                return value
+
+        for rule in range(0, len(rules['regular'])):
+            match = re.search(rules['regular'][rule][0], word)
+            if match is not None:
+                groups = match.groups()
+                for k in range(0, len(groups)):
+                    if groups[k] is None:
+                        rules['regular'][rule][1] = rules['regular'][
+                            rule][1].replace('\\' + str(k + 1), '')
+
+                key = re.sub(rules['regular'][rule][0],
+                             rules['regular'][rule][1],
+                             word)
+                self.cache[key] = word
+                return key
+
+        return Base.singularize(self, word)
+
+    def __str__(self):
+        return "JoomlaPack: English Inflector"

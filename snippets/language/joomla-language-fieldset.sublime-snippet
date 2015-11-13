@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[${1:COM}_${2:PROJECT}_${3:VIEWNAME_OR_PARAMETER_}FIELDSET_${4:NAME}_LABEL="$5"
+${1:COM}_${2:PROJECT}_${3/(.+)/\U\1/g}FIELDSET_${4/(.+)/\U\1/g}_DESC="$6"
+]]></content>
+  <tabTrigger>joomla-language-fieldset</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

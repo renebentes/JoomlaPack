@@ -1,0 +1,48 @@
+<snippet>
+	<content><![CDATA[-- 0.1.0
+CREATE TABLE IF NOT EXISTS `#__${1:project}` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to the #__assets table.',
+  `${2:title}` VARCHAR(255) NOT NULL DEFAULT '',
+  `alias` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `description` TEXT NOT NULL,
+  `${3:state}` TINYINT(3) NOT NULL DEFAULT '0',
+  `catid` INT(11) NOT NULL DEFAULT '0',
+  `hits` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `ordering` INT(11) NOT NULL DEFAULT '0',
+  `access` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `params` TEXT NOT NULL,
+  `images` TEXT NOT NULL,
+  `language` CHAR(7) NOT NULL COMMENT 'The language code for the ${4:singular}.',
+  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publish_up` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publish_down` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` INT(10) UNSIGNED NOT NULL DEFAULT '1',
+  `metakey` TEXT NOT NULL,
+  `metadesc` TEXT NOT NULL,
+  `metadata` TEXT NOT NULL,
+  `featured` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Set if ${4/(.+)/\L\1/g} is featured.',
+  `xreference` VARCHAR(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  PRIMARY KEY (`id`),
+  INDEX `idx_asset_id` (`asset_id`),
+  INDEX `idx_access` (`access`),
+  INDEX `idx_checkout` (`checked_out`),
+  INDEX `idx_state` (`state`),
+  INDEX `idx_catid` (`catid`),
+  INDEX `idx_createdby` (`created_by`),
+  INDEX `idx_featured_catid` (`featured`,`catid`),
+  INDEX `idx_language` (`language`),
+  INDEX `idx_xreference` (`xreference`),
+  FOREIGN KEY (`asset_id`) REFERENCES `#__assets` (`id`),
+  FOREIGN KEY (`catid`) REFERENCES `#__categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+]]></content>
+	<tabTrigger>joomla-mysql-create</tabTrigger>
+  <scope>source.sql</scope>
+</snippet>

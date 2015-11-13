@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[<field
+	name="${1:title}"
+	type="${2:list}"
+	label="${3:COM}_${4:PROJECT}_FIELD_${1/(.+)/\U\1/g}_LABEL"
+	description="${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}_FIELD_${1/(.+)/\U\1/g}_DESC"
+  default=""
+>
+  <option value="">JGLOBAL_USE_GLOBAL</option>
+</field>]]></content>
+	<tabTrigger>joomla-add-field-list</tabTrigger>
+	<scope>text.xml</scope>
+  <description>Adds list field in xml forms</description>
+</snippet>

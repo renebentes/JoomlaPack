@@ -2,28 +2,26 @@
   <content><![CDATA[/**
  * Script file of ${1:Project} ${2:Component}
  *
- * @package    Joomla.${3:Administrator}
- * @subpackage ${4:Components}.${1/(.+)/\u\1/g}
+ * @package     Joomla.${3:Administrator}
+ * @subpackage  ${4:Components}.${1/(.+)/\u\1/g}
  *
- * @since      ${5:0.1.0}
+ * @since       ${5:0.1.0}
  */
 class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
 {
   /**
    * Extension name
    *
-   * @var   string
-   *
-   * @since $5
+   * @var    string
+   * @since  $5
    */
   private \$_extension = '${6/(.+)/\L\1/g}_${7/(.+)/\L\1_/g}${1/(.+)/\L\1/g}';
 
   /**
    * Version release
    *
-   * @var   string
-   *
-   * @since $5
+   * @var    string
+   * @since  $5
    */
   private \$_release = '';
 
@@ -33,9 +31,8 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
    *    /path/to/file.ext
    *    /path/to/folder
    *
-   * @var   array
-   *
-   * @since $5
+   * @var    array
+   * @since  $5
    */
   private \$_obsoletes = array(
     'files'   => array(
@@ -47,11 +44,11 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method to install the ${2/(.+)/\L\1/g}
    *
-   * @param  JAdapterInstance \$adapter The object responsible for running this script.
+   * @param   JAdapterInstance  \$adapter  The object responsible for running this script.
    *
-   * @return boolean True on success.
+   * @return  boolean                     True on success.
    *
-   * @since  $5
+   * @since   $5
    */
   public function install(JAdapterInstance \$adapter)
   {
@@ -61,11 +58,11 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method to uninstall the ${2/(.+)/\L\1/g}
    *
-   * @param  JAdapterInstance \$adapter The object responsible for running this script.
+   * @param   JAdapterInstance  \$adapter  The object responsible for running this script.
    *
-   * @return boolean True on success.
+   * @return  boolean                     True on success.
    *
-   * @since  $5
+   * @since   $5
    */
   public function uninstall(JAdapterInstance \$adapter)
   {
@@ -75,11 +72,11 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method to update the ${2/(.+)/\L\1/g}
    *
-   * @param  JAdapterInstance \$adapter The object responsible for running this script.
+   * @param   JAdapterInstance  \$adapter  The object responsible for running this script.
    *
-   * @return boolean True on success.
+   * @return  boolean                     True on success.
    *
-   * @since  $5
+   * @since   $5
    */
   public function update(JAdapterInstance \$adapter)
   {
@@ -89,12 +86,12 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method to run before an install/update/uninstall method
    *
-   * @param  string           \$route   Which action is happening (install|uninstall|discover_install).
-   * @param  JAdapterInstance \$adapter The object responsible for running this script.
+   * @param   string            \$route    Which action is happening (install|uninstall|discover_install).
+   * @param   JAdapterInstance  \$adapter  The object responsible for running this script.
    *
-   * @return boolean True on success.
+   * @return  boolean                     True on success.
    *
-   * @since  $5
+   * @since   $5
    */
   public function preflight(\$route, JAdapterInstance \$adapter)
   {
@@ -107,12 +104,12 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method to run after an install/update/uninstall method
    *
-   * @param  string           \$route   Which action is happening (install|uninstall|discover_install).
-   * @param  JAdapterInstance \$adapter The object responsible for running this script.
+   * @param   string            \$route    Which action is happening (install|uninstall|discover_install).
+   * @param   JAdapterInstance  \$adapter  The object responsible for running this script.
    *
-   * @return boolean True on success.
+   * @return  boolean                     True on success.
    *
-   * @since  $5
+   * @since   $5
    */
   public function postflight(\$route, JAdapterInstance \$adapter)
   {
@@ -125,11 +122,11 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Method for checking compatibility installation environment
    *
-   * @param  JAdapterInstance \$adapter The object responsible for running this script.
+   * @param   JAdapterInstance  \$adapter  The object responsible for running this script.
    *
-   * @return boolean True if the installation environment is compatible
+   * @return  boolean                     True if the installation environment is compatible
    *
-   * @since  $5
+   * @since   $5
    */
   private function _checkCompatible(\$route, JAdapterInstance \$adapter)
   {
@@ -162,9 +159,9 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Removes obsoletes files and folders
    *
-   * @return void
+   * @return  void
    *
-   * @since  $5
+   * @since   $5
    */
   private function _removeObsoletes()
   {
@@ -200,11 +197,11 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
   /**
    * Get a variable from the manifest cache.
    *
-   * @param  string \$name Column name
+   * @param   string  \$name  Column name
    *
-   * @return string Value of column name
+   * @return  string         Value of column name
    *
-   * @since  $5
+   * @since   $5
    */
   private function _getParam(\$name)
   {
@@ -223,5 +220,4 @@ class ${6:Com}$7${1/(.+)/\u\1/g}InstallerScript
 }]]></content>
   <tabTrigger>joomla-installer-script</tabTrigger>
   <scope>source.php</scope>
-  <description>Add installer script to extensions.</description>
 </snippet>

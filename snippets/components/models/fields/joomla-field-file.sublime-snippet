@@ -1,0 +1,40 @@
+<snippet>
+	<content><![CDATA[JFormHelper::loadFieldClass('file');
+
+/**
+ * ${1:${TM_FILENAME/(.*?)(\..+)/\u$1/g}} Field class for the ${2:Project}.
+ *
+ * @package     Joomla.${3:Administrator}
+ * @subpackage  ${4:Components}.${2/(.+)/\u\1/g}
+ * @since       ${5:0.1.0}
+ */
+class JFormField${1/(.+)/\u\1/g} extends JFormFieldFile
+{
+	/**
+   * The form field type.
+   *
+   * @var    string
+   * @since  $5
+   */
+  public \$type = '${1/(.+)/\u\1/g}';
+
+  /**
+   * Method to get the field input markup.
+   *
+   * @return  string  The field input markup.
+   *
+   * @since   $5
+   */
+  protected function getInput()
+  {
+    \$html = array();
+
+    ${6://Code Here}
+
+    return implode("\n", \$html);
+  }
+}]]>
+	</content>
+	<tabTrigger>joomla-field-file</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

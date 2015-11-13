@@ -51,8 +51,10 @@
     <position>usermenu</position>
   </positions>
   <languages folder="language">
-    <language tag="${12:pt-BR}">$12/$12.tpl_${3/(.+)/\L\1/g}.ini</language>
-    <language tag="$12">$12/$12.tpl_${3/(.+)/\L\1/g}.sys.ini</language>
+    <language tag="en-GB">en-GB/en-GB.tpl_${2/(.+)/\L\1/g}.ini</language>
+    <language tag="en-GB">en-GB/en-GB.tpl_${2/(.+)/\L\1/g}.sys.ini</language>
+    <language tag="pt-BR">pt-BR/pt-BR.tpl_${2/(.+)/\L\1/g}.ini</language>
+    <language tag="pt-BR">pt-BR/pt-BR.tpl_${2/(.+)/\L\1/g}.sys.ini</language>
   </languages>
   <config>
     <fields name="params">

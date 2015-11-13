@@ -2,11 +2,11 @@
   <content><![CDATA[/**
  * Enable ${1:Project} ${2:Extension}
  *
- * @param  string \$name The name of extension to enable
+ * @param   string  \$name  The name of extension to enable
  *
- * @return void
+ * @return  void
  *
- * @since  ${3:0.1.0}
+ * @since   ${3:0.1.0}
  */
 private function _enableExtension(\$name)
 {
@@ -33,5 +33,4 @@ private function _enableExtension(\$name)
 }]]></content>
   <tabTrigger>joomla-installer-script-enable</tabTrigger>
   <scope>source.php</scope>
-  <description>Adds _enableExtension method into install script.</description>
 </snippet>

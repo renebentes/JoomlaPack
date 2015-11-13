@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[; Messages
+COM_${1:PROJECT}_N_ITEMS_ARCHIVED="%d ${3:Plural} arquivad${4:o}s com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_ARCHIVED_0="Nenhum$4 ${5:Singular} arquivad${4/(.+)/\L\1/g}."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_ARCHIVED_1="%d ${5/(.+)/\L\1/g} arquivad${4/(.+)/\L\1/g} com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_CHECKED_IN_MORE="%d ${3/(.+)/\L\1/g}(s) desbloquead${4/(.+)/\L\1/g}s com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_CHECKED_IN_0="Nenhum${4/(.+)/\L\1/g} ${5/(.+)/\L\1/g} desbloquead${4/(.+)/\L\1/g}."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_CHECKED_IN_1="%d ${5/(.+)/\L\1/g} desbloquead${4/(.+)/\L\1/g} com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_DELETED="%d ${3/(.+)/\L\1/g}s deletad${4/(.+)/\L\1/g}s com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_DELETED_0="Nenhum${4/(.+)/\L\1/g} ${5/(.+)/\L\1/g} deletad${4/(.+)/\L\1/g}."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_DELETED_1="%d ${5/(.+)/\L\1/g} deletad${4/(.+)/\L\1/g} com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_PUBLISHED="%d ${3/(.+)/\L\1/g}s publicad${4/(.+)/\L\1/g}s com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_PUBLISHED_0="Nenhum${4/(.+)/\L\1/g} ${5/(.+)/\L\1/g} publicad${4/(.+)/\L\1/g}."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_PUBLISHED_1="%d ${5/(.+)/\L\1/g} publicad${4/(.+)/\L\1/g} com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_TRASHED="%d ${3/(.+)/\L\1/g}s enviad${4/(.+)/\L\1/g}s para a lixeira com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_TRASHED_0="Nenhum${4/(.+)/\L\1/g} ${5/(.+)/\L\1/g} enviad${4/(.+)/\L\1/g} para a lixeira."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_TRASHED_1="%d ${5/(.+)/\L\1/g} enviad${4/(.+)/\L\1/g} para a lixeira com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_UNPUBLISHED="%d ${3/(.+)/\L\1/g}(s) despublicad${4/(.+)/\L\1/g}s com sucesso."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_UNPUBLISHED_0="Nenhum${4/(.+)/\L\1/g} ${5/(.+)/\L\1/g} despublicad${4/(.+)/\L\1/g}."
+COM_${1/(.+)/\U\1/g}_N_ITEMS_UNPUBLISHED_1="%d ${5/(.+)/\L\1/g} despublicad${4/(.+)/\L\1/g} com sucesso."
+]]></content>
+  <tabTrigger>joomla-language-list-messages</tabTrigger>
+  <scope>source.ini</scope>
+</snippet>

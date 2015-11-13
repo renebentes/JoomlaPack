@@ -1,6 +1,31 @@
-     00
-     00
-     00
-00   00
-00   00
-  000
+     _                       _       ____            _
+    | | ___   ___  _ __ ___ | | __ _|  _ \ __ _  ___| | __
+ _  | |/ _ \ / _ \| '_ ` _ \| |/ _` | |_) / _` |/ __| |/ /
+| |_| | (_) | (_) | | | | | | | (_| |  __/ (_| | (__|   <
+ \___/ \___/ \___/|_| |_| |_|_|\__,_|_|   \__,_|\___|_|\_\
+
+Obrigado por instalar este pacote.
+
+Para mais informações, por favor visite http://github.com/renebentes/sublime-joomla.
+
+Note que você talvez precise reiniciar o Sublime Text após instalar este pacote.
+
+Se você tiver dúvidas, comentários, ou encontrar problemas ao utilizar o pacote, por favor me avise!
+
+Espero que gostem e que seja útil.
+
+Obrigado!
+
+================================================================================
+
+Thank you for installing this package.
+
+For more informations, please visit http://github.com/renebentes/sublime-joomla.
+
+Note you may need to restart Sublime Text after installing this package.
+
+If you have questions, comments, or find problems using the package, please let me know!
+
+I hope you enjoy it and you find it useful.
+
+Thank you!

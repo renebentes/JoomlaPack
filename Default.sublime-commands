@@ -1,10 +1,5 @@
 [
   { "caption": "Joomla Pack: New Component", "command": "new_component", "args": {} },
   { "caption": "Joomla Pack: New Package", "command": "new_package", "args": {} },
-  { "caption": "Joomla Pack: New Plugin", "command": "new_plugin", "args": {} },
-  { "caption": "Joomla Pack: Add Form To Plugin", "command": "add_form_to_plugin", "args": {} },
-  { "caption": "Joomla Pack: Add Field To Plugin", "command": "add_field_to_plugin", "args": {} },
-  { "caption": "Joomla Pack: Add Install Script To Plugin", "command": "add_install_script_to_plugin", "args": {} },
-  { "caption": "Joomla Pack: Add Template To Plugin", "command": "add_template_to_plugin", "args": {} },
-  { "caption": "Joomla Pack: Add Layout To Plugin", "command": "add_layout_to_plugin", "args": {} }
+  { "caption": "Joomla Pack: New Plugin", "command": "new_plugin", "args": {} }
 ]

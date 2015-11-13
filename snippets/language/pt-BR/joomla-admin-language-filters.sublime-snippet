@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[; Filters
+COM_${1:PROJECT}_FILTER_SEARCH_LABEL="Pesquisar"
+COM_${1/(.+)/\U\1/g}_FILTER_SEARCH_DESC="Pesquisa através do ${2:Título} ou Apelido. Caso queira, acrescente 'id:' (sem aspas) para pesquisar através do id."
+COM_${1/(.+)/\U\1/g}_FILTER_STATE_LABEL="Filtrar por Estado"
+COM_${1/(.+)/\U\1/g}_FILTER_STATE_DESC="Selecione uma opção para realizar o filtro pelo estado da publicação (Publicado, Não publicado, No Lixo, Arquivado)."
+COM_${1/(.+)/\U\1/g}_FILTER_AUTHOR_LABEL="Filtrar por Autor"
+COM_${1/(.+)/\U\1/g}_FILTER_AUTHOR_DESC="Selecione um nome de autor para o filtro."
+COM_${1/(.+)/\U\1/g}_FILTER_LIST_FULL_ORDERING_LABEL="Ordenação da Lista"
+COM_${1/(.+)/\U\1/g}_FILTER_LIST_FULL_ORDERING_DESC="Informe como ordenar a lista de ${3:Plural}."
+COM_${1/(.+)/\U\1/g}_FILTER_LIST_LIMIT_LABEL="${3/(.+)/\u\1/g} por página"
+COM_${1/(.+)/\U\1/g}_FILTER_LIST_LIMIT_DESC="Selecione a quantidade de ${3/(.+)/\u\1/g} a exibir por página."
+]]></content>
+  <tabTrigger>joomla-admin-language-filters</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

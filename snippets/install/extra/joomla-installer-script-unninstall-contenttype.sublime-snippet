@@ -1,5 +1,5 @@
 <snippet>
-  <content><![CDATA[// Delete ${1:project} Content Type for ${2:singular}
+  <content><![CDATA[// Delete ${1:Project} Content Type for ${2:singular}
 \$table = JTable::getInstance('Contenttype', 'JTable');
 
 if (\$table->load(array('type_alias' => 'com_${1/(.+)/\L\1/g}.${2/(.+)/\L\1/g}')))
@@ -8,5 +8,4 @@ if (\$table->load(array('type_alias' => 'com_${1/(.+)/\L\1/g}.${2/(.+)/\L\1/g}')
 }]]></content>
   <tabTrigger>joomla-installer-script-uninstall-contenttype</tabTrigger>
   <scope>source.php</scope>
-  <description>Add code for exclude Content Type into install script.</description>
 </snippet>

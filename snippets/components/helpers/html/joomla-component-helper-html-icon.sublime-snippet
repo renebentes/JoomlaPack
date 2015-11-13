@@ -2,14 +2,14 @@
 	<content><![CDATA[/**
  * Method to generate a link to the create item page for the given category
  *
- * @param  object   \$category The category information
- * @param  Registry \$params   The item parameters
- * @param  array    \$attribs  Optional attributes for the link
- * @param  boolean  \$legacy   True to use legacy images, false to use icomoon based graphic
+ * @param   object    \$category  The category information
+ * @param   Registry  \$params    The item parameters
+ * @param   array     \$attribs   Optional attributes for the link
+ * @param   boolean   \$legacy    True to use legacy images, false to use icomoon based graphic
  *
- * @return string The HTML markup for the create item link
+ * @return  string               The HTML markup for the create item link
  *
- * @since  ${1:0.1.0}
+ * @since   ${1:0.1.0}
  */
 public static function create(\$category, \$params, \$attribs = array(), \$legacy = false)
 {
@@ -55,14 +55,14 @@ public static function create(\$category, \$params, \$attribs = array(), \$legac
 /**
  * Method to generate a link to the email item page for the given ${3/(.+)/\l\1/g}
  *
- * @param  object   \$item    The ${3/(.+)/\l\1/g} information
- * @param  Registry \$params  The item parameters
- * @param  array    \$attribs Optional attributes for the link
- * @param  boolean  \$legacy  True to use legacy images, false to use icomoon based graphic
+ * @param   object    \$item     The ${3/(.+)/\l\1/g} information
+ * @param   Registry  \$params   The item parameters
+ * @param   array     \$attribs  Optional attributes for the link
+ * @param   boolean   \$legacy   True to use legacy images, false to use icomoon based graphic
  *
- * @return string The HTML markup for the email item link
+ * @return  string              The HTML markup for the email item link
  *
- * @since  $1
+ * @since   $1
  */
 public static function email(\$item, \$params, \$attribs = array(), \$legacy = false)
 {
@@ -119,12 +119,12 @@ public static function email(\$item, \$params, \$attribs = array(), \$legacy = f
  * This icon will not display in a popup window, nor if the ${3/(.+)/\l\1/g} is trashed.
  * Edit access checks must be performed in the calling code.
  *
- * @param  object   \$item    The ${3/(.+)/\l\1/g} information
- * @param  Registry \$params  The item parameters
- * @param  array    \$attribs Optional attributes for the link
- * @param  boolean  \$legacy  True to use legacy images, false to use icomoon based graphic
+ * @param   object    \$item     The ${3/(.+)/\l\1/g} information
+ * @param   Registry  \$params   The item parameters
+ * @param   array     \$attribs  Optional attributes for the link
+ * @param   boolean   \$legacy   True to use legacy images, false to use icomoon based graphic
  *
- * @return string The HTML for the ${3/(.+)/\l\1/g} edit icon.
+ * @return  string              The HTML for the ${3/(.+)/\l\1/g} edit icon.
  *
  * @since   $1
  */
@@ -230,12 +230,14 @@ public static function edit(\$item, \$params, \$attribs = array(), \$legacy = fa
 /**
  * Method to generate a popup link to print an ${3/(.+)/\l\1/g}
  *
- * @param  object   \$item    The ${3/(.+)/\l\1/g} information
- * @param  Registry \$params  The item parameters
- * @param  array    \$attribs Optional attributes for the link
- * @param  boolean  \$legacy  True to use legacy images, false to use icomoon based graphic
+ * @param   object    \$item     The ${3/(.+)/\l\1/g} information
+ * @param   Registry  \$params   The item parameters
+ * @param   array     \$attribs  Optional attributes for the link
+ * @param   boolean   \$legacy   True to use legacy images, false to use icomoon based graphic
  *
- * @return string The HTML markup for the popup link
+ * @return  string              The HTML markup for the popup link
+ *
+ * @since   $1
  */
 public static function print_popup(\$item, \$params, \$attribs = array(), \$legacy = false)
 {
@@ -244,17 +246,18 @@ public static function print_popup(\$item, \$params, \$attribs = array(), \$lega
 /**
  * Method to generate a link to print an ${3/(.+)/\l\1/g}
  *
- * @param  object   \$item    Not used, @deprecated for 4.0
- * @param  Registry \$params  The item parameters
- * @param  array    \$attribs Not used, @deprecated for 4.0
- * @param  boolean  \$legacy  True to use legacy images, false to use icomoon based graphic
+ * @param   object    \$item     Not used, @deprecated for 4.0
+ * @param   Registry  \$params   The item parameters
+ * @param   array     \$attribs  Not used, @deprecated for 4.0
+ * @param   boolean   \$legacy   True to use legacy images, false to use icomoon based graphic
  *
- * @return string The HTML markup for the popup link
+ * @return  string              The HTML markup for the popup link
+ *
+ * @since   $1
  */
 public static function print_screen(\$item, \$params, \$attribs = array(), \$legacy = false)
 {
 }]]></content>
 	<tabTrigger>joomla-component-helper-html-icon</tabTrigger>
 	<scope>source.php</scope>
-  <description>Adds buttons on helper HTML Icon class of components.</description>
 </snippet>

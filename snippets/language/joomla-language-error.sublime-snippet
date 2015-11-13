@@ -2,5 +2,4 @@
   <content><![CDATA[${1:COM}_${2:PROJECT}_ERROR_${3:TABLE}_${4:ERROR}="$5"]]></content>
   <tabTrigger>joomla-language-error</tabTrigger>
   <scope>source.ini</scope>
-  <description>Adds message error to extensions into ini files</description>
 </snippet>

@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[<fieldset name="${1:basic}">
+</fieldset>
+]]></content>
+	<tabTrigger>joomla-fieldset-simple</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>

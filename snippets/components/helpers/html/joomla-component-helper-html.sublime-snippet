@@ -4,10 +4,10 @@
 /**
  * ${1:Project} ${2:${TM_FILENAME/(.*?)(\..+)/\u$1/}} HTML Helper
  *
- * @package    Joomla.${3:Administrator}
- * @subpackage Components.${1/(.+)/\u\1/g}
+ * @package     Joomla.${3:Administrator}
+ * @subpackage  Components.${1/(.+)/\u\1/g}
  *
- * @since      ${4:0.1.0}
+ * @since       ${4:0.1.0}
  */
 abstract class JHtml${2/(.*?)(\..+)/\u$1/}
 {
@@ -15,5 +15,4 @@ abstract class JHtml${2/(.*?)(\..+)/\u$1/}
 }]]></content>
 	<tabTrigger>joomla-component-helper-html</tabTrigger>
 	<scope>source.php</scope>
-  <description>Adds helper HTML abstract class on components.</description>
 </snippet>

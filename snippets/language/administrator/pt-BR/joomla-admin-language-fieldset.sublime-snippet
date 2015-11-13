@@ -1,7 +1,0 @@
-<snippet>
-  <content><![CDATA[COM_${1:PROJECT}_FIELDSET_${2:VIEW}_${3:NAME}="$4"
-]]></content>
-  <tabTrigger>joomla-admin-language-fieldset</tabTrigger>
-  <scope>source.ini, text.plain</scope>
-  <description>Adds extra component fieldset into ini files</description>
-</snippet>

@@ -1,7 +1,8 @@
 <snippet>
   <content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <extension type="package" version="${1:3.3.0}" method="upgrade">
-  <name>${2:Package Name}</name>
+  <name>pkg_${2:name}</name>
+  <packagename>${2/(.+)/\L\1/g}</packagename>
   <creationDate>$3</creationDate>
   <author>${4:Rene Bentes Pinto}</author>
   <authorEmail>${5:renebentes@yahoo.com.br}</authorEmail>
@@ -9,15 +10,19 @@
   <copyright>Copyright (C) ${7:2014} ${8:Rene Bentes Pinto, Inc}. All rights reserved.</copyright>
   <license>${9:GNU General Public License version 2 or later}; see LICENSE</license>
   <version>${10:0.1.0}</version>
-  <packagename>${11:name}</packagename>
-  <url>$12</url>
-  <packager>$13</packager>
-  <packagerurl>$14</packagerurl>
-  <description>${15:<![CDATA[<h3>Description Package</h3></]]${-1}>}</description>
-  <update>$16</update>
+  <url>${11:https://github.com/renebentes/pkg_${2/(.+)/\L\1/g}}</url>
+  <packager>${12:${4}}</packager>
+  <packageremail>${13:${5}}</packageremail>
+  <packagerurl>${14:${6}}</packagerurl>
+  <description>PKG_${2/(.+)/\U\1/g}_XML_DESCRIPTION</description>
+  <update>$15</update>
   <files folder="packages">
-    joomla-package-manifest-${17:component|language|library|module|plugin|template}
+    joomla-package-manifest-${16:component|language|library|module|plugin|template}
   </files>
+  <languages folder="language">
+    <language tag="en-GB">en-GB/en-GB.pkg_${2/(.+)/\L\1/g}.sys.ini</language>
+    <language tag="pt-BR">pt-BR/pt-BR.pkg_${2/(.+)/\L\1/g}.sys.ini</language>
+  </languages>
 </extension>]]>
   </content>
   <tabTrigger>joomla-package-manifest</tabTrigger>

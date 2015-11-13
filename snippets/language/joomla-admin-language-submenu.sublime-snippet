@@ -1,0 +1,5 @@
+<snippet>
+  <content><![CDATA[${1:COM}_${2:PROJECT}_SUBMENU_${3:NAME}="$4"]]></content>
+	<tabTrigger>joomla-admin-language-submenu</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

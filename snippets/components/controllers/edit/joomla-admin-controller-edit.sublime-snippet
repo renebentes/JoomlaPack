@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[/**
+ * ${1:Singular} controller class.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  Components.${2:Project}
+ * @since       ${3:0.1.0}
+ */
+class ${2/(.+)/\u\1/g}Controller${1/(.+)/\u\1/g} extends JControllerForm
+{
+
+}
+]]></content>
+	<tabTrigger>joomla-admin-controller-edit</tabTrigger>
+  <scope>source.php</scope>
+</snippet>

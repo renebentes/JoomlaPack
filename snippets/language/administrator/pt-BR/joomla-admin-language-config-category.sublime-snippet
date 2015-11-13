@@ -1,5 +1,0 @@
-<snippet>
-  <content><![CDATA[COM_${1:PROJECT}_CONFIG_CATEGORY_SETTINGS_DESC="Estas configurações se aplicam às opções de uma categoria de ${2:Plural}, exceto se forem alterados por um item de menu específico."]]></content>
-  <tabTrigger>joomla-admin-language-config-category</tabTrigger>
-  <scope>source.ini, text.plain</scope>
-</snippet>

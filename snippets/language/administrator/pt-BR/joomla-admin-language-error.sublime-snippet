@@ -1,8 +1,0 @@
-<snippet>
-  <content><![CDATA[; Errors
-COM_${1:PROJECT}_ERROR_TABLE_${2:TITLE}="${3:Seu} ${4:singular} deve conter um ${5:título}."
-COM_${1:/(.+)/\U\1/g}_ERROR_TABLE_UNIQUE_ALIAS="${6:Outro} ${4:/(.+)/\L\1/g} tem o mesmo apelido."]]></content>
-  <tabTrigger>joomla-admin-language-error</tabTrigger>
-  <scope>source.ini, text.plain</scope>
-  <description>Adds default table error messages into ini files</description>
-</snippet>

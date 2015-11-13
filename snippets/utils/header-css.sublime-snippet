@@ -11,5 +11,4 @@
 ]]></content>
 	<tabTrigger>header-css</tabTrigger>
   <scope>source.css, source.less</scope>
-  <description>Adds header into CSS, LESS files.</description>
 </snippet>

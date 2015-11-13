@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[<field
+    name="${1:name}"
+    type="radio"
+    label="${2:COM}_${3:PROJECT}_PARAMETER_${1/(.+)/\U\1/g}_LABEL"
+    description="${2:COM}_${3:PROJECT}_PARAMETER_${1/(.+)/\U\1/g}_DESC"
+    class="btn-group btn-group-yesno"
+    default="1"
+  >
+    <option value="0">JNO</option>
+    <option value="1">JYES</option>
+  </field>
+]]></content>
+	<tabTrigger>joomla-params-field-radio</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>

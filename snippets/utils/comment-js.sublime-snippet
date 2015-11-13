@@ -4,5 +4,4 @@
 ]]></content>
 	<tabTrigger>comment-js</tabTrigger>
   <scope>source.js</scope>
-  <description>Adds comment line into JS files.</description>
 </snippet>

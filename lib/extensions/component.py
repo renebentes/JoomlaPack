@@ -30,16 +30,13 @@ class Component(Base):
             self.name = content
             self.fullname = self.inflector.underscore(self.prefix + self.name)
         else:
-            pass
+            self.fullname = self.inflector.underscore(
+                Project().get_project_name())
+            self.name = self.inflector.humanize(self.fullname, prefix='com_')
 
     def rename(self):
-        singular = self.inflector.singularize(
-            self.name) if not self.inflector.is_singular(
-                self.name) else self.name
-
-        plural = self.inflector.pluralize(
-            self.name) if not self.inflector.is_plural(
-                self.name) else self.name
+        singular = self.inflector.singularize(self.name)
+        plural = self.inflector.pluralize(self.name)
 
         for root, dirs, files in os.walk(self.path):
             for filename in files:

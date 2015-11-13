@@ -4,5 +4,4 @@
 ]]></content>
   <tabTrigger>joomla-installer-script-postflight-enable</tabTrigger>
   <scope>source.php</scope>
-  <description>Add call to _enableExtension() method into install script.</description>
 </snippet>

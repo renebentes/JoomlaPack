@@ -1,12 +1,14 @@
 JoomlaPack - sublime-joomla
 =============
 
-Conjunto de Snippets e Plugin para criação de projetos Joomla com Sublime Text.
+JoomlaPack é um pacote para Sublime Text [2](http://www.sublimetext.com/2) & [3](http://www.sublimetext.com/3), contém snippets e plugins para tornar o desenvolvimento de projetos [Joomla!](http://www.joomla.org) mais rápido.
+
+JoomlaPack é compatível com Joomla! 3.3 e superiores.
 
 Requirements
 ------------
 
-* [Joomla! 3.0+](http://www.joomla.org)
+* [Joomla! 3.3+](http://www.joomla.org)
 
 Author
 ------
@@ -16,7 +18,7 @@ Author
 License
 --------
 
-* This Package Snippets licensed under the terms of the [MIT](http://github.com/renebentes/sublime-joomla/blob/master/LICENSE) license.
+* This Package licensed under the terms of the [MIT](http://github.com/renebentes/sublime-joomla/blob/master/LICENSE) license.
 
 Bugs/Requests
 -------------

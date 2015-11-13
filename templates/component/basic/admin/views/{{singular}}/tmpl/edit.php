@@ -1,2 +1,2 @@
 joomla-header
-joomla-admin-layout-edit
+joomla-admin-view-edit-layout

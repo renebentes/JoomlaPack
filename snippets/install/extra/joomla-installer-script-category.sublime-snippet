@@ -1,10 +1,10 @@
-<snippet>
+ <snippet>
   <content><![CDATA[/**
  * Method to add a default category "uncategorised".
  *
- * @return void
+ * @return  void
  *
- * @since  ${1:0.1.0}
+ * @since   ${1:0.1.0}
  */
 protected function _addCategory()
 {
@@ -32,21 +32,7 @@ protected function _addCategory()
 
   // Save the data.
   \$model->save(\$data);
-
-  // Initialiase variables.
-  \$id    = \$model->getItem()->id;
-  \$db    = JFactory::getDbo();
-
-  // Updating all ${2/(.+)/\L\1/g} without category to have this new one.
-  \$query = \$db->getQuery(true)
-    ->update(\$db->quoteName('#__${2/(.+)/\L\1/g}$3'))
-    ->set(\$db->quoteName('catid') . ' = ' . \$db->quote((int) \$id))
-    ->where(\$db->quoteName('catid') . ' = ' . \$db->quote(0));
-
-  \$db->setQuery(\$query)
-    ->query();
 }]]></content>
   <tabTrigger>joomla-installer-script-category</tabTrigger>
   <scope>source.php</scope>
-  <description>Adds _addCategory method into install script.</description>
 </snippet>

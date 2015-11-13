@@ -1,0 +1,5 @@
+<snippet>
+  <content><![CDATA[COM_${1:PROJECT}_CONFIG_FIELDSET_LIST_SETTINGS_DESC="Estas configurações se aplicam ao layout de lista, exceto se forem alterados por um item de menu específico."]]></content>
+  <tabTrigger>joomla-admin-language-config-list</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[<media destination="${1:com}_${2:project}" folder="media">
+  <folder>css</folder>
+  <folder>images</folder>
+  <folder>js</folder>
+  <filename>index.html</filename>
+</media>
+]]></content>
+	<tabTrigger>joomla-manifest-media</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>

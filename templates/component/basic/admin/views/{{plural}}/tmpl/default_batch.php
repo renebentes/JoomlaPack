@@ -1,2 +1,2 @@
 joomla-header
-joomla-admin-layout-list-batch
+joomla-admin-view-list-layout-batch

@@ -1,6 +1,0 @@
-<snippet>
-	<content><![CDATA[<menu link="option=com_${1:project" view="${2:view-name}" img="class:${1/(.+)/\L\1/g}" alt="${1/(.+)/\u\1/g}/${2/(.+)/\u\1/g}">com_${1/(.+)/\L\1/g}_${2/(.+)/\L\1/g}</menu>]]>
-	</content>
-	<tabTrigger>joomla-component-manifest-menu</tabTrigger>
-	<scope>text.xml</scope>
-</snippet>

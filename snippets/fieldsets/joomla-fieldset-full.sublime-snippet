@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[<fieldset
+  name="${1:basic}"
+  label="${2:COM}_${3:PROJECT}_${4:VIEWNAME_OR_PARAMETER_}FIELDSET_${1/(.+)/\U\1/g}_LABEL"
+  description="${2/(.+)/\U\1/g}_${3/(.+)/\U\1/g}_${4/(.+)/\U\1/g}FIELDSET_${1/(.+)/\U\1/g}_DESC"
+  addrulepath="${5:/administrator/components/${2/(.+)/\L\1/g}_${3/(.+)/\L\1/g}}${6:/models}/rules"
+  addfieldpath="${5/(.+)/\L\1/g}${6/(.+)/\L\1/g}/fields"
+>
+</fieldset>
+]]></content>
+	<tabTrigger>joomla-fieldset-full</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>

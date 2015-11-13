@@ -12,5 +12,4 @@
 ]]></content>
 	<tabTrigger>header-js</tabTrigger>
   <scope>source.js</scope>
-  <description>Adds header into JS files.</description>
 </snippet>

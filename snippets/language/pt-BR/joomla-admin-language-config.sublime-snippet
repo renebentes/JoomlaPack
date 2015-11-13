@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[; Config
+COM_${1:PROJECT}_CONFIGURATION="${2:Componente}: Opções"
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_${3:PLURAL}_SETTINGS_LABEL="${4:Plural}"
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_${3/(.+)/\U\1/g}_SETTINGS_DESC="Estas configurações se aplicam ao layout de ${4/(.+)/\u\1/g}, exceto se forem alterados por um item de menu específico."
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_EDITOR_SETTINGS_LABEL="Layout de Edição"
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_EDITOR_SETTINGS_DESC="Estas opções se aplicam ao layout da página de edição de ${4/(.+)/\u\1/g}."
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_SHARED_SETTINGS_LABEL="Opções Compartilhadas"
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_SHARED_SETTINGS_DESC="Estas configurações se aplicam às Opções Compartilhadas entre os layouts de exibição de ${4/(.+)/\u\1/g}. A menos, que tenham sido alterados por um item de menu específico."
+COM_${1/(.+)/\U\1/g}_CONFIG_FIELDSET_INTEGRATION_SETTINGS_DESC="Estas opções determinam como o Componente para Gerenciamento de ${2/(.+)/\u\1/g} irá se integrar com outras extensões."]]></content>
+  <tabTrigger>joomla-admin-language-config</tabTrigger>
+  <scope>source.ini, text.plain</scope>
+</snippet>

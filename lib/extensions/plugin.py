@@ -27,18 +27,18 @@ class Plugin(Base):
         self.template_path = 'plugin'
 
         if content is not None:
-            self.group = content['group'][1]
-            self.name = content['name'][1]
+            self.group, self.name = self.inflector.humanize(content,
+                                                            prefix='plg_') \
+                .split(' ')
             self.fullname = self.inflector.underscore(
                 self.inflector.variablize(self.prefix +
                                           self.group + ' ' + self.name))
         else:
             self.fullname = self.inflector.underscore(
                 Project().get_project_name())
-            self.group, self.name = self.inflector.humanize(
-                self.fullname,
-                prefix='plg_').split(' ')
-            self.path(self.fullname)
+            self.group, self.name = self.inflector.humanize(self.fullname,
+                                                            prefix='plg_') \
+                .split(' ')
 
     def rename(self):
         for root, dirs, files in os.walk(self.path):
