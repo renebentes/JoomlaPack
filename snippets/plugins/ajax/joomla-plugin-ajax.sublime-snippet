@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[/**
+ * ${1:Method....}
+ *
+ * @return  json  The json result
+ *
+ * @since   ${2:0.1.0}
+ */
+public function onAjax${3:Action}()
+{
+  $4
+}]]></content>
+  <tabTrigger>joomla-plugin-ajax</tabTrigger>
+  <scope>source.php</scope>
+</snippet>
